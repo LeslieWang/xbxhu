@@ -1,2 +1,3 @@
+#project related ignore files.
 protected/apps/install/install.lock
 protected/config.php
