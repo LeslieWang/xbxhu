@@ -20,6 +20,9 @@ class memberController extends baseController{
         $this->assign('auth',$power);
         break;
     }
+
+    // block assign model.
+    $this->assign('memberoff',true);
 	}
 }
 ?>

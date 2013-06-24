@@ -11,11 +11,6 @@
 <div class="yx-g index-mid">
     <div class="yx-u-17-24">
        <div class="yx-g index-mid-top">
-          <div class="yx-u-2-5 box" id="KinSlideshow">
-           {recom:{table=(news) field=(id,title,picture,method) place=(101) where=(ispass='1' AND picture!='NoPic.gif') limit=(8)}}
-              <a target="_blank" href="[recom:url]"><img src="{$NewImgPath}[recom:picture]" alt="[recom:title $len=20]" width="260" height="208" /></a>
-            {/recom} 
-          </div>
           <div class="yx-u-3-5">
              <div class="index-reg box">
               <ul class="bock-list">

@@ -47,11 +47,6 @@
           <div class="searchbox">
               <div class="searchinput">
               <form method="get" action="{url('index/search')}">
-                    <span class="tags">TAGS:
-                        {tag:{table=(tags) field=(name) order=(hits desc,id desc) limit=(5)}}
-                           <a href="{url('default/index/search',array('type'=>'all','keywords'=>urlencode($tag['name'])))}">[tag:name]</a>
-                        {/tag}...&nbsp;&nbsp;
-                     </span>
                    <input name="r" type="hidden" value="default/index/search" />
                     <select name="type">
                        <option value="all">全部&nbsp;</option>
