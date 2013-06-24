@@ -13,7 +13,7 @@ document.getElementById('verifyImg').src= "{url('index/verify')}/"+timenow;
 <div class="reg_con">
 <div class="login_banner"> 
  <a href="{url('default/index/index')}"> < 回到首页</a>&nbsp;&nbsp;
- <a href="{url('member/index/login')}"><用户登录</a>&nbsp;&nbsp;&nbsp;&nbsp;
+ <a href="{url('member/index/login')}">< 用户登录</a>&nbsp;&nbsp;&nbsp;&nbsp;
 </div>
 <table border="0" cellspacing="0" cellpadding="0" class="form_box">
             <form action="" method="post">

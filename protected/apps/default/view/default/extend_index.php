@@ -32,7 +32,7 @@ document.getElementById('verifyImg').src= "{url('index/verify')}/"+timenow;
         </div>
           <form action="{url('extend/index',array('id'=>$id))}" method="post" id="info" >
           <table class="form_box">
-         {for $i=1;$i<count($tableinfo);$i++}
+         {for $i=1;$i< count($tableinfo);$i++}
              <tr><td align="right" width="150">{$tableinfo[$i]['name']}：</td><td align="left">
              {if $tableinfo[$i]['type']==1} <!--单行文本-->
                 <input type="text" name="{$tableinfo[$i]['tableinfo']}" value="">
@@ -79,14 +79,14 @@ document.getElementById('verifyImg').src= "{url('index/verify')}/"+timenow;
           <!--可以调用以下代码显示已审核过的用户提交的表单信息-->
              <table class="table">
                <tr>
-               {for $i=1;$i<count($tableinfo);$i++}
+               {for $i=1;$i< count($tableinfo);$i++}
                   <th> {$tableinfo[$i]['name']} </th>
 			    {/for} 
                </tr>
                
                {loop $list $vo}
                  <tr>
-                  {for $i=1;$i<count($tableinfo);$i++}
+                  {for $i=1;$i< count($tableinfo);$i++}
                    <td> {html_out($vo[$tableinfo[$i]['tableinfo']])} </td>
 			      {/for} 
                  </tr>
