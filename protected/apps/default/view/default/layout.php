@@ -100,8 +100,8 @@
                 {/if}
              {/if}
            {/loop}<br>
-          Copyright @ 2012-2013 Yxcms Inc. All right reserved.Powered By <a target="_blank" title="免费版不可去除此版权" href="http://www.yxcms.net">YXcms</a><br>
-         联系电话:{$telephone}&nbsp;&nbsp;&nbsp;&nbsp;QQ:{$QQ}&nbsp;&nbsp;&nbsp;&nbsp;站长邮箱：{$email}&nbsp;&nbsp;&nbsp;&nbsp;地址:{$address}&nbsp;&nbsp;&nbsp;&nbsp;ICP:{$icp}
+          Copyright @ 2012-2013 Yxcms Inc. All right reserved.Powered By <a target="_blank" title="免费版不可去除此版权" href="http://www.yxcms.net">YXcms</a>&nbsp;&nbsp;&nbsp;&nbsp;地址:{$address}&nbsp;&nbsp;&nbsp;&nbsp;<br>
+         联系电话:{$telephone}&nbsp;&nbsp;&nbsp;&nbsp;传真:{$fax}&nbsp;&nbsp;&nbsp;&nbsp;邮编:{$postcode}&nbsp;&nbsp;&nbsp;&nbsp;校长邮箱：{$email}&nbsp;&nbsp;&nbsp;&nbsp;ICP:{$icp}
        </div>
    </div>
 </div>

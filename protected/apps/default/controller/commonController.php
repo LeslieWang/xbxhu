@@ -13,9 +13,10 @@ class commonController extends memberController {
 		$this->keywords=config('keywords');
 		$this->description=config('description');
 		$this->telephone=config('telephone');
-		$this->QQ=config('QQ');
 		$this->email=config('email');
 		$this->address=config('address');
+		$this->fax=config('fax');
+		$this->postcode=config('postcode');
 		$this->icp=config('icp');
 		$this->view()->addTags(array(//自定义标签
 			"/{(\S+):{(.*)}}/i"=>"<?php $$1=getlist(\"$2\"); $$1_i=0; if(!empty($$1)) foreach($$1 as $$1){  $$1_i++; ?> ",

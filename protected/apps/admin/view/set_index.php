@@ -69,13 +69,8 @@ $.jqtab("#tabs","#tab_conbox","click");
 				<td class="inputhelp"></td>
 			</tr>
 			<tr>
-				<td align="right">网站关键词：</td>
-				<td><input class="regular-text" type='text' value="{$config['keywords']}" name="keywords" id="keywords" size="60"/></td>
-				<td class="inputhelp"></td>
-			</tr>
-			<tr>
-				<td align="right">网站描述：</td>
-				<td><textarea name="description" id="description" cols="60" rows="5" class="regular-textarea">{$config['description']}</textarea></td>
+				<td align="right">联系人：</td>
+				<td><input class="regular-text" type='text' value="{$config['contacter']}" name="contacter" id="contacter" /></td>
 				<td class="inputhelp"></td>
 			</tr>
             <tr>
@@ -84,18 +79,28 @@ $.jqtab("#tabs","#tab_conbox","click");
 				<td class="inputhelp"></td>
 			</tr>
             <tr>
-				<td align="right">QQ：</td>
-				<td><input class="regular-text" type='text' value="{$config['QQ']}" name="QQ" id="QQ" /></td>
-				<td class="inputhelp">多个QQ号用半角,隔开</td>
+				<td align="right">传真：</td>
+				<td><input class="regular-text" type='text' value="{$config['fax']}" name="fax" id="fax" /></td>
+				<td class="inputhelp"></td>
+			</tr>
+            <tr>
+				<td align="right">邮编：</td>
+				<td><input class="regular-text" type='text' value="{$config['postcode']}" name="postcode" id="postcode" /></td>
+				<td class="inputhelp"></td>
 			</tr>
 			<tr>
-				<td align="right">站长邮箱：</td>
+				<td align="right">校长邮箱：</td>
 				<td><input class="regular-text" type='text' value="{$config['email']}" name="email" id="email" /></td>
 				<td></td>
 			</tr>
             <tr>
-				<td align="right">公司地址：</td>
+				<td align="right">地址：</td>
 				<td><input class="regular-text" type='text' value="{$config['address']}" name="address" id="address" size="40"/></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td align="right">版权：</td>
+				<td><input class="regular-text" type='text' value="{$config['copyright']}" name="copyright" id="copyright" size="40"/></td>
 				<td></td>
 			</tr>
 			<tr>
