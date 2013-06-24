@@ -12,7 +12,7 @@
        {/if}
        
        <div class="block box">
-          <div class="bock-tit"><h2>公告信息</h2></div>
+          <div class="bock-tit"><h2>校办简介</h2></div>
           <div class="bock-con">{piece:announce}</div>
        </div>
        

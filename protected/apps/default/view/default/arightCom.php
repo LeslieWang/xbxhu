@@ -12,6 +12,16 @@
        </div>
        {/if}
        
+       <div class="block box">
+          <div class="bock-tit"><h2>校办简介</h2></div>
+          <div class="bock-con">{piece:announce}</div>
+       </div>
+       
+       <div class="block box">
+          <div class="bock-tit"><h2>联系我们</h2></div>
+          <div class="bock-con">{piece:contactus}</div>
+       </div>
+       
         <!--演示调用固定栏目下的子栏目-->
        <div class="block box">
           <div class="bock-tit"><h2>{$sorts[100001]['name']}</h2></div>
@@ -28,11 +38,6 @@
               {/if}
             {/loop}
           </ul>
-       </div>
-       
-       <div class="block box">
-          <div class="bock-tit"><h2>公告信息</h2></div>
-          <div class="bock-con">{piece:announce}</div>
        </div>
        
        <div class="block box">
