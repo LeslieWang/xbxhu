@@ -85,14 +85,6 @@ class indexController extends commonController
 		{
 			$this->error('请输入密码');
 		}
-		if(empty($_POST['checkcode']))
-		{
-			$this->error('请输入验证码');
-		}
-		if($_POST['checkcode']!=$_SESSION['verify'])
-		{
-			$this->error('验证码错误，请重新输入');
-		}
 
 		//登录验证session设置
 		if(model('admin')->login($username,$password))

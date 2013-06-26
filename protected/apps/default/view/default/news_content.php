@@ -45,7 +45,6 @@ jQuery(function() {
            
            <div class="pagelist yx-u">{$info['content']['page']}</div>
 
-           {include file="acomment"}
            <ul class="next">
                  <li>上一篇：{if !empty($upnews)}<a href="{url($upnews['method'],array('id'=>$upnews['id']))}" onFocus="this.blur()">{$upnews['title']}</a>{else}没有了....{/if}</li>
                 <li>下一篇：{if !empty($downnews)}<a href="{url($downnews['method'],array('id'=>$downnews['id']))}" onFocus="this.blur()">{$downnews['title']}</a>{else}没有了....{/if}</li>

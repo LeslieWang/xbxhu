@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>YXcms-信息管理系统</title>
+<title>西华校办管理系统</title>
 <link href="__PUBLICAPP__/css/back.css" type=text/css rel=stylesheet>
 <script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
 <script language="javascript">

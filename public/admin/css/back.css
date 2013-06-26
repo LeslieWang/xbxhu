@@ -67,7 +67,7 @@ a{text-decoration:none;color:#137cd8}
 
 /*框架首页*/
 .top_t{ background:url(../images/top_bg.gif) repeat-x; width:100%; height:66px}
-.logo{background:url(../images/logo.jpg) no-repeat top; width:164px; height:66px; float:left}
+.logo{background:url(../images/logo.png) no-repeat top; width:164px; height:66px; float:left}
 
 #topmenu{ float:left; padding:20px 0 0 15px;height:46px;}
 a.top_menu{display:block; float:left; margin-left:10px}
