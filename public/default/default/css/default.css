@@ -50,7 +50,7 @@ div#menu span {display: block;line-height:41px;cursor: pointer;background-repeat
 div#menu ul ul a.parent span {background: url(../images/item-pointer.png) no-repeat right center;}
 div#menu ul ul a.parent:hover span {background-image: url(../images/item-pointer-mover.png);}
 /* menu::level1 */
-div#menu a {padding: 0; height: 41px;width:120px; font-family:'Microsoft YaHei'}
+div#menu a {padding: 0; height: 41px;width:99px; font-family:'Microsoft YaHei'}
 div#menu span {font-size:16px;color:#fff}
 div#menu li.last { background: none; }
 
@@ -59,7 +59,7 @@ div#menu ul ul li {background: none;}
 div#menu ul ul li,div#menu ul ul li a {z-index: auto;}
 div#menu ul ul li a span{font-size:14px;}
 div#menu ul ul li ul {z-index: 20;}
-div#menu ul ul {display: block;position:absolute;top:41px;left:-999em;width:120px;background:#1aa7ea;}
+div#menu ul ul {display: block;position:absolute;top:41px;left:-999em;width:99px;background:#1aa7ea;}
 div#menu ul ul a {padding:0;height:30px;float:none;display:block;line-height:26px;border:0;z-index:-1;white-space:nowrap;}
 div#menu ul ul a span {line-height:26px;color:#fff;}
 div#menu ul ul li:hover>a {border:0;}
@@ -73,26 +73,26 @@ div#menu ul ul li {width:100%;text-indent:15px;}
 div#menu ul ul ul {padding:0;margin:-41px 0 0 120px !important;margin-left:120px;}
 /* lava lamp */
 div#menu li.back {position: absolute;width: 10px;height: 41px;z-index: 8;}
-div#menu li.back .left {height: 41px;width:120px;margin-right: 5px;background:url(../images/menubut.png) no-repeat center bottom;}
+div#menu li.back .left {height: 41px;width:99px;margin-right: 5px;background:url(../images/menubut.png) no-repeat center bottom;}
 #Main{}
 /*头部结束*/
 /*首页大图滚动*/
 .cycle-slider{ height:350px}
 /*首页中部*/
 a.more{ display:block; float:right; line-height:33px; font-size:11px; padding-right:10px; color:#333}
-.index-mid{margin-top:30px;}
+.index-mid{margin-top:0px;}
 .index-mid-top{ margin-bottom:20px}
 #KinSlideshow{ width:260px; height:208px; overflow:hidden}
 .index-reg{margin-left:20px; background:url(../images/index_btit.gif) repeat-x top #FFF}
 .index-reg h1{ text-align:center;display:block; height:30px; line-height:30px; font-size:14px; font-weight:600;  border-bottom:1px dashed #CCC}
 .index-reg h1 a{color:#2974c5;}
 .index-reg p{ line-height:20px; color:#666; font-size:12px; display:block; margin-top:5px; height:40px; overflow:hidden; padding:0 10px}
-.index-big{width:97%; margin-bottom:20px;}
+.index-big{width:99%; margin-bottom:5px;}
 .photo-list{ padding:9px}
 .photo-list li{ margin:9px 4px 9px 14px;_margin:5px 3px 5px 9px; float:left}
 .photo-list li a{ display:block;}
 .photo-list li span{display:block; width:145px; height:20px; overflow:hidden; text-align:center; line-height:20px; font-size:12px; color:#666}
-.block{margin-bottom:20px}
+.block{margin-bottom:5px}
 .bock-tit{ height:33px;line-height:33px;background:url(../images/block_bg.gif) repeat-x; border-bottom:1px solid #CCC}
 .bock-tit h2{ display:block; float:left; padding-left:10px;  color:#2974c5; font-weight:600;}
 .bock-tit h3{display:block; float:left; padding-left:10px; color:#666}
