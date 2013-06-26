@@ -15,7 +15,7 @@
        <div class="yx-u box index-big">
             <div class="bock-tit"><h2>{$sorts[100032]['name']}</h2><a class="more" href="{$sorts[100032]['url']}">more</a></div>
                      <ul class="bock-list">
-                     {newso:{table=(news) field=(id,title,color,addtime,method) column=(100032) where=(ispass='1') limit=(6)}}
+                     {newso:{table=(news) field=(id,title,color,addtime,method) column=(100032) where=(ispass='1') limit=(8)}}
                        <li><a class="w220" style="color:[newso:color]" title="[newso:title]" target="_blank" href="[newso:url]">[newso:title $len=40]</a><span>{date($newso['addtime'],Y-m-d)}</span></li>
                      {/newso}
                      </ul>
@@ -27,7 +27,7 @@
                  <div class="box left-list">
                      <div class="bock-tit"><h2>{$sorts[100034]['name']}</h2><a class="more" href="{$sorts[100034]['url']}">more</a></div>
                      <ul class="bock-list">
-                     {newso:{table=(news) field=(id,title,color,addtime,method) column=(100034) where=(ispass='1') limit=(6)}}
+                     {newso:{table=(news) field=(id,title,color,addtime,method) column=(100034) where=(ispass='1') limit=(8)}}
                        <li><a class="w220" style="color:[newso:color]" title="[newso:title]" target="_blank" href="[newso:url]">[newso:title $len=16]</a><span>{date($newso['addtime'],Y-m-d)}</span></li>
                      {/newso}
                      </ul>
@@ -38,7 +38,7 @@
                  <div class="box">
                      <div class="bock-tit"><h2>{$sorts[100035]['name']}</h2><a class="more" href="{$sorts[100035]['url']}">more</a></div>
                      <ul class="bock-list">
-                       {newst:{table=(news) field=(id,title,color,addtime,method) column=(100035) where=(ispass='1') limit=(7)}}
+                       {newst:{table=(news) field=(id,title,color,addtime,method) column=(100035) where=(ispass='1') limit=(8)}}
                      <li><a class="w220" style="color:[newst:color]" title="[newst:title]" target="_blank" href="[newst:url]">[newst:title $len=16]</a><span>{date($newst['addtime'],Y-m-d)}</span></li>
                       {/newst}
                      </ul>

@@ -32,34 +32,6 @@
 <body>
 <div id="Header">
    <div class="Top yx-g">
-      <div class="yx-u-2-5"><img src="__PUBLICAPP__/images/logo.png" class="top-logo"></div>
-      <div class="yx-u-3-5">
-        <div class="Top-right">
-          <div class="member-info">
-          {if !$memberoff}<!--判断会员中心app是否开启-->
-             {if !empty($auth)}<!--判断会员是否登陆-->
-                用户：{$auth['nickname']}&nbsp;&nbsp; 上次登录IP：{$auth['lastip']}&nbsp;&nbsp;<a href="{url('member/index/index')}">【会员中心】</a>&nbsp;<a href="{url('member/index/logout')}">【退出】</a>
-              {else}
-                 <a class="yx-button" href="{url('member/index/login')}">登录</a>&nbsp;<a class="yx-button" href="{url('member/index/regist')}">注册</a>
-             {/if}
-           {/if}
-          </div>
-          <div class="searchbox">
-              <div class="searchinput">
-              <form method="get" action="{url('index/search')}">
-                   <input name="r" type="hidden" value="default/index/search" />
-                    <select name="type">
-                       <option value="all">全部&nbsp;</option>
-                       <option value="news">文章&nbsp;</option>
-                       <option value="photo">图集&nbsp;</option>
-                     </select>
-                     <input type="text"  name="keywords" value="" class="search-input">
-                     <input type="submit" value="搜 索" class="yx-button">
-               </form>
-               </div>
-           </div>
-         </div>
-      </div>
    </div>
    <div id="menu">
       <ul class="menu"><!--菜单可以无限深度，以下只演示4层深度导航菜单调用，如果您实际项目中需要4层以上，请参照规律，多加一次判断。如果您懒得研究,请加QQ:404133748-->
