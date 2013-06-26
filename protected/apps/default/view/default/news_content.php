@@ -13,9 +13,9 @@ jQuery(function() {
 //]]>
 </script>
 <div id="Main">
-<div class="adv">
-    <img src="__PUBLICAPP__/images/banner.png">
-</div>
+<!-- <div class="adv"> -->
+<!--     <img src="__PUBLICAPP__/images/banner.png"> -->
+<!-- </div> -->
 <div class="yx-g">
     <div class="yx-u-17-24">
        <div class="box index-big">

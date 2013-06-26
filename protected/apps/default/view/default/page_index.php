@@ -1,8 +1,8 @@
 <?php if(!defined('APP_NAME')) exit;?>
 <div id="Main">
-<div class="adv">
-    <img src="__PUBLICAPP__/images/banner.png">
-</div>
+<!-- <div class="adv"> -->
+<!--     <img src="__PUBLICAPP__/images/banner.png"> -->
+<!-- </div> -->
 <div class="yx-g page">
        <div class="box yx-u page-con">
            <div class="bock-tit">

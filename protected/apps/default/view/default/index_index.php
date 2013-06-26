@@ -4,9 +4,9 @@
 <script type='text/javascript' src='__PUBLICAPP__/js/jquery.easing.js'></script>
 
 <div id="Main">
-<div class="adv">
-    <img src="__PUBLICAPP__/images/banner.png">
-</div>
+<!-- <div class="adv"> -->
+<!--     <img src="__PUBLICAPP__/images/banner.png"> -->
+<!-- </div> -->
 
 <div class="yx-g index-mid">
     <div class="yx-u-17-24">
