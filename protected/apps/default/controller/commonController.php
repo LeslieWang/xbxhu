@@ -18,6 +18,7 @@ class commonController extends memberController {
 		$this->fax=config('fax');
 		$this->postcode=config('postcode');
 		$this->icp=config('icp');
+		$this->copyright=config('copyright');
 		$this->view()->addTags(array(//自定义标签
 			"/{(\S+):{(.*)}}/i"=>"<?php $$1=getlist(\"$2\"); $$1_i=0; if(!empty($$1)) foreach($$1 as $$1){  $$1_i++; ?> ",
             "/{\/([a-zA-Z_]+)}/i"=> "<?php } ?>",
