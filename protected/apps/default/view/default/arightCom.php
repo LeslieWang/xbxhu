@@ -21,9 +21,9 @@
 						<form method="get" action="{url('index/search')}">
 							<input name="r" type="hidden" value="default/index/search" /> <select
 								name="type">
-								<option value="all">全部&nbsp;</option>
-								<option value="news">文章&nbsp;</option>
-								<option value="photo">图集&nbsp;</option>
+								<option value="all">全部&nbsp;&nbsp;&nbsp;</option>
+								<option value="news">文章&nbsp;&nbsp;&nbsp;</option>
+								<option value="photo">图集&nbsp;&nbsp;&nbsp;</option>
 							</select> <input type="text" name="keywords" value=""
 								class="search-input"> <input type="submit" value="搜 索"
 								class="yx-button">
@@ -40,6 +40,14 @@
                    <li><a class="w220" style="color:[newso:color]" title="[newso:title]" target="_blank" href="[newso:url]">[newso:title $len=20]</a></li>
                  {/newso}
              </ul>
+       </div>
+       <div class="block box">
+          <div class="bock-tit"><h2>领导邮箱</h2></div>
+          <div class="bock-con">
+          <tr height="45px" class=''>
+                			<td align='left'><a href="mailto:xb@mail.xhu.edu.cn" ><img style='border:0;' src="__PUBLICAPP__/images/mail.png"/></a></td>
+                		</tr>
+          </div>
        </div>
        <div class="block box">
           <div class="bock-tit"><h2>联系我们</h2></div>

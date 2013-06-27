@@ -58,7 +58,6 @@
 {include file="$__template_file"} <!--这里不用说了吧，主流cms都有的layout功能主体部分调用-->
 <div id="Foot">
    <div class="foot-con">
-       <img class="logo" src="__PUBLICAPP__/images/Lmark.png">
        <div class="copy">
            {loop $sorts $key $vo}  
              {if $vo['ifmenu']}        
@@ -67,8 +66,7 @@
                 {/if}
              {/if}
            {/loop}<br>
-          版权:{$copyright}&nbsp;&nbsp;&nbsp;&nbsp;地址:{$address}&nbsp;&nbsp;&nbsp;&nbsp;<br>
-         联系电话:{$telephone}&nbsp;&nbsp;&nbsp;&nbsp;传真:{$fax}&nbsp;&nbsp;&nbsp;&nbsp;邮编:{$postcode}&nbsp;&nbsp;&nbsp;&nbsp;校长邮箱：{$email}&nbsp;&nbsp;&nbsp;&nbsp;ICP:{$icp}
+          版权:{$copyright}&nbsp;&nbsp;&nbsp;&nbsp;地址:{$address}&nbsp;&nbsp;&nbsp;&nbsp;技术支持:<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3499936&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:3499936:44" alt="在线咨询" title="在线咨询" /></a>
        </div>
    </div>
 </div>
