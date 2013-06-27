@@ -50,7 +50,7 @@ div#menu span {display: block;line-height:41px;cursor: pointer;background-repeat
 div#menu ul ul a.parent span {background: url(../images/item-pointer.png) no-repeat right center;}
 div#menu ul ul a.parent:hover span {background-image: url(../images/item-pointer-mover.png);}
 /* menu::level1 */
-div#menu a {padding: 0; height: 41px;width:99px; font-family:'Microsoft YaHei'}
+div#menu a {padding: 0; height: 41px;width:90px; font-family:'Microsoft YaHei'}
 div#menu span {font-size:16px;color:#fff}
 div#menu li.last { background: none; }
 
@@ -59,7 +59,7 @@ div#menu ul ul li {background: none;}
 div#menu ul ul li,div#menu ul ul li a {z-index: auto;}
 div#menu ul ul li a span{font-size:14px;}
 div#menu ul ul li ul {z-index: 20;}
-div#menu ul ul {display: block;position:absolute;top:41px;left:-999em;width:99px;background:#1aa7ea;}
+div#menu ul ul {display: block;position:absolute;top:41px;left:-999em;width:90px;background:#1aa7ea;}
 div#menu ul ul a {padding:0;height:30px;float:none;display:block;line-height:26px;border:0;z-index:-1;white-space:nowrap;}
 div#menu ul ul a span {line-height:26px;color:#fff;}
 div#menu ul ul li:hover>a {border:0;}
@@ -73,7 +73,7 @@ div#menu ul ul li {width:100%;text-indent:15px;}
 div#menu ul ul ul {padding:0;margin:-41px 0 0 120px !important;margin-left:120px;}
 /* lava lamp */
 div#menu li.back {position: absolute;width: 10px;height: 41px;z-index: 8;}
-div#menu li.back .left {height: 41px;width:99px;margin-right: 5px;background:url(../images/menubut.png) no-repeat center bottom;}
+div#menu li.back .left {height: 41px;width:90px;margin-right: 5px;background:url(../images/menubut.png) no-repeat center bottom;}
 #Main{}
 /*头部结束*/
 /*首页大图滚动*/
