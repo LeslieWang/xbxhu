@@ -7,7 +7,8 @@ class sortController extends commonController
 	   3=>array('name'=>'单页','mark'=>'page'),
 	   4=>array('name'=>'应用','mark'=>'plugin'),
        5=>array('name'=>'自定义','mark'=>'link'),
-       6=>array('name'=>'表单','mark'=>'extend')
+       6=>array('name'=>'表单','mark'=>'extend'),
+       7=>array('name'=>'下载','mark'=>'download')
 	);
 	//static public $templepath;//前台模板路径
 	static public $extendtab=array();
@@ -87,12 +88,15 @@ class sortController extends commonController
 		  	case 'extendadd':
 		  		$this->extendadd();
 		  		break;
+		  	case 'downloadadd':
+		  		$this->downloadadd();
+		  		break;
 		  	default:
 		  		$this->display();
 		  		break;
 		  }
 	}
-   
+
 	//添加文章栏目
 	public function newsadd()
 	{
@@ -461,6 +465,86 @@ class sortController extends commonController
 			else $this->error('单页没有任何修改，不需要执行');
 		}
 	}
+
+	//添加下载栏目
+	public function downloadadd()
+	{
+		$type=7;//栏目类型
+		if(!$this->isPost())
+		{
+			$list=model('sort')->select('','id,name,deep,path,norder');
+			if(!empty($list)){
+				$list=re_sort($list);
+				$this->list=$list;
+			}
+
+			$this->url=url('sort');
+			$this->display('sort_downloadadd');
+		}else{
+			if(empty($_POST['sortname'])) $this->error('请填写完整栏目信息！');
+			$data=array();
+			$parentid=intval($_POST['parentid']);
+			$data=$this->sortadd($parentid);//分类添加
+			$data['type']=$type;
+			$data['name']=$_POST['sortname'];
+			$data['keywords']=in($_POST['keywords']);
+			$data['description']=in($_POST['description']);
+			$data['method']='download/index';
+			$data['tplist']=$_POST['tplist'];
+			$data['norder']=intval($_POST['norder']);
+			$data['ifmenu']=intval($_POST['ifmenu']);
+			//插入数据
+			if(model('sort')->insert($data)){
+				$this->success('下载栏目添加成功~',url('sort/index'));
+			}
+			else $this->error('下载栏目添加失败~');
+		}
+	}
+
+	//编辑下载栏目
+	public function downloadedit()
+	{
+		$type=7;//栏目类型
+		$id=intval($_GET['id']);
+		if(empty($id)) $this->error('空的类别参数');
+		$info=model('sort')->find("id='$id'",'name,norder,path,ifmenu,method,tplist,keywords,description');
+		$oldparentid=intval(substr ($info['path'], -6));
+		if(!$this->isPost())
+		{
+			$list=model('sort')->select('','id,name,deep,path,norder');
+			if(!empty($list)){
+				$list=re_sort($list);
+				$this->list=$list;
+			}
+			$this->id=$id;
+			$this->info=$info;
+			$this->oldparentid=$oldparentid;
+			$this->display();
+		}else{
+			if(empty($_POST['sortname'])) $this->error('请填写完整栏目信息！');
+			//数据处理
+			$data=array();
+			$newparentid=intval($_POST['parentid']);
+			if($oldparentid!=$newparentid) $data=$this->sortedit($info['path'],$newparentid,$id);//分类编辑
+
+			$data['type']=$type;
+			$data['name']=$_POST['sortname'];
+			$data['keywords']=in($_POST['keywords']);
+			$data['description']=in($_POST['description']);
+			$data['method']='download/index';
+			$data['tplist']=$_POST['tplist'];
+			$data['ifmenu']=intval($_POST['ifmenu']);
+			$data['norder']=intval($_POST['norder']);
+
+			
+			//更新数据
+			if(model('sort')->update("id = '$id'",$data)){
+				$this->success('下载栏目修改成功',url('sort/index'));
+			}
+			else $this->error('下载栏目没有任何修改，不需要执行');
+		}
+	}
+
 	//添加应用栏目
 	public function pluginadd()
 	{

@@ -60,6 +60,7 @@
                <option selected="selected" value="newsadd" >资讯栏目</option>
                <option value="photoadd" >图集栏目</option>
                <option value="pageadd" >单页栏目</option>
+               <option value="downloadadd" >下载栏目</option>
                <option value="pluginadd" >应用栏目</option>
                <option value="extendadd" >表单栏目</option>
                <option value="linkadd" >自定义栏目</option>
