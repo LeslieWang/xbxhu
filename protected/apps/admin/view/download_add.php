@@ -59,7 +59,7 @@
           </tr>
           <tr>
             <td align="right">标题：</td>
-            <td align="left"><input name="title" id="title" type="text" value="" /></td>
+            <td align="left"><input name="title" id="title" type="text" value="" size="50"/></td>
             <td class="inputhelp">下载标题</td>
           </tr>
           <tr>

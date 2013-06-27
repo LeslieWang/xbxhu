@@ -490,7 +490,7 @@ class sortController extends commonController
 			$data['keywords']=in($_POST['keywords']);
 			$data['description']=in($_POST['description']);
 			$data['method']='download/index';
-			$data['tplist']=$_POST['tplist'];
+			$data['tplist']='download_index';
 			$data['norder']=intval($_POST['norder']);
 			$data['ifmenu']=intval($_POST['ifmenu']);
 			//插入数据

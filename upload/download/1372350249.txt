@@ -1,0 +1,19 @@
+CREATE TABLE IF NOT EXISTS `yx_download` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `sort` varchar(350) NOT NULL COMMENT '类别',
+  `account` char(15) NOT NULL COMMENT '发布者账户',
+  `filename` varchar(64) NOT NULL COMMENT '真实文件名',
+  `showname` varchar(64) NOT NULL COMMENT '显示文件名',
+  `title` varchar(100) NOT NULL COMMENT '文件标题',
+  `count` int(10) DEFAULT 0 COMMENT '下载次数',
+  `addtime` int(11) NOT NULL COMMENT '上传时间',
+  `ispass` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+
+
+INSERT INTO yx_method VALUES('500','500','0','download','下载管理','1')
+INSERT INTO yx_method VALUES('501','500','500','index','已有下载','1')
+INSERT INTO yx_method VALUES('502','500','500','add','添加下载','1')
+INSERT INTO yx_method VALUES('503','500','500','edit','下载编辑','0')
+INSERT INTO yx_method VALUES('504','500','500','del','下载删除','0')

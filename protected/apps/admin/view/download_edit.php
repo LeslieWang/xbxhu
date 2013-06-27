@@ -63,7 +63,7 @@ $(function ($) {
           </tr>
           <tr>
             <td align="right">标题：</td>
-            <td align="left"><input name="title" id="title" type="text" value="{$info['title']}" /></td>
+            <td align="left"><input name="title" id="title" type="text" value="{$info['title']}"  size="50"/></td>
             <td class="inputhelp">下载标题</td>
           </tr>
           <tr>
