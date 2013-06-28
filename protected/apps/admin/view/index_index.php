@@ -130,7 +130,7 @@ $(function($){
           <div class="menumid" id="menumid">
               <!--js动态获得-->
           </div>
-          <div class="menubot"><a target="_blank" href="http://www.yxcms.net">{$ver}</a></div>	
+          <div class="menubot"><a target="_blank" href="http://xb.xhu.edu.cn">{$ver}</a></div>	
     </td>   
     <td width="15" valign="middle" class="middlem" >
         <div class="navPoint1" id="switchPoint" title="关闭/打开左栏"></div>

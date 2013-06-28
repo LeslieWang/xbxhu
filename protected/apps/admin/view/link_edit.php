@@ -59,7 +59,7 @@ $(function ($) {
           <tr>
             <td align="right">链接地址：</td>
             <td align="left"><input name="url" id="url" type="text" value="{$info['url']}" /></td>
-            <td class="inputhelp">格式：http://www.yxcms.net</td>
+            <td class="inputhelp">格式：http://xb.xhu.edu.cn</td>
           </tr>
           <tr>
             <td align="right">上传LOGO：</td>

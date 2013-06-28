@@ -72,19 +72,19 @@
 
 
 
-		<table width="100%" border="0" cellpadding="0" cellspacing="1" class="all_cont">
-			<tr>
-				<th width="100%" colspan="3">系统信息</th>
-			</tr>
-			<tr>
-				<td>官方网站：<a href="http://www.yxcms.net" target="_blank">http://www.yxcms.net</a></td>
-				<td>官方论坛：<a href="http://bbs.yxcms.net" target="_blank">http://bbs.yxcms.net</a></td>
-			</tr>
-            <tr>
-				<td>版本：{$ver} 【未授权】&nbsp; <a href="http://www.yxcms.net/page/index_id_100003.html" target="_blank">获取授权版</a></td>
-				<td><a target="_blank" href="http://wp.qq.com/wpa/qunwpa?idkey=812def252135e8a37169a3796bc60b9683c550d7a2322d0723570d7570a8a5c1"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="YXcms官方群1" title="YXcms官方群1"></a></td>
-			</tr>
-		</table>
+<!-- 		<table width="100%" border="0" cellpadding="0" cellspacing="1" class="all_cont"> -->
+<!-- 			<tr> -->
+<!-- 				<th width="100%" colspan="3">系统信息</th> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td>官方网站：<a href="http://www.yxcms.net" target="_blank">http://www.yxcms.net</a></td> -->
+<!-- 				<td>官方论坛：<a href="http://bbs.yxcms.net" target="_blank">http://bbs.yxcms.net</a></td> -->
+<!-- 			</tr> -->
+<!--             <tr> -->
+<!-- 				<td>版本：{$ver} 【未授权】&nbsp; <a href="http://www.yxcms.net/page/index_id_100003.html" target="_blank">获取授权版</a></td> -->
+<!-- 				<td><a target="_blank" href="http://wp.qq.com/wpa/qunwpa?idkey=812def252135e8a37169a3796bc60b9683c550d7a2322d0723570d7570a8a5c1"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="YXcms官方群1" title="YXcms官方群1"></a></td> -->
+<!-- 			</tr> -->
+<!-- 		</table> -->
 
 </div>
 </body>

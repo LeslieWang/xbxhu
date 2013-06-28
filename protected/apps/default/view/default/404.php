@@ -56,7 +56,7 @@ body,td,th {
        </UL>
       <HR noShade SIZE=0>
 
-      <P>☉ 如果您对YXcms系统有任何疑问、意见、建议、咨询，请联系作者QQ:404133748</A> 
+      <P>☉ 如果您对系统有任何疑问、意见、建议、咨询，请联系网站管理员</A> 
       <BR>
       &nbsp;&nbsp;&nbsp;<BR>
 </P></TD></TR></TBODY></TABLE>

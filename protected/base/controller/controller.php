@@ -93,7 +93,7 @@ class controller{
 		echo '</head><title></title><body></body></html>';
 		echo "<script language='javascript'>
 var dialog = art.dialog({
-    title: 'YXcms提示',
+    title: '系统提示',
     content: '{$msg}',
     icon: 'succeed',
     ok: function(){
@@ -115,7 +115,7 @@ var dialog = art.dialog({
 		echo '</head><title></title><body></body></html>';
 		echo "<script language='javascript'>
 var dialog = art.dialog({
-    title: 'YXcms提示',
+    title: '系统提示',
     content: '{$msg}',
     icon: 'error',
     ok: function(){
