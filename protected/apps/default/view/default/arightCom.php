@@ -22,8 +22,8 @@
 							<input name="r" type="hidden" value="default/index/search" /> <select
 								name="type">
 <!-- 								<option value="all">全部&nbsp;&nbsp;&nbsp;</option> -->
-								<option value="news">文章&nbsp;&nbsp;&nbsp;</option>
-								<option value="download">下载&nbsp;&nbsp;&nbsp;</option>
+								<option value="news">文章&nbsp;&nbsp;</option>
+								<option value="download">下载&nbsp;&nbsp;</option>
 <!-- 								<option value="photo">图集&nbsp;&nbsp;&nbsp;</option> -->
 							</select> <input type="text" name="keywords" value=""
 								class="search-input"> <input type="submit" value="搜 索"
@@ -37,7 +37,7 @@
 	<div class="block box">
           <div class="bock-tit"><h2>{$sorts[100033]['name']}</h2><a class="more" href="{$sorts[100033]['url']}">more</a></div>
              <ul class="bock-list">
-                 {newso:{table=(news) field=(id,title,color,addtime,method) column=(100033) where=(ispass='1') limit=(8)}}
+                 {newso:{table=(news) field=(id,title,color,addtime,method) column=(100033) where=(ispass='1') limit=(6)}}
                    <li><a class="w220" style="color:[newso:color]" title="[newso:title]" target="_blank" href="[newso:url]">[newso:title $len=20]</a></li>
                  {/newso}
              </ul>
