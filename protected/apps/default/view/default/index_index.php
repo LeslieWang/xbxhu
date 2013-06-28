@@ -36,9 +36,9 @@
               
               <div class="yx-u-1-2">
                  <div class="box">
-                     <div class="bock-tit"><h2>{$sorts[100035]['name']}</h2><a class="more" href="{$sorts[100035]['url']}">more</a></div>
+                     <div class="bock-tit"><h2>{$sorts[100030]['name']}</h2><a class="more" href="{$sorts[100030]['url']}">more</a></div>
                      <ul class="bock-list">
-                       {newst:{table=(news) field=(id,title,color,addtime,method) column=(100035) where=(ispass='1') limit=(8)}}
+                       {newst:{table=(news) field=(id,title,color,addtime,method) column=(100030) where=(ispass='1') limit=(8)}}
                      <li><a class="w220" style="color:[newst:color]" title="[newst:title]" target="_blank" href="[newst:url]">[newst:title $len=16]</a><span>{date($newst['addtime'],Y-m-d)}</span></li>
                       {/newst}
                      </ul>

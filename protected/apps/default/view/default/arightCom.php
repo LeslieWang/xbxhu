@@ -21,9 +21,10 @@
 						<form method="get" action="{url('index/search')}">
 							<input name="r" type="hidden" value="default/index/search" /> <select
 								name="type">
-								<option value="all">全部&nbsp;&nbsp;&nbsp;</option>
+<!-- 								<option value="all">全部&nbsp;&nbsp;&nbsp;</option> -->
 								<option value="news">文章&nbsp;&nbsp;&nbsp;</option>
-								<option value="photo">图集&nbsp;&nbsp;&nbsp;</option>
+								<option value="download">下载&nbsp;&nbsp;&nbsp;</option>
+<!-- 								<option value="photo">图集&nbsp;&nbsp;&nbsp;</option> -->
 							</select> <input type="text" name="keywords" value=""
 								class="search-input"> <input type="submit" value="搜 索"
 								class="yx-button">

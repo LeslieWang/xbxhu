@@ -13,7 +13,7 @@ class indexController extends commonController
        $type=in($_GET['type']);
        $listRows=10;//每页显示的信息条数,2n偶数
        $url=url('index/search',array('id'=>'000000','page'=>'{page}','keywords'=>urlencode($keywords),'type'=>$type));
-	   $where="title like '%".$keywords."%' OR description like '%".$keywords."%'";
+	   $where="(title like '%".$keywords."%' OR description like '%".$keywords."%') AND ispass='1' ";
          switch ($type) {
        	case 'news':
        	      $count=model('news')->count($where);
@@ -25,6 +25,13 @@ class indexController extends commonController
        	      $count=model('photo')->count($where);
                   $limit=$this->pageLimit($url,$listRows);
        		$list=model('photo')->select($where,'id,title,description,method,addtime,hits','id DESC',$limit);
+       		break;
+
+       	case 'download':
+       		$where="title like '%".$keywords."%' AND ispass='1' ";
+       	      $count=model('download')->count($where);
+                  $limit=$this->pageLimit($url,$listRows);
+       		$list=model('download')->select($where,'id,title,account,sort,addtime,filename,count,showname','addtime DESC,id DESC', $limit);
        		break;
        	
        	case 'all':
@@ -48,6 +55,7 @@ class indexController extends commonController
        if(strlen($keywords)<60) model('tags')->update("name='{$keywords}'","hits=hits+1,mesnum='{$count}'");
        $this->list=$list;
        $this->keywords=$keywords;
+       $this->type=$type;
        $this->display();
 	}
       //生成验证码
