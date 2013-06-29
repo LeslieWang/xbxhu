@@ -81,7 +81,7 @@ div#menu li.back .left {height: 41px;width:90px;margin-right: 5px;background:url
 /*首页中部*/
 a.more{ display:block; float:right; line-height:33px; font-size:11px; padding-right:10px; color:#333}
 .index-mid{margin-top:0px;}
-.index-mid-top{ margin-bottom:20px}
+.index-mid-top{width:99%; margin-bottom:5px}
 #KinSlideshow{ width:260px; height:208px; overflow:hidden}
 .index-reg{margin-left:20px; background:url(../images/index_btit.gif) repeat-x top #FFF}
 .index-reg h1{ text-align:center;display:block; height:30px; line-height:30px; font-size:14px; font-weight:600;  border-bottom:1px dashed #CCC}
@@ -169,3 +169,9 @@ ul.next li{ height:25px; line-height:25px; color:#989898}
 .Correct{color:#008800;}
 .Wrong{color:#8b2b34;}
 .Exp{color:#006699;}
+
+/*校园风光 滚动图片*/
+.bx_wrap {margin-left: 5px; margin-top:10px; margin-bottom:10px} 
+.bx_wrap ul img {margin-left: 5px; border: 2px solid #ddd; } 
+.bx_wrap ul li{text-align:center} 
+.bx_wrap ul li a:hover{text-decoration:none; color:#f30} 

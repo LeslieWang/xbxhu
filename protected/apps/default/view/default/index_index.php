@@ -2,7 +2,20 @@
 <script type="text/javascript" src="__PUBLICAPP__/js/jquery.KinSlideshow-1.2.1.min.js"></script>
 <script type='text/javascript' src='__PUBLICAPP__/js/jquery.slider.pack.js'></script>
 <script type='text/javascript' src='__PUBLICAPP__/js/jquery.easing.js'></script>
-
+<script type="text/javascript" src="__PUBLICAPP__/js/bxCarousel.js"> </script> 
+<script type="text/javascript">
+$(function(){
+	$('#demo1').bxCarousel({
+		display_num: 4, 
+		move: 1, 
+		auto: true, 
+		controls: false,
+		margin: 18,
+		auto_interval: 1500,
+		auto_hover: true
+	});
+});
+</script>
 <script type="text/javascript">
 //<![CDATA[
 jQuery(function() {
@@ -31,6 +44,7 @@ jQuery(function() {
 	//焦点图
 	$("#KinSlideshow").KinSlideshow({
 			moveStyle:"right",
+			intervalTime:2,
 			titleBar:{titleBar_height:25,titleBar_bgColor:"#fff",titleBar_alpha:0.5},
 			titleFont:{TitleFont_size:12,TitleFont_color:"#484848",TitleFont_weight:"normal"},
 			btn:{btn_bgColor:"#FFFFFF",btn_bgHoverColor:"#1072aa",btn_fontColor:"#000000",btn_fontHoverColor:"#FFFFFF",btn_borderColor:"#cccccc",btn_borderHoverColor:"#1188c0",btn_borderWidth:1}
@@ -51,7 +65,7 @@ jQuery(function() {
               <a target="_blank" href="[recom:url]"><img src="{$NewImgPath}[recom:picture]" alt="[recom:title $len=20]" width="260" height="208" /></a>
             {/recom} 
           </div>
-          <div class="yx-u-3-5">
+          <div class="yx-u-3-5" style="float:right" >
              <div class="index-reg box">
               <ul class="bock-list">
                     {news:{table=(news) field=(id,title,color,addtime,method,description) where=(ispass='1') limit=(6)}}
@@ -102,19 +116,29 @@ jQuery(function() {
            </div>
        </div>
        
-       
+       <?php
+           if (!empty($photolist)){
+       ?>
        <div class="yx-u box index-big">
-            <div class="bock-tit"><h2>{$sorts[100049]['name']}</h2><a class="more" href="{$sorts[100049]['url']}">more</a></div>
-            <ul class="photo-list">
-             <!--演示调用拓展字段值-->
-             {photo:{table=(photo) field=(id,title,picture) exfield=(area,price) column=(100049) where=(ispass='1') limit=(8)}}
-               <li><a style="color:[photo:color]" title="[photo:title]" target="_blank" href="[photo:url]"><img class="box" src="{$PhotoImgPath}thumb_[photo:picture]" alt="[photo:title]" width="145" height="110"></a><span>[photo:title]</span></li>
-             {/photo}
-            </ul>
-       </div>
-    </div>
+            <div class="bock-tit"><h2>校园风光</h2></div>
+				<div class="bx_wrap">
+					<div class="bx_container">
+						<ul id="demo1">
+							{loop $photolist $vo}
+                			<li><A onClick="return hs.expand(this)" title="{$vo['tit']}" href="{$PhotoImgPath}{$vo['picture']}"><img width="145" height="110" alt="{$vo['tit']}" class="box" src="{$PhotoImgPath}thumb_{$vo['picture']}"></A><div class="highslide-caption">{$vo['tit']}</div></li>
+                			{/loop}
+						</ul>
+					</div>
+				</div>
+       		</div>
+    	<?php
+           }
+       ?>
+    	</div>
     {include file="arightCom"}
 </div>
+
+
 <div class="links box">
    <div class="bock-tit"><h2>快速通道</h2></div>
    <div class="link yx-u">

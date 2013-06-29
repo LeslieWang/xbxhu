@@ -3,7 +3,23 @@ class indexController extends commonController
 {
 	public function index()
 	{
-            $this->display();
+		// static id for xihua gallery.
+		$id='13';
+		$info=model('photo')->find("id='{$id}'");
+		if(!empty($info)) {
+			$info['content']=html_out($info['content']);
+			if(!empty($info['conlist'])) $titar=explode(',',$info['conlist']);
+			if(!empty($info['photolist'])){
+				$phoar=explode(',',$info['photolist']);
+				$cont=sizeof($phoar);
+				for($i=0;$i<$cont;$i++){
+					$photolist[$i]['picture']=$phoar[$i];
+					$photolist[$i]['tit']=$titar[$i];
+				}
+				$this->photolist=$photolist;
+			}
+		}
+        $this->display();
 	}
 
 	public function search()
