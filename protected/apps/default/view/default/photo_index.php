@@ -18,13 +18,6 @@
                   <dl class="plist yx-u">
                      <dt><a href="{$vo['url']}" target="_blank"><img src="{$PhotoImgPath}thumb_{$vo['picture']}" width="145" height="110"></a><span>{$vo['title']}</span></dt>
                      <dd>{$vo['description']}<br>
-                       <span class="tags"> TAGS:
-                         {for $i=0;$i<10;$i++}
-                           {if !empty($vo['tags'][$i])} 
-                              <a href="{url('default/index/search',array('type'=>'all','keywords'=>urlencode($vo['tags'][$i])))}">{$vo['tags'][$i]}</a>
-                           {/if}
-                         {/for}
-                       </span>
                      </dd>
                      
                   </dl>
@@ -32,6 +25,6 @@
             <div class="pagelist yx-u">{$page}</div>   
        </div>
     </div>
-    {include file="prightCom"}
+    {include file="arightCom"}
 </div>
 </div>

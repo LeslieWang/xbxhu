@@ -51,8 +51,8 @@ class indexController extends commonController
         
 		$menu=Array(
 		   Array('title'=>'管理首页','channels' => Array($root['set'],$root['admin'],$root['dbback'],$root['files'])),//默认显示菜单
-		   Array('title'=>'结构管理','channels' => Array($root['sort'],$root['fragment'],$root['extendfield'])),
-		   Array('title'=>'内容管理','channels' => Array($root['news'],$root['photo'],$root['tags'],$root['link'],$root['download'])),
+		   Array('title'=>'结构管理','channels' => Array($root['sort'],$root['fragment'])),
+		   Array('title'=>'内容管理','channels' => Array($root['news'],$root['photo'],$root['link'],$root['download'])),
 		   Array('title'=>'拓展应用','channels' => Array())
 		);
 		foreach ($pluginlist as $vo){//添加应用菜单

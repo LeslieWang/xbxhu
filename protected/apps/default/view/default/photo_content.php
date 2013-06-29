@@ -24,13 +24,6 @@ hs.showCredits = false;
              <h1 class="con-tit">{$info['title']}</h1>
              <p class="con-info">发布日期：{date($info['addtime'],Y-m-d H:m:i)}&nbsp;&nbsp;点击量：{$info['hits']}</p>
              <p class="con-instr">{$info['content']}<br>
-               <span class="tags"> TAGS:
-              {for $i=0;$i<10;$i++}
-                 {if !empty($info['tags'][$i])} 
-                    <a href="{url('default/index/search',array('type'=>'all','keywords'=>urlencode($info['tags'][$i])))}">{$info['tags'][$i]}</a>
-                 {/if}
-              {/for}
-              </span>
              </p>
              <ul class="prlist yx-u">
                 {loop $photolist $vo}
@@ -44,6 +37,6 @@ hs.showCredits = false;
              </ul>
        </div>
     </div>
-    {include file="prightCom"}
+    {include file="arightCom"}
 </div>
 </div>

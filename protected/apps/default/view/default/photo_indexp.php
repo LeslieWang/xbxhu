@@ -22,6 +22,6 @@
             <div class="pagelist yx-u">{$page}</div> 
        </div>
     </div>
-    {include file="prightCom"}
+    {include file="arightCom"}
 </div>
 </div>

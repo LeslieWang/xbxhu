@@ -94,6 +94,6 @@ function order(code,name,price,num){
            {piece:duoshuo}
        </div>
     </div>
-    {include file="prightCom"}
+    {include file="arightCom"}
 </div>
 </div>
