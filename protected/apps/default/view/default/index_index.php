@@ -6,11 +6,11 @@
 <script type="text/javascript">
 $(function(){
 	$('#demo1').bxCarousel({
-		display_num: 4, 
+		display_num: 6, 
 		move: 1, 
 		auto: true, 
 		controls: false,
-		margin: 18,
+		margin: 10,
 		auto_interval: 1500,
 		auto_hover: true
 	});
@@ -62,10 +62,10 @@ jQuery(function() {
     	<div class="yx-g index-mid-top">
           <div class="yx-u-2-5 box" id="KinSlideshow">
            {recom:{table=(news) field=(id,title,picture,method) place=(102) where=(ispass='1' AND picture!='NoPic.gif') limit=(8)}}
-              <a target="_blank" href="[recom:url]"><img src="{$NewImgPath}[recom:picture]" alt="[recom:title $len=20]" width="260" height="208" /></a>
+              <a target="_blank" href="[recom:url]"><img src="{$NewImgPath}[recom:picture]" alt="[recom:title $len=20]" width="270" height="208" /></a>
             {/recom} 
           </div>
-          <div class="yx-u-3-5" style="float:right" >
+          <div class="yx-u-3-5 " style="float:right" >
              <div class="index-reg box">
               <ul class="bock-list">
                     {news:{table=(news) field=(id,title,color,addtime,method,description) where=(ispass='1') limit=(6)}}
@@ -116,29 +116,35 @@ jQuery(function() {
            </div>
        </div>
        
-       <?php
-           if (!empty($photolist)){
-       ?>
-       <div class="yx-u box index-big">
-            <div class="bock-tit"><h2>校园风光</h2></div>
-				<div class="bx_wrap">
-					<div class="bx_container">
-						<ul id="demo1">
-							{loop $photolist $vo}
-                			<li><A onClick="return hs.expand(this)" title="{$vo['tit']}" href="{$PhotoImgPath}{$vo['picture']}"><img width="145" height="110" alt="{$vo['tit']}" class="box" src="{$PhotoImgPath}thumb_{$vo['picture']}"></A><div class="highslide-caption">{$vo['tit']}</div></li>
-                			{/loop}
-						</ul>
-					</div>
-				</div>
-       		</div>
-    	<?php
-           }
-       ?>
+       
     	</div>
     {include file="arightCom"}
+    
 </div>
 
-
+<?php
+if (!empty($photolist)){
+       ?>
+	<div class="links box">
+		<div class="bock-tit">
+			<h2>校园风光</h2>
+		</div>
+		<div class="bx_wrap">
+			<div class="bx_container">
+				<ul id="demo1">
+					{loop $photolist $vo}
+					<li><A onClick="return hs.expand(this)" title="{$vo['tit']}"
+						href="{$PhotoImgPath}{$vo['picture']}"><img width="145"
+							height="110" alt="{$vo['tit']}" class="box"
+							src="{$PhotoImgPath}thumb_{$vo['picture']}"> </A>
+						<div class="highslide-caption">{$vo['tit']}</div></li> {/loop}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<?php
+      }
+    ?>
 <div class="links box">
    <div class="bock-tit"><h2>快速通道</h2></div>
    <div class="link yx-u">

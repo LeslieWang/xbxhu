@@ -83,7 +83,7 @@ a.more{ display:block; float:right; line-height:33px; font-size:11px; padding-ri
 .index-mid{margin-top:0px;}
 .index-mid-top{width:99%; margin-bottom:5px}
 #KinSlideshow{ width:260px; height:208px; overflow:hidden}
-.index-reg{margin-left:20px; background:url(../images/index_btit.gif) repeat-x top #FFF}
+.index-reg{margin-left:0px; background:url(../images/index_btit.gif) repeat-x top #FFF}
 .index-reg h1{ text-align:center;display:block; height:30px; line-height:30px; font-size:14px; font-weight:600;  border-bottom:1px dashed #CCC}
 .index-reg h1 a{color:#2974c5;}
 .index-reg p{ line-height:20px; color:#666; font-size:12px; display:block; margin-top:5px; height:40px; overflow:hidden; padding:0 10px}
@@ -103,7 +103,7 @@ a.more{ display:block; float:right; line-height:33px; font-size:11px; padding-ri
 .bock-list li a{display:block;float:left;line-height:25px;height:25px;font-size:12px;overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
 .bock-list li span{display:block;float:right;line-height:25px;height:25px; width:70px; color:#999; font-size:12px;overflow:hidden;}
 .left-list{ margin-right:15px}
-.links{ margin-bottom:20px}
+.links{ margin-bottom:10px}
 .link{ padding:5px}
 .link a{ display:block; float:left; line-height:50px; height:50px; margin:5px; text-align:center}
 /*列表开始*/
@@ -171,7 +171,7 @@ ul.next li{ height:25px; line-height:25px; color:#989898}
 .Exp{color:#006699;}
 
 /*校园风光 滚动图片*/
-.bx_wrap {margin-left: 5px; margin-top:10px; margin-bottom:10px} 
+.bx_wrap {margin-left: 3px; margin-top:10px;padding-bottom:5px} 
 .bx_wrap ul img {margin-left: 5px; border: 2px solid #ddd; } 
 .bx_wrap ul li{text-align:center} 
 .bx_wrap ul li a:hover{text-decoration:none; color:#f30} 
