@@ -32,6 +32,7 @@
 <body>
 <div id="Header">
    <div class="Top yx-g">
+               <td><embed height="120px" type="application/x-shockwave-flash" width="990px" src="__PUBLICAPP__/images/top.swf" menu="true" loop="true" play="true"></embed></td>
    </div>
    <div id="menu">
       <ul class="menu"><!--菜单可以无限深度，以下只演示4层深度导航菜单调用，如果您实际项目中需要4层以上，请参照规律，多加一次判断。如果您懒得研究,请加QQ:404133748-->
