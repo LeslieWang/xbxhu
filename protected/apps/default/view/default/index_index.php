@@ -59,32 +59,11 @@ jQuery(function() {
 
 <div class="yx-g index-mid">
     <div class="yx-u-17-24">
-    	<div class="yx-g index-mid-top">
-          <div class="yx-u-2-5 box" id="KinSlideshow">
-           {recom:{table=(news) field=(id,title,picture,method) place=(102) where=(ispass='1' AND picture!='NoPic.gif') limit=(8)}}
-              <a target="_blank" href="[recom:url]"><img src="{$NewImgPath}[recom:picture]" alt="[recom:title $len=20]" width="270" height="208" /></a>
-            {/recom} 
-          </div>
-          <div class="yx-u-3-5 " style="float:right" >
-             <div class="index-reg box">
-              <ul class="bock-list">
-                    {news:{table=(news) field=(id,title,color,addtime,method,description) where=(ispass='1') limit=(6)}}
-                       {if $news_i==1} <!--通过计数器判断第一条显示为头条样式-->
-                          <h1><a href="[news:url]">[news:title $len=20]</a></h1>
-                          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[news:description]</p>
-                       {else}
-                          <li><a class="w280" style="color:[news:color]" title="[news:title]" target="_blank" href="[news:url]">[news:title $len=25]</a><span>{date($news['addtime'],Y-m-d)}</span></li>
-                       {/if}
-                    {/news} 
-                </ul>
-             </div>
-          </div>
-       </div>
        
        <div class="yx-u box index-big">
             <div class="bock-tit"><h2>{$sorts[100032]['name']}</h2><a class="more" href="{$sorts[100032]['url']}">more</a></div>
                      <ul class="bock-list">
-                     {newso:{table=(news) field=(id,title,color,addtime,method) column=(100032) where=(ispass='1') limit=(6)}}
+                     {newso:{table=(news) field=(id,title,color,addtime,method) column=(100032) where=(ispass='1') limit=(10)}}
                        <li><a class="w220" style="color:[newso:color]" title="[newso:title]" target="_blank" href="[newso:url]">[newso:title $len=40]</a><span>{date($newso['addtime'],Y-m-d)}</span></li>
                      {/newso}
                      </ul>
@@ -96,7 +75,7 @@ jQuery(function() {
                  <div class="box left-list">
                      <div class="bock-tit"><h2>{$sorts[100034]['name']}</h2><a class="more" href="{$sorts[100034]['url']}">more</a></div>
                      <ul class="bock-list">
-                     {newso:{table=(news) field=(id,title,color,addtime,method) column=(100034) where=(ispass='1') limit=(6)}}
+                     {newso:{table=(news) field=(id,title,color,addtime,method) column=(100034) where=(ispass='1') limit=(10)}}
                        <li><a class="w220" style="color:[newso:color]" title="[newso:title]" target="_blank" href="[newso:url]">[newso:title $len=16]</a><span>{date($newso['addtime'],Y-m-d)}</span></li>
                      {/newso}
                      </ul>
@@ -107,7 +86,7 @@ jQuery(function() {
                  <div class="box">
                      <div class="bock-tit"><h2>{$sorts[100030]['name']}</h2><a class="more" href="{$sorts[100030]['url']}">more</a></div>
                      <ul class="bock-list">
-                       {newst:{table=(news) field=(id,title,color,addtime,method) column=(100030) where=(ispass='1') limit=(6)}}
+                       {newst:{table=(news) field=(id,title,color,addtime,method) column=(100030) where=(ispass='1') limit=(10)}}
                      <li><a class="w220" style="color:[newst:color]" title="[newst:title]" target="_blank" href="[newst:url]">[newst:title $len=16]</a><span>{date($newst['addtime'],Y-m-d)}</span></li>
                       {/newst}
                      </ul>
