@@ -157,8 +157,8 @@ ul.next li{ height:25px; line-height:25px; color:#989898}
 .book-list-con{line-height:22px; padding-left:10px; color:#2d87ac;}
 .book-list-back{color: #FF8000; line-height:25px;padding-left:20px;overflow:hidden; margin-bottom:10px}
 .search-con{ margin-bottom:20px}
-#Foot{ height:98px; width:100%; background-color:#f3f3f3; border-top:2px solid #e3e3e3}
-.foot-con{ width:990px; margin:auto; padding-top:10px}
+#Foot{ height:50px; width:100%; background-color:#f3f3f3; border-top:2px solid #e3e3e3}
+.foot-con{ width:990px; margin:auto; padding-top:10px;text-align:center;}
 .logo{ float:left; display:block; margin-right:20px}
 .copy{ float:left; line-height:25px; color:#666}
 #toTop {height: 55px; width: 55px;position: fixed;bottom: 40px;right: 80px; cursor: pointer; display: none; text-indent: -999em; z-index: 999;background: url(../images/top.png) no-repeat 0 0;}

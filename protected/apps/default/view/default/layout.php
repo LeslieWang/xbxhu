@@ -59,16 +59,7 @@
 {include file="$__template_file"} <!--这里不用说了吧，主流cms都有的layout功能主体部分调用-->
 <div id="Foot">
    <div class="foot-con">
-       <div class="copy">
-           {loop $sorts $key $vo}  
-             {if $vo['ifmenu']}        
-                {if $vo['deep']==1}
-                    <a target="_blank" href="{$vo['url']}">{$vo['name']}</a> -
-                {/if}
-             {/if}
-           {/loop}<br>
           版权:{$copyright}&nbsp;&nbsp;&nbsp;&nbsp;地址:{$address}&nbsp;&nbsp;&nbsp;&nbsp;技术支持:<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3499936&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:3499936:44" alt="在线咨询" title="在线咨询" /></a>
-       </div>
    </div>
 </div>
 <div id="toTop">Back to top</div>
