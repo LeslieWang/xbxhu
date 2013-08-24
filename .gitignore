@@ -1,6 +1,7 @@
 #project related ignore files.
 protected/apps/install/install.lock
-protected/config.php
+protected/cache/
+#protected/config.php
 # Eclipse plugin 
 .settings
 .classpath

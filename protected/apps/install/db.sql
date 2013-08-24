@@ -1,178 +1,174 @@
-/*
-Navicat MySQL Data Transfer
+-- phpMyAdmin SQL Dump
+-- version 3.5.2.2
+-- http://www.phpmyadmin.net
+--
+-- 主机: 127.0.0.1
+-- 生成日期: 2013 年 06 月 29 日 19:53
+-- 服务器版本: 5.5.27
+-- PHP 版本: 5.4.7
 
-Source Server         : localhost_3306
-Source Server Version : 50051
-Source Host           : localhost:3306
-Source Database       : yxcmsapp
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
-Target Server Type    : MYSQL
-Target Server Version : 50051
-File Encoding         : 65001
 
-Date: 2013-05-29 14:26:18
-*/
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
-SET FOREIGN_KEY_CHECKS=0;
--- ----------------------------
--- Table structure for `yx_admin`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_admin`;
-CREATE TABLE `yx_admin` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `groupid` tinyint(4) NOT NULL default '1',
+--
+-- 数据库: `xbxhu`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yx_admin`
+--
+
+CREATE TABLE IF NOT EXISTS `yx_admin` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `groupid` tinyint(4) NOT NULL DEFAULT '1',
   `username` char(10) NOT NULL,
   `realname` char(15) NOT NULL,
   `password` char(32) NOT NULL,
   `lastlogin_time` int(10) unsigned NOT NULL,
   `lastlogin_ip` char(15) NOT NULL,
-  `iflock` tinyint(1) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`id`),
+  `iflock` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
   UNIQUE KEY `usename` (`username`),
   KEY `groupid` (`groupid`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='管理员信息表';
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='管理员信息表' AUTO_INCREMENT=2 ;
 
--- ----------------------------
--- Records of yx_admin
--- ----------------------------
-INSERT INTO `yx_admin` VALUES ('1', '1', 'admin', 'YX', '168a73655bfecefdb15b14984dd2ad60', '1369788199', '127.0.0.1', '0');
+--
+-- 转存表中的数据 `yx_admin`
+--
 
--- ----------------------------
--- Table structure for `yx_extend`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_extend`;
-CREATE TABLE `yx_extend` (
-  `id` int(10) NOT NULL auto_increment,
-  `pid` int(10) default '0',
-  `tableinfo` varchar(255) default NULL,
-  `type` int(4) default '0',
-  `defvalue` varchar(255) default NULL,
-  `name` varchar(255) default NULL,
-  `norder` int(5) NOT NULL default '0',
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+INSERT INTO `yx_admin` (`id`, `groupid`, `username`, `realname`, `password`, `lastlogin_time`, `lastlogin_ip`, `iflock`) VALUES
+(1, 1, 'admin', '王升', '62cc8b02669d906c9a6e8a4fa7e897bc', 1372520670, '127.0.0.1', 0);
 
--- ----------------------------
--- Records of yx_extend
--- ----------------------------
-INSERT INTO `yx_extend` VALUES ('1', '0', 'extend_product', '0', '', '产品拓展', '0');
-INSERT INTO `yx_extend` VALUES ('2', '1', 'stand', '1', '未知', '产品型号', '0');
-INSERT INTO `yx_extend` VALUES ('3', '1', 'price', '1', '0', '产品价格', '0');
-INSERT INTO `yx_extend` VALUES ('4', '1', 'brand', '1', '未知', '所属品牌', '0');
-INSERT INTO `yx_extend` VALUES ('5', '1', 'color', '1', '白色', '产品颜色', '0');
-INSERT INTO `yx_extend` VALUES ('6', '1', 'area', '1', '未知', '所在地区', '0');
-INSERT INTO `yx_extend` VALUES ('7', '0', 'extend_conment', '1', '', '内容评论', '0');
-INSERT INTO `yx_extend` VALUES ('8', '7', 'aid', '1', '0', '资讯id', '4');
-INSERT INTO `yx_extend` VALUES ('9', '7', 'comby', '1', '', '评论者', '2');
-INSERT INTO `yx_extend` VALUES ('10', '7', 'comcontent', '3', '', '评论内容', '1');
-INSERT INTO `yx_extend` VALUES ('11', '7', 'type', '1', '0', '类型', '3');
-INSERT INTO `yx_extend` VALUES ('12', '0', 'extend_guestbook', '1', '', '留言本', '0');
-INSERT INTO `yx_extend` VALUES ('13', '12', 'tname', '1', '', '姓名', '0');
-INSERT INTO `yx_extend` VALUES ('14', '12', 'tel', '1', '', '电话', '0');
-INSERT INTO `yx_extend` VALUES ('15', '12', 'qq', '1', '', 'QQ', '0');
-INSERT INTO `yx_extend` VALUES ('16', '12', 'content', '3', '', '留言内容', '0');
-INSERT INTO `yx_extend` VALUES ('17', '12', 'reply', '2', '', '回复内容', '0');
+-- --------------------------------------------------------
 
--- ----------------------------
--- Table structure for `yx_extend_conment`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_extend_conment`;
-CREATE TABLE `yx_extend_conment` (
-  `id` int(11) NOT NULL auto_increment,
-  `addtime` int(11) NOT NULL,
-  `ip` varchar(16) NOT NULL,
+--
+-- 表的结构 `yx_download`
+--
+
+CREATE TABLE IF NOT EXISTS `yx_download` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `sort` varchar(350) NOT NULL COMMENT '类别',
+  `account` char(15) NOT NULL COMMENT '发布者账户',
+  `filename` varchar(64) NOT NULL COMMENT '真实文件名',
+  `showname` varchar(64) NOT NULL COMMENT '显示文件名',
+  `title` varchar(100) NOT NULL COMMENT '文件标题',
+  `count` int(10) DEFAULT '0' COMMENT '下载次数',
+  `addtime` int(11) NOT NULL COMMENT '上传时间',
   `ispass` tinyint(1) NOT NULL,
-  `aid` varchar(250) NOT NULL,
-  `comby` varchar(250) NOT NULL,
-  `comcontent` text NOT NULL,
-  `type` varchar(250) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
--- ----------------------------
--- Records of yx_extend_conment
--- ----------------------------
+--
+-- 转存表中的数据 `yx_download`
+--
 
--- ----------------------------
--- Table structure for `yx_extend_guestbook`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_extend_guestbook`;
-CREATE TABLE `yx_extend_guestbook` (
-  `id` int(11) NOT NULL auto_increment,
-  `addtime` int(11) NOT NULL,
-  `ip` varchar(16) NOT NULL,
-  `ispass` tinyint(1) NOT NULL,
-  `tname` varchar(250) NOT NULL,
-  `tel` varchar(250) NOT NULL,
-  `qq` varchar(250) NOT NULL,
-  `content` text NOT NULL,
-  `reply` varchar(250) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+INSERT INTO `yx_download` (`id`, `sort`, `account`, `filename`, `showname`, `title`, `count`, `addtime`, `ispass`) VALUES
+(16, ',000000,100046', 'admin', '1372399562.txt', '技术支持.txt', '网站footer显示技术支持的用法', 205, 1372399562, 1),
+(15, ',000000,100046', 'admin', '1372399496.zip', 'PHP课程简章资料.zip', 'PHP课程简章资料.zip', 101, 1372399496, 1),
+(17, ',000000,100046', 'admin', '1372399595.png', 'logo.png', '网站LOGO', 303, 1372399595, 1);
 
--- ----------------------------
--- Records of yx_extend_guestbook
--- ----------------------------
+-- --------------------------------------------------------
 
--- ----------------------------
--- Table structure for `yx_extend_product`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_extend_product`;
-CREATE TABLE `yx_extend_product` (
-  `id` int(11) NOT NULL auto_increment,
+--
+-- 表的结构 `yx_extend`
+--
+
+CREATE TABLE IF NOT EXISTS `yx_extend` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `pid` int(10) DEFAULT '0',
+  `tableinfo` varchar(255) DEFAULT NULL,
+  `type` int(4) DEFAULT '0',
+  `defvalue` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `norder` int(5) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+
+--
+-- 转存表中的数据 `yx_extend`
+--
+
+INSERT INTO `yx_extend` (`id`, `pid`, `tableinfo`, `type`, `defvalue`, `name`, `norder`) VALUES
+(1, 0, 'extend_product', 0, '', '产品拓展', 0),
+(2, 1, 'stand', 1, '未知', '产品型号', 0),
+(3, 1, 'price', 1, '0', '产品价格', 0),
+(4, 1, 'brand', 1, '未知', '所属品牌', 0),
+(5, 1, 'color', 1, '白色', '产品颜色', 0),
+(6, 1, 'area', 1, '未知', '所在地区', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yx_extend_product`
+--
+
+CREATE TABLE IF NOT EXISTS `yx_extend_product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `stand` varchar(250) NOT NULL,
   `price` varchar(250) NOT NULL,
   `brand` varchar(250) NOT NULL,
   `color` varchar(250) NOT NULL,
   `area` varchar(250) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
--- ----------------------------
--- Records of yx_extend_product
--- ----------------------------
-INSERT INTO `yx_extend_product` VALUES ('1', 'X1 xDrive20i豪华型', '9000000', '宝马', '白色', '北京');
-INSERT INTO `yx_extend_product` VALUES ('2', 'GT 4.0L V8', '4000000', '宾利', '灰色', '上海');
+-- --------------------------------------------------------
 
--- ----------------------------
--- Table structure for `yx_fragment`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_fragment`;
-CREATE TABLE `yx_fragment` (
-  `id` int(10) NOT NULL auto_increment,
+--
+-- 表的结构 `yx_fragment`
+--
+
+CREATE TABLE IF NOT EXISTS `yx_fragment` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `sign` varchar(255) NOT NULL COMMENT '前台调用标记',
   `content` text NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
--- ----------------------------
--- Records of yx_fragment
--- ----------------------------
-INSERT INTO `yx_fragment` VALUES ('1', '右侧公告信息', 'announce', '<p>\r\n	本站为YXcms的默认演示模板，YXcms是一款基于PHP+MYSQL构建的高效网站管理系统。 后台地址请在网址后面加上/index.php?r=admin进入。 后台的用户名:admin;密码:123456，请进入后修改默认密码。\r\n</p>');
+--
+-- 转存表中的数据 `yx_fragment`
+--
 
--- ----------------------------
--- Table structure for `yx_group`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_group`;
-CREATE TABLE `yx_group` (
-  `id` tinyint(3) unsigned NOT NULL auto_increment,
+INSERT INTO `yx_fragment` (`id`, `title`, `sign`, `content`) VALUES
+(3, '联系我们', 'contactus', '<p>\r\n	电话:13688024241\r\n</p>\r\n<p>\r\n	传真:028-87720200\r\n</p>\r\n<p>\r\n	邮编:610039\r\n</p>');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yx_group`
+--
+
+CREATE TABLE IF NOT EXISTS `yx_group` (
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `power` varchar(1000) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
--- ----------------------------
--- Records of yx_group
--- ----------------------------
-INSERT INTO `yx_group` VALUES ('1', '超级管理员', '-1');
+--
+-- 转存表中的数据 `yx_group`
+--
 
--- ----------------------------
--- Table structure for `yx_link`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_link`;
-CREATE TABLE `yx_link` (
-  `id` int(10) NOT NULL auto_increment,
+INSERT INTO `yx_group` (`id`, `name`, `power`) VALUES
+(1, '超级管理员', '-1');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yx_link`
+--
+
+CREATE TABLE IF NOT EXISTS `yx_link` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `type` tinyint(1) NOT NULL COMMENT '类型',
   `norder` int(5) NOT NULL COMMENT '排序',
   `name` varchar(30) NOT NULL COMMENT '站点名',
@@ -182,28 +178,32 @@ CREATE TABLE `yx_link` (
   `siteowner` varchar(30) NOT NULL COMMENT '站点所有者',
   `info` varchar(300) NOT NULL COMMENT '介绍',
   `ispass` tinyint(1) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
--- ----------------------------
--- Records of yx_link
--- ----------------------------
-INSERT INTO `yx_link` VALUES ('1', '2', '0', 'canphp', 'http://www.canphp.com/', '1342232505.jpg', '', '', '', '1');
-INSERT INTO `yx_link` VALUES ('2', '2', '0', 'Yxcms', 'http://www.yxcms.net', '1342232581.jpg', '', '', '', '1');
-INSERT INTO `yx_link` VALUES ('3', '1', '0', 'baidu', 'http://www.baidu.com', '', '', '', '', '1');
-INSERT INTO `yx_link` VALUES ('4', '1', '0', 'Google', 'http://www.google.com', '', '', '', '', '1');
+--
+-- 转存表中的数据 `yx_link`
+--
 
--- ----------------------------
--- Table structure for `yx_members`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_members`;
-CREATE TABLE `yx_members` (
-  `id` int(20) NOT NULL auto_increment,
+INSERT INTO `yx_link` (`id`, `type`, `norder`, `name`, `url`, `picture`, `logourl`, `siteowner`, `info`, `ispass`) VALUES
+(5, 2, 0, '新浪NBA', 'http://sports.sina.com.cn/nba/', '1372143194.png', '', '', '', 1),
+(3, 1, 0, 'baidu', 'http://www.baidu.com', '', '', '', '', 1),
+(4, 1, 0, 'Google', 'http://www.google.com', '', '', '', '', 1),
+(6, 2, 0, '西华大学', 'http://www.xhu.edu.cn/', '1372143419.png', '', '', '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yx_members`
+--
+
+CREATE TABLE IF NOT EXISTS `yx_members` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
   `groupid` int(3) NOT NULL,
   `account` varchar(30) NOT NULL,
   `password` varchar(60) NOT NULL,
-  `rmb` int(8) NOT NULL default '0',
-  `crmb` int(8) NOT NULL default '0',
+  `rmb` int(8) NOT NULL DEFAULT '0',
+  `crmb` int(8) NOT NULL DEFAULT '0',
   `nickname` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
   `tel` varchar(15) NOT NULL,
@@ -213,172 +213,184 @@ CREATE TABLE `yx_members` (
   `lasttime` int(11) NOT NULL,
   `lastip` varchar(16) NOT NULL,
   `islock` tinyint(4) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
--- ----------------------------
--- Records of yx_members
--- ----------------------------
-INSERT INTO `yx_members` VALUES ('1', '2', 'admin', '15bf4d760b796a8d5340d741c7edf85c', '9000', '3774', '会员演示', '404138@qq.com', '13638816362', '404133749', '0', '', '1367317198', '127.0.0.1', '0');
+--
+-- 转存表中的数据 `yx_members`
+--
 
--- ----------------------------
--- Table structure for `yx_member_group`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_member_group`;
-CREATE TABLE `yx_member_group` (
-  `id` int(3) NOT NULL auto_increment,
+INSERT INTO `yx_members` (`id`, `groupid`, `account`, `password`, `rmb`, `crmb`, `nickname`, `email`, `tel`, `qq`, `regtime`, `regip`, `lasttime`, `lastip`, `islock`) VALUES
+(1, 2, 'admin', '15bf4d760b796a8d5340d741c7edf85c', 9000, 3774, '会员演示', '404138@qq.com', '13638816362', '404133749', 0, '', 1367317198, '127.0.0.1', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yx_member_group`
+--
+
+CREATE TABLE IF NOT EXISTS `yx_member_group` (
+  `id` int(3) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   `notallow` text NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
--- ----------------------------
--- Records of yx_member_group
--- ----------------------------
-INSERT INTO `yx_member_group` VALUES ('1', '未登录', 'member/index/index|member/infor|member/order');
-INSERT INTO `yx_member_group` VALUES ('2', '普通会员', '');
+--
+-- 转存表中的数据 `yx_member_group`
+--
 
--- ----------------------------
--- Table structure for `yx_method`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_method`;
-CREATE TABLE `yx_method` (
-  `id` int(10) unsigned NOT NULL auto_increment,
+INSERT INTO `yx_member_group` (`id`, `name`, `notallow`) VALUES
+(1, '未登录', 'member/index/index|member/infor|member/order'),
+(2, '普通会员', '');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yx_method`
+--
+
+CREATE TABLE IF NOT EXISTS `yx_method` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `rootid` int(10) unsigned NOT NULL,
   `pid` float unsigned NOT NULL,
   `operate` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `ifmenu` tinyint(1) NOT NULL default '0' COMMENT '是否菜单显示',
-  PRIMARY KEY  (`id`),
+  `ifmenu` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否菜单显示',
+  PRIMARY KEY (`id`),
   KEY `pid` (`pid`)
-) ENGINE=MyISAM AUTO_INCREMENT=317 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=317 ;
 
--- ----------------------------
--- Records of yx_method
--- ----------------------------
-INSERT INTO `yx_method` VALUES ('1', '1', '0', 'admin', '后台登陆管理', '1');
-INSERT INTO `yx_method` VALUES ('2', '1', '1', 'index', '管理员管理', '1');
-INSERT INTO `yx_method` VALUES ('4', '1', '1', 'admindel', '管理员删除', '0');
-INSERT INTO `yx_method` VALUES ('5', '1', '1', 'adminedit', '管理员编辑', '0');
-INSERT INTO `yx_method` VALUES ('6', '1', '1', 'adminlock', '管理员锁定', '0');
-INSERT INTO `yx_method` VALUES ('7', '1', '1', 'group', '权限管理', '1');
-INSERT INTO `yx_method` VALUES ('8', '1', '1', 'groupedit', '管理组编辑', '0');
-INSERT INTO `yx_method` VALUES ('9', '1', '1', 'groupdel', '管理组删除', '0');
-INSERT INTO `yx_method` VALUES ('10', '10', '0', 'news', '资讯管理', '1');
-INSERT INTO `yx_method` VALUES ('11', '10', '10', 'index', '已有资讯', '1');
-INSERT INTO `yx_method` VALUES ('12', '10', '10', 'add', '添加资讯', '1');
-INSERT INTO `yx_method` VALUES ('13', '10', '10', 'edit', '资讯编辑', '0');
-INSERT INTO `yx_method` VALUES ('14', '10', '10', 'del', '资讯删除', '0');
-INSERT INTO `yx_method` VALUES ('15', '10', '10', 'lock', '资讯锁定', '0');
-INSERT INTO `yx_method` VALUES ('16', '10', '10', 'recmd', '资讯推荐', '0');
-INSERT INTO `yx_method` VALUES ('17', '17', '0', 'dbback', '数据库管理', '1');
-INSERT INTO `yx_method` VALUES ('18', '17', '17', 'index', '数据库备份', '1');
-INSERT INTO `yx_method` VALUES ('19', '17', '17', 'recover', '备份恢复', '0');
-INSERT INTO `yx_method` VALUES ('20', '17', '17', 'detail', '备份详细', '0');
-INSERT INTO `yx_method` VALUES ('21', '17', '17', 'del', '备份删除', '0');
-INSERT INTO `yx_method` VALUES ('22', '22', '0', 'index', '后台面板', '0');
-INSERT INTO `yx_method` VALUES ('23', '22', '22', 'index', '后台首页', '0');
-INSERT INTO `yx_method` VALUES ('24', '22', '22', 'login', '登陆', '0');
-INSERT INTO `yx_method` VALUES ('25', '22', '22', 'logout', '退出登陆', '0');
-INSERT INTO `yx_method` VALUES ('26', '22', '22', 'verify', '验证码', '0');
-INSERT INTO `yx_method` VALUES ('27', '22', '22', 'welcome', '服务器环境', '0');
-INSERT INTO `yx_method` VALUES ('28', '28', '0', 'set', '全局设置', '1');
-INSERT INTO `yx_method` VALUES ('29', '28', '28', 'index', '网站设置', '1');
-INSERT INTO `yx_method` VALUES ('30', '30', '0', 'sort', '分类管理', '1');
-INSERT INTO `yx_method` VALUES ('31', '30', '30', 'index', '栏目列表', '1');
-INSERT INTO `yx_method` VALUES ('32', '30', '30', 'edit', '分类编辑', '0');
-INSERT INTO `yx_method` VALUES ('33', '30', '30', 'del', '分类删除', '0');
-INSERT INTO `yx_method` VALUES ('160', '150', '150', 'delpic', '图集单张图删除', '0');
-INSERT INTO `yx_method` VALUES ('277', '0', '0', 'appmanage', '应用管理', '1');
-INSERT INTO `yx_method` VALUES ('85', '28', '28', 'menuname', '后台功能', '1');
-INSERT INTO `yx_method` VALUES ('159', '150', '150', 'images_upload', '图片批量上传', '0');
-INSERT INTO `yx_method` VALUES ('158', '10', '10', 'FileManagerJson', '编辑器上传管理', '0');
-INSERT INTO `yx_method` VALUES ('157', '10', '10', 'UploadJson', '编辑器上传', '0');
-INSERT INTO `yx_method` VALUES ('150', '150', '0', 'photo', '图集管理', '1');
-INSERT INTO `yx_method` VALUES ('151', '150', '150', 'index', '已有图集', '1');
-INSERT INTO `yx_method` VALUES ('152', '150', '150', 'add', '添加图集', '1');
-INSERT INTO `yx_method` VALUES ('153', '150', '150', 'edit', '图集编辑', '0');
-INSERT INTO `yx_method` VALUES ('154', '150', '150', 'del', '图集删除', '0');
-INSERT INTO `yx_method` VALUES ('155', '150', '150', 'lock', '图集锁定', '0');
-INSERT INTO `yx_method` VALUES ('156', '150', '150', 'recmd', '图集推荐', '0');
-INSERT INTO `yx_method` VALUES ('174', '10', '10', 'cutcover', '封面图剪切', '0');
-INSERT INTO `yx_method` VALUES ('236', '30', '30', 'PageUploadJson', '单页上传', '0');
-INSERT INTO `yx_method` VALUES ('235', '30', '30', 'pageedit', '单页编辑', '0');
-INSERT INTO `yx_method` VALUES ('234', '30', '30', 'pageadd', '添加单页栏目', '0');
-INSERT INTO `yx_method` VALUES ('233', '30', '30', 'photoedit', '图集栏目编辑', '0');
-INSERT INTO `yx_method` VALUES ('232', '30', '30', 'photoadd', '添加图集栏目', '0');
-INSERT INTO `yx_method` VALUES ('231', '30', '30', 'newsedit', '文章栏目编辑', '0');
-INSERT INTO `yx_method` VALUES ('230', '30', '30', 'newsadd', '添加文章栏目', '0');
-INSERT INTO `yx_method` VALUES ('182', '28', '28', 'clear', '网站缓存', '1');
-INSERT INTO `yx_method` VALUES ('188', '188', '0', 'link', '友情链接', '1');
-INSERT INTO `yx_method` VALUES ('189', '188', '188', 'index', '链接列表', '1');
-INSERT INTO `yx_method` VALUES ('190', '188', '188', 'add', '添加链接', '1');
-INSERT INTO `yx_method` VALUES ('191', '188', '188', 'edit', '链接编辑', '0');
-INSERT INTO `yx_method` VALUES ('192', '188', '188', 'del', '链接删除', '0');
-INSERT INTO `yx_method` VALUES ('228', '1', '1', 'adminnow', '账户管理', '1');
-INSERT INTO `yx_method` VALUES ('229', '188', '188', 'lock', '锁定', '0');
-INSERT INTO `yx_method` VALUES ('237', '30', '30', 'PageFileManagerJson', '单页上传管理', '0');
-INSERT INTO `yx_method` VALUES ('238', '238', '0', 'fragment', '碎片管理', '1');
-INSERT INTO `yx_method` VALUES ('239', '238', '238', 'index', '碎片列表', '1');
-INSERT INTO `yx_method` VALUES ('240', '238', '238', 'add', '碎片添加', '1');
-INSERT INTO `yx_method` VALUES ('241', '238', '238', 'edit', '碎片编辑', '0');
-INSERT INTO `yx_method` VALUES ('242', '238', '238', 'del', '碎片删除', '0');
-INSERT INTO `yx_method` VALUES ('243', '238', '238', 'UploadJson', '编辑器上传', '0');
-INSERT INTO `yx_method` VALUES ('244', '238', '238', 'FileManagerJson', '编辑器上传管理', '0');
-INSERT INTO `yx_method` VALUES ('245', '28', '28', 'tpchange', '前台模板', '1');
-INSERT INTO `yx_method` VALUES ('251', '30', '30', 'pluginadd', '添加应用栏目', '0');
-INSERT INTO `yx_method` VALUES ('252', '30', '30', 'pluginedit', '应用栏目编辑', '0');
-INSERT INTO `yx_method` VALUES ('258', '258', '0', 'extendfield', '自定义表', '1');
-INSERT INTO `yx_method` VALUES ('259', '258', '258', 'index', '自定义表列表', '1');
-INSERT INTO `yx_method` VALUES ('260', '258', '258', 'tableadd', '添加自定义表', '1');
-INSERT INTO `yx_method` VALUES ('261', '258', '258', 'tableedit', '拓展表编辑', '0');
-INSERT INTO `yx_method` VALUES ('262', '258', '258', 'tabledel', '拓展表删除', '0');
-INSERT INTO `yx_method` VALUES ('263', '258', '258', 'fieldlist', '字段列表', '0');
-INSERT INTO `yx_method` VALUES ('264', '258', '258', 'fieldadd', '添加字段', '0');
-INSERT INTO `yx_method` VALUES ('265', '258', '258', 'fieldedit', '编辑字段', '0');
-INSERT INTO `yx_method` VALUES ('266', '258', '258', 'fielddel', '字段删除', '0');
-INSERT INTO `yx_method` VALUES ('267', '258', '258', 'file', '文件上传', '0');
-INSERT INTO `yx_method` VALUES ('268', '10', '10', 'ex_field', '字段拓展', '0');
-INSERT INTO `yx_method` VALUES ('269', '150', '150', 'ex_field', '字段拓展', '0');
-INSERT INTO `yx_method` VALUES ('270', '30', '30', 'linkadd', '添加自定义栏目', '0');
-INSERT INTO `yx_method` VALUES ('271', '30', '30', 'linkedit', '自定义栏目编辑', '0');
-INSERT INTO `yx_method` VALUES ('283', '0', '0', 'member', '会员管理(应用)', '1');
-INSERT INTO `yx_method` VALUES ('288', '10', '10', 'colchange', '资讯转移栏目', '0');
-INSERT INTO `yx_method` VALUES ('289', '150', '150', 'colchange', '图集转移栏目', '0');
-INSERT INTO `yx_method` VALUES ('290', '150', '150', 'UploadJson', '图集编辑器上传', '0');
-INSERT INTO `yx_method` VALUES ('291', '150', '150', 'FileManagerJson', '图集编辑器上传管理', '0');
-INSERT INTO `yx_method` VALUES ('292', '28', '28', 'tplist', '模板文件列表', '0');
-INSERT INTO `yx_method` VALUES ('293', '28', '28', 'tpadd', '模板文件添加', '0');
-INSERT INTO `yx_method` VALUES ('294', '28', '28', 'tpedit', '模板文件编辑', '0');
-INSERT INTO `yx_method` VALUES ('295', '28', '28', 'tpdel', '删除模板文件', '0');
-INSERT INTO `yx_method` VALUES ('296', '28', '28', 'tpgetcode', '获取模板内容', '0');
-INSERT INTO `yx_method` VALUES ('297', '258', '258', 'meslist', '自定义表信息', '0');
-INSERT INTO `yx_method` VALUES ('298', '258', '258', 'mesedit', '自定义表信息编辑', '0');
-INSERT INTO `yx_method` VALUES ('299', '258', '258', 'mesdel', '自定义表信息删除', '0');
-INSERT INTO `yx_method` VALUES ('300', '258', '258', 'meslock', '自定义表信息审核', '0');
-INSERT INTO `yx_method` VALUES ('301', '30', '30', 'add', '添加栏目', '1');
-INSERT INTO `yx_method` VALUES ('302', '30', '30', 'extendadd', '添加表单栏目', '0');
-INSERT INTO `yx_method` VALUES ('303', '30', '30', 'extendedit', '表单栏目编辑', '0');
-INSERT INTO `yx_method` VALUES ('304', '30', '30', 'placelist', '内容定位列表', '1');
-INSERT INTO `yx_method` VALUES ('305', '30', '30', 'placeadd', '添加内容定位', '1');
-INSERT INTO `yx_method` VALUES ('306', '30', '30', 'placeedit', '定位编辑', '0');
-INSERT INTO `yx_method` VALUES ('307', '30', '30', 'placedel', '定位删除', '0');
-INSERT INTO `yx_method` VALUES ('308', '308', '0', 'tags', 'TAG标签', '1');
-INSERT INTO `yx_method` VALUES ('309', '308', '308', 'index', '标签列表', '1');
-INSERT INTO `yx_method` VALUES ('310', '308', '308', 'del', '删除标签', '0');
-INSERT INTO `yx_method` VALUES ('311', '308', '308', 'hits', '编辑点击量', '0');
-INSERT INTO `yx_method` VALUES ('312', '308', '308', 'add', '生成标签', '1');
-INSERT INTO `yx_method` VALUES ('313', '308', '308', 'mesup', '文档数量更新', '0');
-INSERT INTO `yx_method` VALUES ('314', '314', '0', 'files', '附件管理', '1');
-INSERT INTO `yx_method` VALUES ('315', '314', '314', 'index', '文件列表', '1');
-INSERT INTO `yx_method` VALUES ('316', '314', '314', 'del', '删除文件', '0');
+--
+-- 转存表中的数据 `yx_method`
+--
 
--- ----------------------------
--- Table structure for `yx_news`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_news`;
-CREATE TABLE `yx_news` (
-  `id` int(20) NOT NULL auto_increment,
+INSERT INTO `yx_method` (`id`, `rootid`, `pid`, `operate`, `name`, `ifmenu`) VALUES
+(1, 1, 0, 'admin', '后台登陆管理', 1),
+(2, 1, 1, 'index', '管理员管理', 1),
+(4, 1, 1, 'admindel', '管理员删除', 0),
+(5, 1, 1, 'adminedit', '管理员编辑', 0),
+(6, 1, 1, 'adminlock', '管理员锁定', 0),
+(7, 1, 1, 'group', '权限管理', 1),
+(8, 1, 1, 'groupedit', '管理组编辑', 0),
+(9, 1, 1, 'groupdel', '管理组删除', 0),
+(10, 10, 0, 'news', '资讯管理', 1),
+(11, 10, 10, 'index', '已有资讯', 1),
+(12, 10, 10, 'add', '添加资讯', 1),
+(13, 10, 10, 'edit', '资讯编辑', 0),
+(14, 10, 10, 'del', '资讯删除', 0),
+(15, 10, 10, 'lock', '资讯锁定', 0),
+(16, 10, 10, 'recmd', '资讯推荐', 0),
+(17, 17, 0, 'dbback', '数据库管理', 1),
+(18, 17, 17, 'index', '数据库备份', 1),
+(19, 17, 17, 'recover', '备份恢复', 0),
+(20, 17, 17, 'detail', '备份详细', 0),
+(21, 17, 17, 'del', '备份删除', 0),
+(22, 22, 0, 'index', '后台面板', 0),
+(23, 22, 22, 'index', '后台首页', 0),
+(24, 22, 22, 'login', '登陆', 0),
+(25, 22, 22, 'logout', '退出登陆', 0),
+(26, 22, 22, 'verify', '验证码', 0),
+(27, 22, 22, 'welcome', '服务器环境', 0),
+(28, 28, 0, 'set', '全局设置', 1),
+(29, 28, 28, 'index', '网站设置', 1),
+(30, 30, 0, 'sort', '分类管理', 1),
+(31, 30, 30, 'index', '栏目列表', 1),
+(32, 30, 30, 'edit', '分类编辑', 0),
+(33, 30, 30, 'del', '分类删除', 0),
+(160, 150, 150, 'delpic', '图集单张图删除', 0),
+(277, 0, 0, 'appmanage', '应用管理', 1),
+(85, 28, 28, 'menuname', '后台功能', 1),
+(159, 150, 150, 'images_upload', '图片批量上传', 0),
+(158, 10, 10, 'FileManagerJson', '编辑器上传管理', 0),
+(157, 10, 10, 'UploadJson', '编辑器上传', 0),
+(150, 150, 0, 'photo', '图集管理', 1),
+(151, 150, 150, 'index', '已有图集', 1),
+(152, 150, 150, 'add', '添加图集', 1),
+(153, 150, 150, 'edit', '图集编辑', 0),
+(154, 150, 150, 'del', '图集删除', 0),
+(155, 150, 150, 'lock', '图集锁定', 0),
+(156, 150, 150, 'recmd', '图集推荐', 0),
+(174, 10, 10, 'cutcover', '封面图剪切', 0),
+(236, 30, 30, 'PageUploadJson', '单页上传', 0),
+(235, 30, 30, 'pageedit', '单页编辑', 0),
+(234, 30, 30, 'pageadd', '添加单页栏目', 0),
+(233, 30, 30, 'photoedit', '图集栏目编辑', 0),
+(232, 30, 30, 'photoadd', '添加图集栏目', 0),
+(231, 30, 30, 'newsedit', '文章栏目编辑', 0),
+(230, 30, 30, 'newsadd', '添加文章栏目', 0),
+(182, 28, 28, 'clear', '网站缓存', 1),
+(188, 188, 0, 'link', '友情链接', 1),
+(189, 188, 188, 'index', '链接列表', 1),
+(190, 188, 188, 'add', '添加链接', 1),
+(191, 188, 188, 'edit', '链接编辑', 0),
+(192, 188, 188, 'del', '链接删除', 0),
+(228, 1, 1, 'adminnow', '账户管理', 1),
+(229, 188, 188, 'lock', '锁定', 0),
+(237, 30, 30, 'PageFileManagerJson', '单页上传管理', 0),
+(238, 238, 0, 'fragment', '碎片管理', 1),
+(239, 238, 238, 'index', '碎片列表', 1),
+(240, 238, 238, 'add', '碎片添加', 1),
+(241, 238, 238, 'edit', '碎片编辑', 0),
+(242, 238, 238, 'del', '碎片删除', 0),
+(243, 238, 238, 'UploadJson', '编辑器上传', 0),
+(244, 238, 238, 'FileManagerJson', '编辑器上传管理', 0),
+(245, 28, 28, 'tpchange', '前台模板', 1),
+(251, 30, 30, 'pluginadd', '添加应用栏目', 0),
+(252, 30, 30, 'pluginedit', '应用栏目编辑', 0),
+(258, 258, 0, 'extendfield', '自定义表', 1),
+(259, 258, 258, 'index', '自定义表列表', 1),
+(260, 258, 258, 'tableadd', '添加自定义表', 1),
+(261, 258, 258, 'tableedit', '拓展表编辑', 0),
+(262, 258, 258, 'tabledel', '拓展表删除', 0),
+(263, 258, 258, 'fieldlist', '字段列表', 0),
+(264, 258, 258, 'fieldadd', '添加字段', 0),
+(265, 258, 258, 'fieldedit', '编辑字段', 0),
+(266, 258, 258, 'fielddel', '字段删除', 0),
+(267, 258, 258, 'file', '文件上传', 0),
+(268, 10, 10, 'ex_field', '字段拓展', 0),
+(269, 150, 150, 'ex_field', '字段拓展', 0),
+(270, 30, 30, 'linkadd', '添加自定义栏目', 0),
+(271, 30, 30, 'linkedit', '自定义栏目编辑', 0),
+(283, 0, 0, 'member', '会员管理(应用)', 1),
+(288, 10, 10, 'colchange', '资讯转移栏目', 0),
+(289, 150, 150, 'colchange', '图集转移栏目', 0),
+(290, 150, 150, 'UploadJson', '图集编辑器上传', 0),
+(291, 150, 150, 'FileManagerJson', '图集编辑器上传管理', 0),
+(292, 28, 28, 'tplist', '模板文件列表', 0),
+(293, 28, 28, 'tpadd', '模板文件添加', 0),
+(294, 28, 28, 'tpedit', '模板文件编辑', 0),
+(295, 28, 28, 'tpdel', '删除模板文件', 0),
+(296, 28, 28, 'tpgetcode', '获取模板内容', 0),
+(297, 258, 258, 'meslist', '自定义表信息', 0),
+(298, 258, 258, 'mesedit', '自定义表信息编辑', 0),
+(299, 258, 258, 'mesdel', '自定义表信息删除', 0),
+(300, 258, 258, 'meslock', '自定义表信息审核', 0),
+(301, 30, 30, 'add', '添加栏目', 1),
+(302, 30, 30, 'extendadd', '添加表单栏目', 0),
+(303, 30, 30, 'extendedit', '表单栏目编辑', 0),
+(304, 30, 30, 'placelist', '内容定位列表', 1),
+(305, 30, 30, 'placeadd', '添加内容定位', 1),
+(306, 30, 30, 'placeedit', '定位编辑', 0),
+(307, 30, 30, 'placedel', '定位删除', 0),
+(308, 308, 0, 'tags', 'TAG标签', 1),
+(309, 308, 308, 'index', '标签列表', 1),
+(310, 308, 308, 'del', '删除标签', 0),
+(311, 308, 308, 'hits', '编辑点击量', 0),
+(312, 308, 308, 'add', '生成标签', 1),
+(313, 308, 308, 'mesup', '文档数量更新', 0),
+(314, 314, 0, 'files', '附件管理', 1),
+(315, 314, 314, 'index', '文件列表', 1),
+(316, 314, 314, 'del', '删除文件', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yx_news`
+--
+
+CREATE TABLE IF NOT EXISTS `yx_news` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
   `sort` varchar(350) NOT NULL COMMENT '类别',
   `account` char(15) NOT NULL COMMENT '发布者账户',
   `title` varchar(60) NOT NULL COMMENT '标题',
@@ -396,31 +408,64 @@ CREATE TABLE `yx_news` (
   `ispass` tinyint(1) NOT NULL,
   `origin` varchar(30) NOT NULL COMMENT '来源',
   `addtime` int(11) NOT NULL,
-  `extfield` int(10) NOT NULL default '0' COMMENT '拓展字段',
-  PRIMARY KEY  (`id`),
+  `extfield` int(10) NOT NULL DEFAULT '0' COMMENT '拓展字段',
+  PRIMARY KEY (`id`),
   FULLTEXT KEY `sort` (`sort`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
--- ----------------------------
--- Records of yx_news
--- ----------------------------
-INSERT INTO `yx_news` VALUES ('1', ',000000,100001,100005,100016', 'admin', '企业建站需要提供哪些资料', '', '', 'NoPic.gif', '公司,信息,企业建站,资料,需要,信任,这些,用户,获得,很大,程度,上会,可以,基本,取决于,状况,准备,之前,哪些,提供,为了,网站,了解,初步,是否', '企业建站之前需要准备好的资料、信息有：1、公司信息：公司信息是为了让公司网站的新访问者对公司状况有初步的了解，公司是否可以获得用户的信任，在很大程度上会取决于这些基本', '<p>\r\n	企业建站之前需要准备好的资料、信息有：\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	1、<b>公司信息</b>：公司信息是为了让公司网站的新访问者对公司状况有初步的了解，公司是否可以获得用户的信任，在很大程度上会取决于这些基本信息。在公司信息中，如果内容比较丰富，可以进一步分解为若干子栏目，如：公司概况、发展历程、公司动态、媒体报道、主要业绩（证书、数据）、组织结构、企业主要领导人员介绍、联系方式等。\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	2、<b>产品信息</b>：企业网站上的产品信息应全面反映所有系列和各种型号的产品，对产品进行详尽的介绍，如果必要，除了文字介绍之外，可配备相应的图片资料、视频文件等。其他有助于用户产生信任和购买决策的信息，都可以用适当的方式发布在企业网站上，如有关机构、专家的检测和鉴定、用户评论、相关产品知识等。\r\n</p>\r\n<p>\r\n	产品信息通常可按照产品类别分为不同的子栏目。如果公司产品种类比较多，无法在简单的目录中全部列出，为了让用户能够方便的找到所需要的产品，除了设计详细的分级目录之外，还有必要增加产品搜索功能。\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	3、<b>用户服务信息</b>：用户对不同企业、不同产品所期望获得的服务有很大差别。网站常见的服务信息有产品选择和使用常识、产品说明书、在线问答等。\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	4、<b>促销信息</b>：但网站拥有一定的访问量是，企业网站本身便具有一定的<a href=\"/view/3115165.htm\" target=\"_blank\">广告价值</a>，因此，可在自己的网站上发布促销信息，如<a href=\"/view/9184.htm\" target=\"_blank\">网络广告</a>、有奖竞赛、有奖征文、下载优惠券等。网上的促销活动通常与网下结合进行，网站可以作为一种有效的补充，供用户了解促销互动细则、参与报名等。\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	5、<b>销售信息</b>：当用户对于企业和产品有一定的了解，并且产生了购买动机之后，在网站上应为用户购买提供进一步的支持，以促成销售。在决定购买产品之后，用户仍需要进一步了解相关的购买信息，如最方便的网下销售地点、网上订购方式、售后服务措施等。\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	6、<b>公众信息</b>：指并非作为用户的身份对于公司进行了解的信息，如投资人、媒体记者、调查研究人员等。公众信息包括股权结构、投资信息、<a href=\"/view/3897396.htm\" target=\"_blank\">企业财务报告</a>、企业文化、公关活动等。\r\n</p>\r\n<div class=\"spctrl\" paragraphindex=\"54\">\r\n</div>\r\n<p>\r\n	7、<b>其他信息</b>：根据企业的需要，可以在网站上发表其他有关的信息，如招聘信息、采购信息等。对于产品销售范围跨国家的企业，通常还需要不同语言的网站内容。\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	在进行企业信息的选择和发布时，应掌握一定的原则：有价值的信息应尽量丰富、完整、及时；不必要的信息和服务，如天气预报、社会新闻、生活服务、免费邮箱等应力求避免。\r\n</p>', 'news/content', 'news_content', '0', '0', '33', '1', '原创', '1366353661', '0');
-INSERT INTO `yx_news` VALUES ('2', ',000000,100001,100005,100017', 'admin', '为什么企业需要有自己的网站', '', '', 'NoPic.gif', '企业,网站,互联网,优秀,一个,时代,建站,成功,重要,当今,步骤,网上,主页,自己,需要,展示,形象,基地,电子交易,开展,门户,为什么', '企业的主页是企业在Internet上展示形象的门户，是企业开展电子交易的基地，是企业网上的&quot;家&quot;，设计制作一个优秀的网站是建站企业成功迈向互联网的重要步骤。 在当今互联网时代，一', '&nbsp;企业的主页是企业在Internet上展示形象的门户，是企业开展电子交易的基地，是企业网上的\"家\"，设计制作一个优秀的网站是建站企业成功迈向互联网的重要步骤。 <br />\r\n在当今互联网时代，一个企业没有自己的网站就像一个人没有住址，一个商店没有门脸。随着经济全球化和<a href=\"/view/757.htm\" target=\"_blank\">电子商务</a>经济的到来，企业如果还固守于传统模式则必定不能再适应经济全球化的趋势，企业建站和开展电子商务是一个不可回避的现实，当你的<a href=\"/view/89764.htm\" target=\"_blank\">竞争</a>对手正在通过INTERNET共享信息，通过电子商务降低成本，拓展<a href=\"/view/9250.htm\" target=\"_blank\">销售</a>渠道时，你却只能坐失良机。<br />\r\n<h3>\r\n	<a></a><a></a>一、竞争的需要\r\n</h3>\r\n国际互联网的用户在迅猛地增长，中国上网用户由1995年的一万户速增至2001年上半年的2650万用户。这增长速度是全世界范围的普遍现象。在美国、欧洲、日本、台湾、港澳及其它许多国家，网站和电子信箱系统已经成为公司立业不可缺少的重要组成部分。人们用电子信箱已经比用电话多了，百分之九十以上的大小企业、学校、政府机关、服务业甚至酒吧都设法在热门网络上设立自己的网站，供数以百万计的人们前来参观、浏览和查询。中国及全世界的上网用户在未来几十年内还会迅速增加。您的企业要为这众多的民众、企业服务就必须建立自己的网站和电子信箱系统，在这信息的高速公路上宣传自己高效的工作。企业网站、电子信箱给客户、潜在客户，特别是大客户及海外客户，带来了便利的联系，增加了了解，增强了信任感。这些企业自然是他们要打交道的首选，没有网站和电子信箱的企业将失去越来越多的机会而最终被淘汰。<br />\r\n<h3>\r\n	<a></a><a></a>二、可以迅速树立企业形象\r\n</h3>\r\n今天，国际互联网络已成为高科技和未来生活的代名词，要显示你公司的实力，提升公司的形象，没有什么比在员工名片、企业信笺、广告及各种公众能看得到的东西上印上自己公司独有的网络地址和专用的集团电子邮件地址更有说服力了。消费者、客户和海外投资者自然对您另眼相看。<br />\r\n<h3>\r\n	<a></a><a></a>三、可以让客户获得所需的商业信息\r\n</h3>\r\n什么是商业信息？你的营业时间？你的服务项目？你的联系方法？你的支付方式？你的地址？你的新的产品资料？如果你让客户明白与你合作的所有原因和好处，那么何愁生意不上门？更重要的是，你的眼光已经放得非常长远，因为在许多你的销售人员未能到达的地方，人们已经可以通过上网这一最便捷的途径获取你的商业信息，并且不是你花大笔的宣传费用去让客户得到你公司的商业信息，而是客户愿意花钱从您那儿取得所需商业信息，这样一来，既能使你节约大量不必要的支出，又能使你的现有客户或潜在客户更满意。<br />\r\n<h3>\r\n	<a></a><a></a>四、可以为客户提供服务\r\n</h3>\r\n让客户获得所需的信息是为客户服务的重要方法之一。但是如果你仔细研究了为客户服务的方法，你就会发现许多利用WWW技术为客户服务的方法。你不妨把售后服务项目做成电子表格，让你的员工开发你的客户所感兴趣的产品和服务，并且放在网上，让电脑自动记录客户的查询和订单，使你迅速掌握第一手的统计数据，而无需让员工天天守候在电话机前记录电话内容。你可以让你的客户在数据库中查询到你所生产的产品的颜色、规格。同样，你既不费力也无需花费太多精力就可以在互联网上从事上述活动了。<br />\r\n<h3>\r\n	<a></a><a></a>五、可以吸引公众的注意力\r\n</h3>\r\n你不可能将你的新产品信息在全球的周刊上发表，但你可以把上述信息放在你的企业网站上向全世界发表。即使你可以把上述信息在全球的周刊上发表，但消费者遗忘广告、忽略广告，你也无可奈何。有了网站上的信息，任何一个人都可在网上浏览你的网页，都会成为你的潜在客户。<br />\r\n<h3>\r\n	<a></a><a></a>六、可以及时发布时间性强的信息\r\n</h3>\r\n如果你必须在当晚发表一篇文章、发布季度财政报告、发表新产品宣传信息、进行突发性事件的回应处理，在以前，这些都可能因时间太紧，媒体或印刷厂不能配合而被耽搁。而如今上述信息和附带的图片都可以在你希望的任何时间发布，这是一个全球性的概念，是抢在对手之前的竞争手段。<br />\r\n<h3>\r\n	<a></a><a></a>七、可以销售产品\r\n</h3>\r\n许多人认为能够销售产品是使用互联网的主要原因，因为它可以到达推销员和销售渠道无法到达的地方，并且极大地方便了消费者。如果有人想成为你的用户，他们就想了解你是做什么的?你能为他们提供什么样的服务？但是在大多数情况下你的潜在用户总是找不到你的推销员，利用互联网你可以轻松廉价地展开销售攻势，你的潜在用户也可以轻松廉价地了解你公司的资料，与你的销售部门联络。<br />\r\n<h3>\r\n	<a></a><a></a>八、可以让公司简介、产品说明声情并茂\r\n</h3>\r\n尽管你的产品非常好，但人们总是看不到它的样子和它到底是怎么样工作的；产品画册虽然非常好，但它是静止的，也没有人知道它工作时发出什么声音。如果以上因素对你的准用户非常重要，你就应该利用互联网来介绍你的公司和产品，因为万维网（WWW）技术可以很简便地为一段产品介绍加入声音、图形、动画甚至影像等等，这些不断涌现出来的多媒体技术已让网络世界变得丰富多彩。<br />\r\n<h3>\r\n	<a></a><a></a>九、可以进入一个高需求的市场\r\n</h3>\r\n据统计，www的使用者们可能是一个需求最高的市场。通常，大学或更高学历的人已经获得一份较高的薪水，或者即将获得一份较高的薪水。进入INTERNET社会的这群人，会主动寻找或接受各种高档新产品的广告。尽管有其他因素影响，但这的确是一个目标高度集中的市场。<br />\r\n<h3>\r\n	<a></a><a></a>十、可以回答用户经常关心的问题\r\n</h3>\r\n在你的公司里任何一个经常接电话的人的都会告诉你，他们的时间被消耗在一遍又一遍回答同一个问题上，你甚至要为回答这些售前和售后问题而专门增设人手；而把这些问题的答案放到企业网站上你，就既能使用户们弄清楚问题又节省了大量时间和人力资源。<br />\r\n<h3>\r\n	<a></a><a></a>十一、可以同你的销售人员随时保持联系\r\n</h3>\r\n正在出差的员工可能需要产品资料和促成一笔生意的最新信息。如果你有这些信息，如何第一时间交到在外地的销售人员手上呢？派人送去？用速递？还是由他自生自灭？利用WWW技术你的销售人员可以在当地用市内电话上网，及时从企业主机上获取所需资料，无需长途电话费也无需派专人在公司留守。<br />\r\n<h3>\r\n	<a></a><a></a>十二、可以开拓国际市场\r\n</h3>\r\n你可能对国际潜在市场的信函、电话或法律的含义不太了解，现在通过访问该国的一些企业站点，你可以象同公司对面的公司交谈一样方便地了解国际市场，事实上当你想利用互联网走入国际市场之前，外国的公司可能已经用同样的方法了解过你公司的情况了。当你收到一些外国公司的国际电子邮件的查询时，你就明白到国际市场已为你打开，而这一切都是你以前认为难以办到的。<br />\r\n<h3>\r\n	<a></a><a></a>十三、可以提供24小时服务\r\n</h3>\r\n你也许有这样的经验，与大洋彼岸约定通话时间不是太早就是太晚，这样的情况难免让你觉得尴尬。因为你们之间存在时间差。你的业务也许遍布全球，但你的当地标准时间并非如此，你睡觉的时候正是你的客户的工作时间，怎么办？企业网站为你和你的客户提供每周7天每天24小时的不间断联系，无论什么时候你总能抢在竞争对手之前为客户提供他们需要的信息。甚至可以赶在他们上班之前做了一份计划书，当客户早上打开电脑，你的计划书就在那里了。<br />\r\n<h3>\r\n	<a></a><a></a>十四、可以尽可能快地更新信息\r\n</h3>\r\n有时许多信息还没有发布就变成旧的信息了，需要更新了，而印好的资料在你的手上就变成一堆废纸。电子出版改变了你的一切，没有纸张、油墨无需、无需预订版面、不论面积大小、没有加收、随时修改内容……，任何传统印刷方式都不可能有这种灵活性。<br />\r\n<h3>\r\n	<a></a><a></a>十五、可以得到客户的反馈\r\n</h3>\r\n你向客户发出各类目录和小册子，但是没有顾客上门，这到底是为什么？是产品的颜色、价格还是市场战略出了问题？你没有时间去寻找问题的答案，也没有大量金钱测试市场。有了企业网站，有了你的电子信箱系统，极大地方便客户/消费者及时向你反映情况，提出意见。', 'news/content', 'news_content', '0', '0', '48', '1', '原创', '1366353661', '0');
-INSERT INTO `yx_news` VALUES ('3', ',000000,100001,100005,100016', 'admin', '什么是企业网站', '', '', 'NoPic.gif', '企业,宣传,企业网站,一个,不但,名片,形象,同时,销售,辅助,可以,网络,良好,平台,互联,就是,概念,网上,进行,相当于', '企业网站的概念\r\n企业网站，就是企业在互联网上进行网络建设和形像宣传的平台。企业网站就相当于一个企业的网络名片，不但对企业的形象是一个良好的宣传，同时可以辅助企业的销售', '<p>\r\n	<strong><span style=\"font-size:14px;\">企业网站的概念</span></strong><br />\r\n企业网站，就是企业在互联网上进行网络建设和形像宣传的平台。企业网站就相当于一个企业的网络名片，不但对企业的形象是一个良好的宣传，同时可以辅助企业的销售，甚至可以通过网络直接帮助企业实现产品的销售，企业可以利用网站来进行宣传、产品资讯发布、招聘等等。企业网站的作用就是为展现公司形象，加强客户服务，完善网络业务，还可以与潜在客户建立商业联系。随着网络的发展，出现了提供网络资讯为盈利手段的网络公司，通常这些公司的网站上提供人们生活各个方面的资讯，如时事新闻、旅游、娱乐、经济等。\r\n</p>\r\n<p>\r\n	<strong><span style=\"font-size:14px;\">企业网站的分类</span></strong><br />\r\n<strong>电子商务型</strong><br />\r\n主要面向供应商、客户或者企业产品（服务）的消费群体，以提供某种直属于企业业务范围的服务或交易、或者为业务服务的服务或者交易为主；这样的网站可以说是正处于电子商务化的一个中间阶段，由于行业特色和企业投入的深度广度的不同，其电子商务化程度可能处于从比较初级的服务支持、产品列表到比较高级的网上支付的其中某一阶段。通常这种类型可以形象的称为\"网上XX企业\"。例如，网上银行、网上酒店等。<br />\r\n<strong>多媒体广告型</strong><br />\r\n主要面向客户或者企业产品（服务）的消费群体，以宣传企业的核心品牌形象或者主要产品（服务）为主。这种类型无论从目的上还是实际表现手法上相对于普通网站而言更像一个平面广告或者电视广告，因此用\"多媒体广告\"来称呼这种类型的网站更贴切一点。<br />\r\n<strong>产品展示型</strong><br />\r\n主要面向需求商，展示自己产品的详细情况，以及公司的实力。对产品的价格、生产、详细介绍等做最全面的介绍。这种类型的企业站点主要目的是要展示自己产品的最直接有效的方式。在注重品牌和形象的同时也要重视您的产品的介绍。 　　在实际应用中，很多网站往往不能简单的归为某一种类型，无论是建站目的还是表现形式都可能涵盖了两种或两种以上类型；对于这种企业网站，可以按上述类型的区别划分为不同的部分，每一个部分都基本上可以认为是一个较为完整的网站类型。注意：由于互联网公司的特殊性，在这里不包含互联网的信息提供商或者服务提供商的网站。 　　提起企业网站,很多人都以为建立一个简单的具有展示性能的网站就可以了。但是往往忽略了一点——营销。其实建立一个企业网站,核心的观点就是如何使用这个网站推进或者推动企业营销,进而实现企业的信息化管理。 　　信息产业目前已成为第一大规模的产业，并位居全球第三位。这就意味着我国的企业信息化也迎来了前所未有的好时机。第四代智能网站的推出也为中小企业建站提供了思路，可以从企业实用角度出发，对网站进行“总体规划，分步实施”，既可以节省成本，又不影响企业的应用。这种方式目前已经为大多数中小企业所接受，并渐成热潮。\r\n</p>\r\n<hr style=\"page-break-after:always;\" class=\"ke-pagebreak\" />\r\n<p>\r\n	<strong><span style=\"font-size:14px;\">企业网站的本质和特点</span></strong><br />\r\n（1）<strong>企业网站具有自主性和灵活性 </strong> \r\n</p>\r\n<p>\r\n	企业网站完全是根据企业本身的需要建立的，并非由其他网络服务商所经营，因此在功能上有较大的自主性和灵活性，也正因为如此，每个企业网站的内容和功能会有较大的差别。企业网站效果的好坏，主动权掌握在自己手里，其前提是对企业网站有正确的认识，这样才能适应企业营销策略的需要，并且从经济上、技术上有实现的条件。因此，企业网站应适应企业的经营需要。\r\n</p>\r\n<p>\r\n	（2）<strong>企业网站是主动性与被动性的矛盾同一体 </strong> \r\n</p>\r\n<p>\r\n	企业通过自己的网站可以主动发布信息，这是企业网站主动性的一面，但是发布在网站上的信息不会自动传递给用户，只能“被动地”等待用户自己来获取信息，这又表现出企业网站具有被动性的一面。同时具有主动性与被动性也是企业网站与搜索引擎和电子邮件等网络营销工具在信息传递方式上的主要差异。从网络营销信息的传递方式来看，搜索引擎完全是被动的，只能被动地等待用户检索，只有用户检索使用的关键词和企业网站相关，并且在检索结果中的信息可以被用户看到并被点击的情况下，这一次网络营销信息的传递才得以实现。电子邮件传递信息则基本上是主动的，发送什么信息、什么时间用什么时候发送，都是营销人员自己可以决定的。\r\n</p>\r\n<p>\r\n	（3）<strong>企业网站的功能需要通过其他网络营销手段才能体现出来 </strong> \r\n</p>\r\n<p>\r\n	企业网站的网络营销价值，是通过网站的各种功能以及各种网络营销手段而体现出来的，网站的信息和功能是基础，网络营销方法的应用是条件。如果建设一个网站而不去合理应用，企业网站这个网络营销工具将不会发挥应用的作用，无论功能多么完善的网站，如果没有用户来浏览和应用，企业网站也就成为摆设，这也就是为什么网站推广作为网络营销首要职能的原因。在实际应用中，一些企业由于缺乏专业人员维护管理，于是呈现给浏览者的网站内容往往数年如一日，甚至用户的咨询邮件也不给予回复，这样的企业网站没有发挥其应用的作用，也就不足为怪了。\r\n</p>\r\n<p>\r\n	（4）<strong>企业网站的功能具有相对稳定性 </strong> \r\n</p>\r\n<p>\r\n	企业网站功能的相对稳定性具有两方面的含义：一方面，一旦网站的结构和功能被设计完成并正式开始运作，在一定时期内将基本稳定，只有在运行一个阶段后进行功能升级的情况下，才能拥有新的功能，网站功能的相对稳定性对于无论网站的运营维护还是对于一些常规网络营销方法的应用都很有必要，一个不断变化中的企业网站是不利于网络营销；另一方面，功能的相对稳定性也意味着，如果存在某些功能方面的缺陷，在下次升级之前的一段时间内，将影响网络营销效果的发挥，因此在企业网站策划过程中应充分考虑到网站功能的这一特点，尽量做到在一定阶段内功能适用并具有一定的前瞻性。 　　（5）企业网站是其他网络营销手段和方法的基础 　　企业网站是一个综合性的网络营销工具，这也就决定了企业网站在网络营销中的作用不是孤立的，不仅与其他营销方法具有直接的关系，也构成了开展网络营销的基础。本章后面的内容也将介绍，整个网络营销方法体系可分为无站点网络营销和基于企业网站的网络营销，后者在网络营销中居于支配地位，这也是在网络营销体系中不能脱离企业网站的根本原因。\r\n</p>', 'news/content', 'news_content', '0', '0', '59', '1', '原创', '1366353661', '0');
-INSERT INTO `yx_news` VALUES ('6', ',000000,100001,100006', 'admin', '自助建站与定制开发的区别', '101', '', '20120716/thumb_1342406669.jpg', '建站,定制,这里,详细,这么,说明,手工,程序开发,优点,缺点,费用,为什么,行业,网站制作,区别,开发,客户,经常,模板,问题,两者', '在网站制作行业中，客户经常会问到的问题：“什么是模板建站，什么是定制建站”“为什么两者的费用会差这么多” \r\n这里做详细的说明： \r\n1.“手工建站”的优缺点： \r\n优点： 程序开发较', '<div>\r\n	<span style=\"font-size:14px;\">在网站制作行业中，客户经常会问到的问题：“什么是模板建站，什么是定制建站”“为什么两者的费用会差这么多”</span> \r\n</div>\r\n<div>\r\n	<span style=\"font-size:14px;\">这里做详细的说明：</span> \r\n</div>\r\n<div>\r\n	<strong><span style=\"font-size:14px;\">1.“手工建站”的优缺点：</span></strong> \r\n</div>\r\n<div>\r\n	<span style=\"font-size:14px;\">优点： 程序开发较自由，能够充分发挥网站开发人员的能力，使建成后的网站更具个性化，安全性、稳定性更好，同时，也使网站具有更强的扩展性。 网站便于优化、推广。</span> \r\n</div>\r\n<div>\r\n	<span style=\"font-size:14px;\">缺点： 由于采用手工开发，人力成本相对较高，比其他建站方式需要花费更多的资源。</span> \r\n</div>\r\n<hr style=\"page-break-after:always;\" class=\"ke-pagebreak\" />\r\n<p>\r\n	<br />\r\n</p>\r\n<div>\r\n	&nbsp;\r\n</div>\r\n<div>\r\n	<strong><span style=\"font-size:14px;\">2.“模板建站”的优缺点：</span></strong> \r\n</div>\r\n<div>\r\n	<span style=\"font-size:14px;\">“模板建站”也称“自助建站”“智能建站”等</span> \r\n</div>\r\n<div>\r\n	<span style=\"font-size:14px;\">优点：建站速度快，成就低，被众多提供企业网站建设服务的网络公司采用。</span> \r\n</div>\r\n<div>\r\n	<span style=\"font-size:14px;\">缺点：所建网站缺乏个性且功能简单。</span> \r\n</div>\r\n<div>\r\n	<span style=\"font-size:14px;\">大多数模板建站工具将建站的快慢作为衡量标准，提出了\"一分钟建站\"的口号。一分钟建好一个网站，在技术上并不困难，但用户不禁会问：一分钟建好的网站好看吗？风格有个性吗？网站好用吗？</span> \r\n</div>\r\n<div>\r\n	<strong><span style=\"font-size:14px;\">·不能自由地移植用户网站</span></strong> \r\n</div>\r\n<div>\r\n	<span style=\"font-size:14px;\">由于建站、管理和维护工作必须在服务商的网站上完成，因此用户的网站也被捆绑在该公司的服务器上，用户网站不能自由地移植，限制了用户自由选择的权利。</span> \r\n</div>\r\n<div>\r\n	<strong><span style=\"font-size:14px;\">·不能灵活地扩展网站功能</span></strong> \r\n</div>\r\n<div>\r\n	<span style=\"font-size:14px;\">模板建站工具的功能模块是固定提供的，用户不能对其进行剪裁、或设置、或组合，更谈不上对其进行二次开发，或自由地导入自己开发的网站功能模块。</span> \r\n</div>\r\n<hr style=\"page-break-after:always;\" class=\"ke-pagebreak\" />\r\n<p>\r\n	<br />\r\n</p>\r\n<div>\r\n	&nbsp;\r\n</div>\r\n<div>\r\n	<strong><span style=\"font-size:14px;\">·不能随意地编辑网页模板</span></strong> \r\n</div>\r\n<div>\r\n	<span style=\"font-size:14px;\">对于选用的网站模板，用户无法对其进行独立、随意地编辑，更不能导入自定义的模板，利用这样的技术制作网站，往往是一个呆板而雷同的网站，难以让人接受。</span> \r\n</div>\r\n<div>\r\n	<span style=\"font-size:14px;\">最主要的缺点：绝大部分的自助建站都没有从营销的角度来建设，而且速度慢等问题让网站很难推广。而且自助建站系统是非常不利于优化、关键排名的。一个采用自助建站系统建设的企业网站，即使被百度、Google、雅虎、搜狗等搜索引擎收录了很多页面，但其排名也是非常落后的，达不到应有的公司产品宣传、推广效果。 </span> \r\n</div>\r\n<div>\r\n	<span style=\"font-size:14px;\">网站的自助建站说到底，就是把建站的软件与服务器空间绑定在一起，用户直接利用软件来添加数据，数据添加好了，网站就形成了，但全是用的模板，不好轻易的进行风格改变，当然也可以换换模板，但再换，网络公司提供的也只是模板而矣，模板里面的内容可以添加与修改，但是，模板本身不好变化，现在先进的模板自身也可以变化，但出来的网页页面不是手工开发而成的。</span> \r\n</div>\r\n<div>\r\n	<span style=\"font-size:14px;\">网站开发是指网站制作，即制作出一个个的网页，通过相互链接，形成一个整体，这个整体是一个单独的网页组成，这些网页我们称之为源程序或叫做源代码，然后再申请一个服务器空间，将这些源程序放置在这个虚拟的空间中，接着再用域名指向到这个IP空间上，当然，作为空间本身，也要绑定这个域名。</span> \r\n</div>\r\n<div>\r\n	<span style=\"font-size:14px;\">这样，在地址栏上，输入域名，即可以找开域名指向的空间里面的内容，即网站内定，供浏览者进行浏览。</span> \r\n</div>\r\n<div>\r\n	<span style=\"font-size:14px;\">网站的自助建站与网站开发出来的手工建站的根本区别在于，一是模板化和模块化，而手工建站是根据要求量身订做的，网站风格及设计效果根本无法进行比较。</span> \r\n</div>\r\n<div>\r\n	<span style=\"font-size:14px;\">模板网站：框架固定，后台固定，页面版式大众化。代码漏洞多。想升级的话麻烦。</span> \r\n</div>\r\n<div>\r\n	<span style=\"font-size:14px;\">专业网站：无论是页面，还是后台都是根据顾客的想法来定制开发，专业的网站基本上都是独一无二的，做的好会比较吸引人。以后升级的话也方便。</span> \r\n</div>', 'news/content', 'news_content', '0', '1', '125', '1', '原创', '1366353661', '0');
-INSERT INTO `yx_news` VALUES ('7', ',000000,100001,100006', 'admin', '新一代iPad 3 5.1不受限制的越狱演示', '101', '#ff8040', '20120716/thumb_1342400219.jpg', '新一代iPad 3 5.1不受限制的越狱演示', '新一代iPad 3 5.1不受限制的越狱演示', '<p align=\"center\">\r\n	<embed src=\"http://www.tudou.com/v/BAgtUpeInTw/&resourceId=0_05_05_99&bid=05/v.swf\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" allowfullscreen=\"true\" wmode=\"opaque\" width=\"480\" height=\"400\" /> \r\n</p>', 'news/content', 'news_content', '0', '1', '62', '1', '原创', '1366353661', '0');
-INSERT INTO `yx_news` VALUES ('5', ',000000,100001,100006', 'admin', '网站推广的方法', '', '', 'NoPic.gif', '网站推广,方法,资源,工具,利用,可以,常用,科技,相应,发现,根据,合理利用,实现,具体,所有,实际上,实施,通过,各种', '网站推广的实施是通过各种具体的方法来实现的，所有的网站推广方法实际上都是对网站推广工具和资源 的合理利用。根据可以利用的常用的网站推广工具和资源御彩科技发现，相应地，', '<p>\r\n	网站推广的实施是通过各种具体的方法来实现的，所有的网站推广方法实际上都是对网站推广工具和资源 的合理利用。根据可以利用的常用的网站推广工具和资源御彩科技发现，相应地，可以将网站推广的基本方法也可以归纳为八种：搜索引擎推广方法、电子邮件推广方法、资源合作推广方法、信息发布推广方法、病毒性营销方法、快捷网址推广方法、网络广告推广方法、综合网站推广方法。<br />\r\n<br />\r\n<strong>1. 搜索引擎推广方法</strong><br />\r\n搜索引擎推广是指利用搜索引擎、分类目录等具 有在线检索信息功能的网络工具进行网站推广的方法。由于搜索引擎的基本形式可以分为网络蜘蛛型搜索引擎（简称搜索引擎）和基于人工分类目录的搜索引擎（简称分类目录），因此搜索引擎推广的形式也相应地有基于搜索引擎的方法和基于分类目录的方法，前者包括搜索引擎优化、关键词广告、竞价排名、固定排名、基于 内容定位的广告等多种形式，而后者则主要是在分类目录合适的类别中进行网站登录。随着搜索引擎形式的进一步发展变化，也出现了其他一些形式的搜索引擎，不过大都是以这两种形式为基础。<br />\r\n搜索引擎推广的方法又可以分为多种不同的形式，常见的有：登录免费分类目录、登录付费分类目录、搜索引擎优化、关键词广告、关键词竞价排名、网 页内容定位广告等。 <br />\r\n从目前的发展趋势来看，搜索引擎在网络营销中的地位依然重要，并且受到越来越多企业的认可，搜索引擎营销的方式也在不断发展演变，因此应根据环 境的变化选择搜索引擎营销的合适方式。\r\n</p>\r\n<p>\r\n	<br />\r\n<strong>2. 电子邮件推广方法</strong><br />\r\n以电子邮件为主要的网站推广手段，常用的方法包括电子刊物、会员通讯、专业服务商的电子邮件广告等。<br />\r\n基于用户许可的Email营销与滥发邮件（Spam）不同，许可营销比传统的推广方式或未经许可的Email营销具有明显的优势，比如可以减少 广告对用户的滋扰、增加潜在客户定位的准确度、增强与客户的关系、提高品牌忠诚度等。根据许可Email营销所应用的用户电子邮件地址资源的所有形式，可 以分为内部列表Email营销和外部列表Email营销，或简称内部列表和外部列表。内部列表也就是通常所说的邮件列表，是利用网站的注册用户资料开展 Email营销的方式，常见的形式如新闻邮件、会员通讯、电子刊物等。外部列表Email营销则是利用专业服务商的用户电子邮件地址来开展Email营 销，也就是电子邮件广告的形式向服务商的用户发送信息。许可Email营销是网络营销方法体系中相对独立的一种，既可以与其他网络营销方法相结合，也可以独立应用。\r\n</p>\r\n<p>\r\n	<br />\r\n<strong>3. 资源合作推广方法</strong><br />\r\n通过网站交换链接、交换广告、内容合作、用户资源合作等方式，在具有类似目标网站之间实现互相推广的目 的，其中最常用的资源合作方式为网站链接策略，利用合作伙伴之间网站访问量资源合作互为推广。<br />\r\n每个企业网站均可以拥有自己的资源，这种资源可以表现为一定的访问量、注册用户信息、有价值的内容和功能、网络广告空间等，利用网站的资源与合 作伙伴开展合作，实现资源共享，共同扩大收益的目的。在这些资源合作形式中，交换链接是最简单的一种合作方式，调查表明也是新网站推广的有效方式之一。交换链接或称互惠链接，是具有一定互补优势的网站之间的简单合作形式，即分别在自己的网站上放置对方网站的LOGO或网站名称并设置对方网站的超级链接，使得用户可以从合作网站中发现自己的网站，达到互相推广的目。交换链接的作用主要表现在几个方面：获得访问量、增加用户浏览时的印象、在搜索引擎排名中增加 优势、通过合作网站的推荐增加访问者的可信度等。交换链接还有比是否可以取得直接效果更深一层的意义，一般来说，每个网站都倾向于链接价值高的其他网站，因此获得其他网站的链接也就意味着获得了于合作伙伴和一个领域内同类网站的认可。\r\n</p>\r\n<p>\r\n	<br />\r\n<strong>4. 信息发布推广方法</strong><br />\r\n将有关的网站推广信息发布在其他潜在用户可能访问的网站上，利用用户在这些网站获取信息的机会实现网站推广 的目的，适用于这些信息发布的网站包括在线黄页、分类广告、论坛、博客网站、供求信息平台、行业网站等。信息发布是免费网站推广的常用方法之一，尤其在互联网发展早期，网上信息量相对较少时，往往通过信息发布的方式即可取得满意的效果，不过随着网上信息量爆炸式的增长，这种依靠免费信息发布的方式所能发挥 的作用日益降低，同时由于更多更加有效的网站推广方法的出现，信息发布在网站推广的常用方法中的重要程度也有明显的下降，因此依靠大量发送免费信息的方式已经没有太大价值，不过一些针对性、专业性的信息仍然可以引起人们极大的关注，尤其当这些信息发布在相关性比较高。\r\n</p>\r\n<p>\r\n	<br />\r\n<strong>5. 病毒性营销方法</strong><br />\r\n病毒性营销方法并非传播病毒，而是利用用户之间的主动传播，让信息像病毒那样扩散，从而达到推广的目的，病毒 性营销方法实质上是在为用户提供有价值的免费服务的同时，附加上一定的推广信息，常用的工具包括免费电子书、免费软件、免费FLASH作品、免费贺卡、免 费邮箱、免费即时聊天工具等可以为用户获取信息、使用网络服务、娱乐等带来方便的工具和内容。如果应用得当，这种病毒性营销手段往往可以以极低的代价取得非常显著的效果。\r\n</p>\r\n<p>\r\n	<br />\r\n<strong>6. 快捷网址推广方法</strong><br />\r\n即合理利用网络实名、通用网址以及其他类似的关键词网站快捷访问方式来实现网站推广的方法。快捷网址使用自 然语言和网站URL建立其对应关系，这对于习惯于使用中文的用户来说，提供了极大的方便，用户只需输入比英文网址要更加容易记忆的快捷网址就可以访问网站，用自己的母语或者其他简单的词汇为网站“更换”一个更好记忆、更容易体现品牌形象的网址，例如选择企业名称或者商标、主要产品名称等作为中文网址，这样可以大大弥补英文网址不便于宣传的缺陷，因为在网址推广方面有一定的价值。随着企业注册快捷网址数量的增加，这些快捷网址用户数据可也相当于一个搜索引 擎，这样，当用户利用某个关键词检索时，即使与某网站注册的中文网址并不一致，同样存在被用户发现的机会。\r\n</p>\r\n<p>\r\n	<br />\r\n<strong>7. 网络广告推广方法</strong><br />\r\n网络广告是常用的网络营销策略之一，在网络品牌、产品促销、网站推广等方面均有明显作用。网络广告的常见 形式包括：BANNER广告、关键词广告、分类广告、赞助式广告、Email广告等。BANNER广告所依托的媒体是网页、关键词广告属于搜索引擎营销的 一种形式，Email广告则是许可Email营销的一种，可见网络广告本身并不能独立存在，需要与各种网络工具相结合才能实现信息传递的功能，因此也可以 认为，网络广告存在于各种网络营销工具中，只是具体的表现形式不同。将网络广告用户网站推广，具有可选择网络媒体范围广、形式多样、适用性强、投放及时等优点，适合于网站发布初期及运营期的任何阶段。\r\n</p>\r\n<p>\r\n	<br />\r\n<strong>8. 综合网站推广方法</strong><br />\r\n除了前面介绍的常用网站推广方法之外，还有许多专用性、临时性的网站推广方法，如有奖竞猜、在线优惠卷、有 奖调查、针对在线购物网站推广的比较购物和购物搜索引擎等，有些甚至采用建立一个辅助网站进行推广。有些网站推广方法可能别出心裁，有些网站则可能采用有一定强迫性的方式来达到推广的目的，例如修改用户浏览器默认首页设置、自动加入收藏夹，甚至在用户电脑上安装病毒程序等，真正值得推广的是合理的、文明的 网站推广方法，应拒绝和反对带有强制性、破坏性的网站推广手段。\r\n</p>\r\n<p>\r\n	<br />\r\n</p>', 'news/content', 'news_content', '0', '0', '39', '1', '原创', '1366353661', '0');
-INSERT INTO `yx_news` VALUES ('8', ',000000,100001,100005', 'admin', '用最少的代码完成对多的事情', '100', '', '20130407/thumb_1365298922.jpg', '代码,完成,事情,最少,优雅,幻灯,简洁,高效,首页', '简洁、高效、优雅，用最少的代码完成对多的事情', '简洁、高效、优雅，用最少的代码完成对多的事情', 'news/content', 'news_content', '0', '0', '31', '1', '原创', '1366353661', '0');
-INSERT INTO `yx_news` VALUES ('9', ',000000,100001,100005', 'admin', '为客户创造价值就是我们存在的价值', '100', '', '20130407/thumb_1365298980.jpg', '价值,就是,存在,我们,创造,幻灯,客户,首页', '为客户创造价值就是我们存在的价值', '为客户创造价值就是我们存在的价值', 'news/content', 'news_content', '0', '0', '34', '1', '原创', '1366353661', '0');
-INSERT INTO `yx_news` VALUES ('11', ',000000,100018', 'admin', '为什么我按照提示安装不上系统？', '', '', 'NoPic.gif', '安装,检查,是否,使用,记得,或者,修改,程序,其他,文件,打开,填写,发布,环境,系统,提示,按照,为什么,正确,参数,版本,确认', '1、检查您的发布环境是否为PHP+MySql,且版本都是5.0上。\r\n2、检查您的安装参数是否填写正确。\r\n3、请确认您没用修改过程序，或者使用记得事本或其他非专业编辑器打开过.php后缀文件。\r\n4、如', '<p>\r\n	1、检查您的发布环境是否为PHP+MySql,且版本都是5.0上。&nbsp;\r\n</p>\r\n<p>\r\n	2、检查您的安装参数是否填写正确。&nbsp;\r\n</p>\r\n<p>\r\n	3、请确认您没用修改过程序，或者使用记得事本或其他非专业编辑器打开过.php后缀文件。\r\n</p>\r\n<p>\r\n	4、如果以上都检查无误，请将错误提示发送给客服帮您解决。如果没有显示错误提示请在protected/config.php中检查DEBUG是否设置为true。\r\n</p>', 'news/content', 'news_content', '0', '0', '35', '1', '原创', '1367283616', '0');
-INSERT INTO `yx_news` VALUES ('12', ',000000,100018', 'admin', '使用YXcms需要收费么？', '', '', 'NoPic.gif', '需要,功能,版权,系统,使用,信息,如果,登陆,模板,定制,或者,查看,联系,费用,保留,并且,基础,收费,收取,建站,任何,项目', '如果您使用YXcms建站系统基础功能并且保留系统版权信息是不收取任何费用的。\r\n如果您的项目需要去除版权信息，或者您需要定制功能或模板，请登陆官网：http://www.yxcms.net 联系客服查看详', '如果您使用YXcms建站系统基础功能并且保留系统版权信息是不收取任何费用的。如果您的项目需要去除版权信息，或者您需要定制功能或模板，请登陆官网：http://www.yxcms.net 联系客服查看详细收费信息。', 'news/content', 'news_content', '3', '0', '3', '1', '原创', '1367283664', '0');
+--
+-- 转存表中的数据 `yx_news`
+--
 
--- ----------------------------
--- Table structure for `yx_orders`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_orders`;
-CREATE TABLE `yx_orders` (
-  `id` int(15) NOT NULL auto_increment,
+INSERT INTO `yx_news` (`id`, `sort`, `account`, `title`, `places`, `color`, `picture`, `keywords`, `description`, `content`, `method`, `tpcontent`, `norder`, `recmd`, `hits`, `ispass`, `origin`, `addtime`, `extfield`) VALUES
+(28, ',000000,100032', 'admin', '热火夺冠游行庆典举行', '', '', 'NoPic.gif', '热火夺冠游行庆典举行', '热火夺冠游行庆典举行', '<h2 data-client="headline">\r\n	<a href="http://sports.sina.com.cn/nba/2013-06-25/03286636802.shtml" target="_blank">热火夺冠游行庆典举行</a>\r\n</h2>\r\n<h2 data-client="headline">\r\n	<a href="http://sports.sina.com.cn/nba/2013-06-25/03286636802.shtml" target="_blank">热火夺冠游行庆典举行</a>\r\n</h2>\r\n<h2 data-client="headline">\r\n	<a href="http://sports.sina.com.cn/nba/2013-06-25/03286636802.shtml" target="_blank">热火夺冠游行庆典举行</a>\r\n</h2>\r\n<h2 data-client="headline">\r\n	<a href="http://sports.sina.com.cn/nba/2013-06-25/03286636802.shtml" target="_blank">热火夺冠游行庆典举行</a>\r\n</h2>\r\n<h2 data-client="headline">\r\n	<a href="http://sports.sina.com.cn/nba/2013-06-25/03286636802.shtml" target="_blank">热火夺冠游行庆典举行</a>\r\n</h2>\r\n<h2 data-client="headline">\r\n	<a href="http://sports.sina.com.cn/nba/2013-06-25/03286636802.shtml" target="_blank">热火夺冠游行庆典举行</a>\r\n</h2>\r\n<h2 data-client="headline">\r\n	<a href="http://sports.sina.com.cn/nba/2013-06-25/03286636802.shtml" target="_blank">热火夺冠游行庆典举行</a>\r\n</h2>', 'news/content', 'news_content', 0, 0, 57, 1, 'SINA_NBA', 1372143098, 0),
+(29, ',000000,100034', 'admin', '2222222222', '', '', 'NoPic.gif', '22222222', '22222222', '22222222', 'news/content', 'news_content', 0, 0, 30, 1, '原创', 1372266424, 0),
+(30, ',000000,100034', 'admin', '3333333333', '', '', 'NoPic.gif', '3333333333333', '3333333333333', '3333333333333', 'news/content', 'news_content', 0, 0, 30, 1, '原创', 1372266447, 0),
+(31, ',000000,100034', 'admin', '444444444', '', '', 'NoPic.gif', '4444444444444444444', '4444444444444444444', '4444444444444444444', 'news/content', 'news_content', 0, 0, 30, 1, '原创', 1372266459, 0),
+(32, ',000000,100034', 'admin', '5555555555555', '', '', 'NoPic.gif', '55555555555555', '55555555555555', '55555555555555', 'news/content', 'news_content', 0, 0, 30, 1, '原创', 1372266506, 0),
+(33, ',000000,100034', 'admin', '666666666666', '', '', 'NoPic.gif', '6666666666666666666', '6666666666666666666', '6666666666666666666', 'news/content', 'news_content', 0, 0, 30, 1, '原创', 1372266518, 0),
+(34, ',000000,100032', 'admin', '7777777777', '', '', 'NoPic.gif', '77777777777777', '77777777777777', '777777777777777777777', 'news/content', 'news_content', 0, 0, 30, 1, '原创', 1372266592, 0),
+(35, ',000000,100032', 'admin', '888888888888888', '', '', 'NoPic.gif', '88888888888888888', '88888888888888888', '88888888888888888', 'news/content', 'news_content', 0, 0, 31, 1, '原创', 1372266609, 0),
+(36, ',000000,100033', 'admin', 'FakeData', '', '', 'NoPic.gif', '3333333333333333', '3333333333333333', 'FakeData', 'news/content', 'news_content', 0, 0, 30, 1, '原创', 1372266643, 0),
+(37, ',000000,100033', 'admin', 'FakeData', '', '', 'NoPic.gif', 'FakeDataFakeDataFakeData', 'FakeDataFakeDataFakeData', 'FakeDataFakeDataFakeData', 'news/content', 'news_content', 0, 0, 30, 1, '原创', 1372266689, 0),
+(38, ',000000,100033', 'admin', 'FakeData', '', '', 'NoPic.gif', 'FakeData', 'FakeData', 'FakeData', 'news/content', 'news_content', 0, 0, 30, 1, '原创', 1372266698, 0),
+(39, ',000000,100032', 'admin', 'FakeDataFakeData', '', '', 'NoPic.gif', 'FakeDataFakeDataFakeData', 'FakeDataFakeDataFakeData', 'FakeDataFakeDataFakeData', 'news/content', 'news_content', 0, 0, 33, 1, '原创', 1372266724, 0),
+(40, ',000000,100033', 'admin', 'FakeData', '', '', 'NoPic.gif', 'FakeDataFakeData', 'FakeDataFakeData', 'FakeDataFakeData', 'news/content', 'news_content', 0, 0, 30, 1, '原创', 1372266766, 0),
+(41, ',000000,100033', 'admin', 'FakeData', '', '', 'NoPic.gif', 'FakeDataFakeData', 'FakeDataFakeData', 'FakeDataFakeData', 'news/content', 'news_content', 0, 0, 30, 1, '原创', 1372266775, 0),
+(42, ',000000,100033', 'admin', 'FakeData', '', '', 'NoPic.gif', 'FakeData', 'FakeData', 'FakeData', 'news/content', 'news_content', 0, 1, 30, 1, '原创', 1372266786, 0),
+(43, ',000000,100034', 'admin', 'yx-button', '', '', 'NoPic.gif', 'yx-button', 'yx-button', 'yx-button', 'news/content', 'news_content', 0, 1, 31, 1, '原创', 1372267196, 0),
+(44, ',000000,100034', 'admin', 'yx-button', '', '', 'NoPic.gif', 'yx-button', 'yx-button', 'yx-button', 'news/content', 'news_content', 0, 0, 40, 1, '原创', 1372267214, 0),
+(46, ',000000,100030', 'admin', '用户密码重置与账号启/停', '', '', 'NoPic.gif', '用户,账号,密码,上网,正常,携带,登录,本人,身份证,有效,证件,不能,使用,前提,自行,修改,遗忘', '1 用户在能正常使用上网账号的前提下，可到“用户自服务系统”http://user.xhu.edu.cn中自行修改上网账号密码。遗忘密码或不能正常登录用户自服务系统的用户，请携带本人有效证件（身份证', '<span id="ContentPlaceHolder1_con" class="NewsText">\r\n<div>\r\n	1 用户在能正常使用上网账号的前提下，可到“用户自服务系统”<a href="http://user.xhu.edu.cn/">http://user.xhu.edu.cn</a>中自行修改上网账号密码。遗忘密码或不能正常登录用户自服务系统的用户，请携带本人有效证件（身份证、工作证或学生证）到网络中心用户接待室登记解决。\r\n</div>\r\n<div>\r\n	2用户暂时不使用账号时（例如：寒、暑假），可自行到“用户自服务系统”停用账号；需要使用时同样到“用户自服务系统”启用账号。不能通过自服务系统启/停机的用户，可携带本人有效证件（身份证、工作证或学生证）到网络中心用户接待室登记解决。\r\n</div>\r\n<div>\r\n	3 学年制（本科四年、专科三年、研究生三年）学习结束一个月后，相应的上网账号将自动注销；未使用完的充值费不予退还。若需要继续使用原上网账号的学生，由所在学院出具证明并加盖单位公章，同时带上本人有效证件（身份证和学生证）到网络中心注册新账号。\r\n</div>\r\n</span>', 'news/content', 'news_content', 0, 0, 31, 1, '原创', 1372400544, 0),
+(47, ',000000,100030', 'admin', '上网账号充值流程', '', '', 'NoPic.gif', '流程,充值,账号,上网', '', '<span id="ContentPlaceHolder1_con" class="NewsText">\r\n<div>\r\n	1 用户到行政楼计财处购买上网充值卡；\r\n</div>\r\n<div>\r\n	2 在任何一台联网计算机上打开用户自服务系统<a href="http://user.xhu.edu.cn/">http://user.xhu.edu.cn</a>；\r\n</div>\r\n<div>\r\n	3 输入自己的账号和密码，点击『登录Login』；\r\n</div>\r\n<div>\r\n	4 选择“充值卡充值”，进入充值页面；\r\n</div>\r\n<div>\r\n	5 输入充值卡号和验证码，点击『提交』即完成充值过程。\r\n</div>\r\n<div>\r\n	6 如果充值失败，请携带本人有效证件到网络中心用户接待室（4C305）登记解决。\r\n</div>\r\n</span>', 'news/content', 'news_content', 0, 0, 30, 1, '原创', 1372400564, 0),
+(48, ',000000,100030', 'admin', '局域网建设或改造流程', '', '', 'NoPic.gif', '用户,局域网,单位,改造,建设,流程,办理,网络,相关,手续,需求,根据,现场,提出,针对,主要,说明,个人,参照,申请,书面,执行', '　　说明：局域网建设或改造流程主要针对单位用户，个人用户可参照执行。\r1 用户提出书面申请（加盖单位公章），到网络中心网络运维部办理相关手续；\r2 网络中心根据用户需求现场拟', '<span id="ContentPlaceHolder1_con" class="NewsText">\r\n<div>\r\n	　　说明：局域网建设或改造流程主要针对单位用户，个人用户可参照执行。<br />\r\n</div>\r\n<div>\r\n	1 用户提出书面申请（加盖单位公章），到网络中心网络运维部办理相关手续；\r\n</div>\r\n<div>\r\n	2 网络中心根据用户需求现场拟定局域网建设或改造方案；\r\n</div>\r\n<div>\r\n	3 用户签字认可局域网建设或改造方案；\r\n</div>\r\n<div>\r\n	4 网络中心根据用户认可的局域网建设或改造方案编制工程预算表；\r\n</div>\r\n<div>\r\n	5 用户签字（盖章）认可工程预算表；\r\n</div>\r\n<div>\r\n	6 双方约定工程时间（原则上5个工作日内上门施工）；\r\n</div>\r\n<div>\r\n	7 工程结束后，网络中心根据实际工程量和材料消耗量编制工程决算表，并填写西华大学业务费报销单；\r\n</div>\r\n<div>\r\n	8 用户签字（盖章）认可工程决算表、工程发票或西华大学业务费报销单；\r\n</div>\r\n<div>\r\n	9 网络中心持用户签字（盖章）认可的工程决算表、工程发票或西华大学业务费报销单到计财处办理转帐手续。\r\n</div>\r\n</span>', 'news/content', 'news_content', 0, 1, 30, 1, '原创', 1372400589, 0),
+(49, ',000000,100032', 'admin', '正在审核的欣慰', '', '', 'NoPic.gif', '审核,正在', '正在审核的欣慰正在审核的欣慰正在审核的欣慰正在审核的欣慰正在审核的欣慰', '正在审核的欣慰正在审核的欣慰正在审核的欣慰正在审核的欣慰正在审核的欣慰', 'news/content', 'news_content', 0, 1, 31, 0, '原创', 1372400659, 0),
+(50, ',000000,100032', 'admin', '让高坪区老百姓收入倍增是我们共同的心愿和义务', '102', '', '20130629/thumb_1372521405.jpg', '3月4日上午，我校对口定点扶贫单位——南充市高坪区区', '3月4日上午，我校对口定点扶贫单位——南充市高坪区区', '&nbsp; &nbsp;&nbsp; 3月4日上午，我校对口定点扶贫单位——南充市高坪区区委副书记、区长王体刚带领区委区政府相关部门负责人，专程来校考察，就区域经济发展规划的相关事宜进行深入交流座谈。<br />\r\n王区长在简要介绍考察成员后，重点就本次考察的背景和目的做了详细说明。他说，西华大学非常重视对口定点扶贫工作，前期已经做了大量工作。本次考察的主要\r\n目的就是想借助西华大学学科优势和人才优势，为高坪区老百姓收入倍增寻求智力支持，进一步优化全区经济社会发展规划，理清发展思路，从而找到引领全区发展\r\n的切入点和着力点。<br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \r\n我校正厅级调研员、对口定点扶贫工作领导小组组长蔡汉军代表学校对王区长一行表示热烈欢迎，并简要介绍了我校教学科研、师资队伍等方面的基本情况。他说：\r\n“自从省委省政府决定把高坪区作为西华大学的对口定点扶贫单位以来，我们就是一家人了，让高坪区老百姓收入倍增是我们共同的心愿和义务。作为省属重点综合\r\n性大学，服务地方经济社会发展是我们的基本职责之一，西华大学将一定尽最大努力，为高坪区经济社会发展做出更大的贡献。”<br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 会上，管理学院副院长何东介绍了学校参与四川省、成都市和遂宁、雅安、广安、郫县、新津等地发展规划制定的基本情况。与会人员围绕如何让高坪区老百姓增收这个主题，开展了深入交流与讨论，并提出了制定高坪区全域经济发展规划的构想。<br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \r\n据悉，在对口定点扶贫工作中，我校已为高坪区鄢家乡鄢家中学捐赠了价值两万余元的图书资料，组织暑期“三下乡”社会实践服务队开展了牵手鄢家中学“快乐学\r\n校”暑期夏令营活动。管理学院、生物工程学院、建筑与土木工程学院等有关专家教授带领师生深入乡镇，开展了大量的调研工作，为学校今年对口定点扶贫工作的\r\n深入推进奠定了坚实基础。<br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 高坪区区委常委、副区长魏波，区委统筹办主任何赪承，区委农工办主任陈君，区旅游局局长冉玲瑛 \r\n，区住建局局长王忠坤，区住建局副局长青春，区住建局规划办主任罗毅，区政府办主任何林，区政府办副主任刘雨林；我校校长办公室主任、对口定点扶贫工作领\r\n导小组副组长费凌，科技处处长栾道成，地方合作与服务处处长王志刚，校长办公室副主任杨志松，管理学院副院长何东，建筑与土木工程学院副院长江毅参加了座\r\n谈。\r\n<p align="center">\r\n	<a href="http://news.xhu.edu.cn/d/file/news/xihuayaowen/2013-03-04/7dfec8a9d2d53545e6db1581a185403f.jpg" target="_blank"><img src="http://news.xhu.edu.cn/d/file/news/xihuayaowen/2013-03-04/7dfec8a9d2d53545e6db1581a185403f.jpg" height="400" border="0" width="600" /></a> \r\n</p>', 'news/content', 'news_content', 0, 1, 33, 1, '原创', 1372442504, 0),
+(27, ',000000,100032', 'admin', '热火球员扔发带恶搞詹皇', '', '', 'NoPic.gif', '热火球员扔发带恶搞詹皇', '热火球员扔发带恶搞詹皇', '<h1 id="artibodyTitle">\r\n	热火球员扔发带恶搞詹皇\r\n</h1>\r\n<h1 id="artibodyTitle">\r\n	热火球员扔发带恶搞詹皇\r\n</h1>\r\n<h1 id="artibodyTitle">\r\n	热火球员扔发带恶搞詹皇\r\n</h1>\r\n<h1 id="artibodyTitle">\r\n	热火球员扔发带恶搞詹皇\r\n</h1>\r\n<h1 id="artibodyTitle">\r\n	热火球员扔发带恶搞詹皇\r\n</h1>\r\n<h1 id="artibodyTitle">\r\n	热火球员扔发带恶搞詹皇\r\n</h1>\r\n<h1 id="artibodyTitle">\r\n	热火球员扔发带恶搞詹皇\r\n</h1>\r\n<h1 id="artibodyTitle">\r\n	热火球员扔发带恶搞詹皇\r\n</h1>\r\n<h1 id="artibodyTitle">\r\n	热火球员扔发带恶搞詹皇\r\n</h1>', 'news/content', 'news_content', 0, 0, 31, 1, 'SINA_NBA', 1372143080, 0),
+(26, ',000000,100032', 'admin', '动态信息2', '', '', 'NoPic.gif', '动态信息2', '动态信息2', '动态信息2动态信息2动态信息2动态信息2动态信息2动态信息2动态信息2动态信息2动态信息2动态信息2动态信息2动态信息2', 'news/content', 'news_content', 0, 0, 32, 1, '动态信息2', 1372143027, 0);
+INSERT INTO `yx_news` (`id`, `sort`, `account`, `title`, `places`, `color`, `picture`, `keywords`, `description`, `content`, `method`, `tpcontent`, `norder`, `recmd`, `hits`, `ispass`, `origin`, `addtime`, `extfield`) VALUES
+(16, ',000000,100018', 'admin', '二〇一一年学校大事记', '', '', 'NoPic.gif', '大事记,学校,一一', '', '<p align="center">\r\n	1月\r\n</p>\r\n<p>\r\n	1月6日，我校举行了保密教育培训会。成都市保密局胡建国巡视员、市保密局宣传法规处处长李广分别就新保密法、涉密计算机及其网络管理作了专题辅导报\r\n告，49名教师参加了涉密考试。学校保密委员会委员、学校保密办成员，各单位保密工作领导小组成员、保密员共200余人参加了此次教育培训。\r\n</p>\r\n<p>\r\n	1月11日，我校与乐山市人民政府战略合作协议签字仪式暨西华大学科技成果信息发布与对接会在乐山市夹江县举行。副校长蔡汉军与乐山市人民政府副市长童光明分别代表西华大学和乐山市人民政府在合作协议上签字。\r\n</p>\r\n<p>\r\n	1月12日，我校“创先争优”活动阶段总结、领导点评暨2011年创先争优工作部署大会在行政楼212会议室举行。省教育厅机关党委书记、教育厅党组成员\r\n李卓明代表省委教育工委对我校创先争优活动开展情况作了点评。校党委书记张小南对各分党委、直属党总支开展创先争优活动进行了阶段性总结和点评，校党委副\r\n书记王小林对2011年创先争优活动作了部署。\r\n</p>\r\n<p>\r\n	1月12日，中国人民解放军总政治部干部部工资福利局副局长、大校贾世江一行来到我校检查指导空军国防生培养工作。\r\n</p>\r\n<p>\r\n	1月15日至16日，4000多名考生来到我校，参加了硕士研究生招生考试。\r\n</p>\r\n<p>\r\n	1月28日，2011年四川省暨成都市工青妇“暖冬”联合大行动——寒假留校大学生新春联谊会在我校举行。四川省政协副主席曾清华，团省委书记张彤，省总\r\n工会副巡视员曾品金，省妇联副主席施克玲，共青团成都市委书记惠朝旭，市总工会、团市委、市妇联主要负责人，校党委书记张小南、副书记王小林等领导与来自\r\n四川大学等20所高校的200余名寒假留校大学生代表共同包饺子、吃团年饭，共度新春佳节。\r\n</p>\r\n<p style="text-align:center;">\r\n	2月\r\n</p>\r\n<p>\r\n	2月4日（大年初二）我校艺术学院20多名学生受重庆市消防总队文工团邀请，参加了由公安部举办的春节联欢晚会《万家灯火平安夜》部分节目的表演。\r\n</p>\r\n<p>\r\n	2月17日，学校召开干部大会部署2011年党政工作。全体校领导出席，全体中层干部参加了会议。孙校长就2011年学校的主要工作做了部署；校党委书记\r\n张小南强调要实现今年的目标和任务，必须要振奋精神，攻坚克难。要充分调动、激励各方面的积极性，为实现目标而努力奋斗 要狠抓落实。\r\n</p>\r\n<p>\r\n	2月21日新学期开学第一天，学校组织了开学教学检查。教学检查分成6个组，分别由校领导带队对学生出勤及学习情况、教师授课情况、教学设施运行情况和教材发放情况进行了全面检查，各项教学准备充分，教学运转总体情况良好。\r\n</p>\r\n<p>\r\n	2月28日，学校召开学科评估动员会，全面启动学科评估工作。通过本次评估，学校各学科将被分为A、B、C三类。　　\r\n</p>\r\n<p>\r\n	A类学科将作为申博学科，按“2+X”学科平台进行建设；B类学科将作为支撑申博学科，按一级学科硕士点和以后作为申报一级学科硕士点进行建设；C类学科\r\n将作为发展建设型学科，在做好本科教学的同时，加强学科建设。学科评估工作将持续1个月，于3月底结束。评审后，学校将对申博学科进行重点投入和重点建\r\n设，为2014年申报博士点作好准备。&nbsp;&nbsp;\r\n</p>\r\n<p style="text-align:center;">\r\n	3月\r\n</p>\r\n<p>\r\n	3月9日，学校召开党建工作布置会暨党委中心组学习扩大会，传达全省高校党建工作会主要精神，部署学校2011年党建工作。\r\n</p>\r\n<p>\r\n	3月10日，学校组织师生观看了四川省委书记、省人大常委会主任刘奇葆在国防大学所作的题为《四川：从悲壮走向豪迈》的形势报告。四川卫视、四川教育电视台、成都电视台、四川广播电台、《教育导报》、《成都晚报》等媒体记者来校作了采访报道。\r\n</p>\r\n<p>\r\n	3月11日，学校召开了2011年高等教育自学考试工作会。副校长钱进传达了省教育厅副厅长唐小我在全省自考工作会上的讲话精神，要求相关单位认真贯彻执行省自考工作会议精神，努力做好具有西华大学特色的优势学科专业的自考助学工作。\r\n</p>\r\n<p>\r\n	3月11日，我校3万余名团员青年共同捐建的“共青林”在新校区正式落成。从开学初校团委向全校团员青年发出“我为西华添片绿”植树活动倡议以来，各团支\r\n部积极参加捐种活动，在短短的一个星期内就迅速募集了5万余元植树款，参加种树人员超过1000人次，放置了命名牌200余个，安放共青团知识宣传石9\r\n个。同时，以此为契机，在全校范围内掀起了一场以“为自己排放的碳买单，为地球添点绿”为主题的大型宣传活动\r\n</p>\r\n<p>\r\n	3月11日，澳大利亚驻华大使馆文化参赞吉尔·柯林斯（Jill \r\nCollins）、澳大利亚阿德莱德大学创造性写作协会主席、小说家布莱恩·卡斯特罗（Brain \r\nCastro），著名诗人、小说家凯特·简宁斯（Kate Jennings）等一行应邀来到我校，参加“第四届澳大利亚作家周”活动。\r\n</p>\r\n<p>\r\n	3月17日，中国国家男子排球队主教练、中国排球教练委员会委员、四川省排球管理中心副主任、我校客座教授周建安在体育馆以“现代排球训练理论与实践”为主题向我校师生上了一堂别开生面的示范课。\r\n</p>\r\n<p>\r\n	3月18日，四川省科技厅组织专家对我校与四川省丹丹调味品有限公司共同完成的“郫县豆瓣现代化改造关键技术研究与产业化示范”项目进行了成果鉴定。一致同意通过成果鉴定。\r\n</p>\r\n<p>\r\n	3月23日至24日，四川省学位办主任彭润商，电子科技大学副校长熊彩东教授，国务院学位委员会学科评议组成员、四川大学校长助理许唯临教授，原国务院学\r\n位委员会学科评议组成员、四川大学项楚教授，国务院学位委员会学科评议组成员、四川大学朱世富教授，牵引动力国家重点实验室副主任、西南交通大学曾京教\r\n授，西南财经大学国际商学院院长姜玉梅教授，西南交通大学校长助理兼研究生院常务副院长冯晓云教授一行应邀莅临我校，开始了为期两天的学科评审工作。\r\n</p>\r\n<p>\r\n	3月23日，学校组织校院两级中心组成员参观了成都市廉政警示教育基地——金堂监狱。\r\n</p>\r\n<p>\r\n	3月26日，“高性能科学计算”四川省高校重点实验室第一届学术委员会成立。实验室学术委员会主任由国防科技大学教授、博士生导师袁建民担任，副主任由南\r\n京大学教授、博士生导师谢代前担任；学术委员包括中国工程物理研究院教授、博士生导师唐永健，中国工程物理研究院研究员、博士生导师江少恩，北京科技大学\r\n教授、博士生导师巨新，华东师范大学教授、博士生导师杨晓华，山西大学教授、博士生导师肖连团，四川大学教授、博士生导师蒋刚，西华大学教授、博士生导师\r\n孙卫国。\r\n</p>\r\n<p>\r\n	3月30日，我校第二届教职工代表大会第三次会议在四教报告厅隆重召开。会议听取并审议了校长工作报告和财务工作报告，审议了《西华大学“十二五”发展规划纲要》，听取了第二届教职工代表大会、工会会员代表大会第一次会议提案办理执行情况报告。\r\n</p>\r\n<p>\r\n	3月30日，我校第二届教职工代表大会第三次会议审议通过了《西华大学“十二五”发展规划纲要》（征求意见稿）。学校党委于4月11日下发了《关于印发&lt;西华大学“十二五”发展规划纲要&gt;的通知》\r\n</p>\r\n<p>\r\n	近日，我校跆拳道高水平队前往深圳参加了中国大学生体育协会主办的“第26届世界大学生夏季运动会跆拳道比赛暨第2届亚洲大学生跆拳道锦标赛选拔赛”，并\r\n获得了两金、两银、两铜的好成绩。崔冠军获男子63kg冠军、张中山获男子74kg冠军、高昌民获男子58kg亚军、史艳辉获男子63kg亚军、张冬雪获\r\n男子68kg季军、刘晓获女子+73kg季军。\r\n</p>\r\n<p style="text-align:center;">\r\n	4月\r\n</p>\r\n<p>\r\n	4月7日，我校召开创先争优工作布置会。会议传达了教育部创先争优电视电话会及四川省创先争优会精神，部署了学校近期创先争优活动相关工作。\r\n</p>\r\n<p>\r\n	4月9日，学校党校第26期入党积极分子培训班在校本部、彭州校区、人南校区同时开班。2857名学员参加了本期培训，其中，教师学员10名，学生学员2847名，学生学员中校本部2358名，彭州校区303名，人南校区186名。\r\n</p>\r\n<p>\r\n	4月10日，由四川省文联、省教育厅主办的高雅艺术进校园活动之“四川省戏剧进校园演出活动”在学生活动中心隆重上演。四川省川剧院45位表演艺术家应邀为我校师生奉上了一场精彩的川剧表演。\r\n</p>\r\n<p>\r\n	4月11日，学校党委围绕学校重点工作，结合学校正在开展的创先争优活动，就如何为师生员工办实事做出公开承诺。　　在增加投入、提高办学实力方面，学校\r\n将通过加大支持博士点建设工程的力度加大学科建设的投入。在强化服务、提升校园管理方面，学校将完善图书馆馆内及周边文化设施建设，在学校重点部位安装技\r\n防系统等。在为师生员工办实事方面，学校还将加快经济适用房建设，做好教职工体检，加大群众性文体活动投入，稳步提高学生就业率和就业质量，加快完成学生\r\n第八宿舍建设等。\r\n</p>\r\n<p>\r\n	4月12日，四川省召开了2011年高校毕业生就业工作会议，我校荣获2010年四川省普通高校毕业生就业工作评估优秀集体称号，受到表彰。据悉，此次评\r\n估是我省开展的第一次普通高校毕业生就业工作评估，从2011年1月开始至2011年3月底结束，全省共93所各类学校参加了此次评估。\r\n</p>\r\n<p>\r\n	4月21日，招就处召开了各学院分管学生工作副书记会议，就“西华大学毕业生就业优质服务年”进行动员和部署。\r\n</p>\r\n<p>\r\n	4月28日，我校宣传思想文化工作会议隆重召开。校党委书记张小南在会议上提出要求：“ \r\n通过这次会议总结和回顾近年来宣传思想文化工作的情况，分析面临的形势和任务，部署下一步学校宣传思想文化工作，把宣传思想文化工作摆到应有位置，为建设\r\n省内一流国内知名的教学研究型大学提供强大的思想保证、精神动力、舆论支持和文化条件。”\r\n</p>\r\n<p>\r\n	近日，接国务院学位委员会和四川省学位办关于下达2010年审核增列的博士和硕士学位授权一级学科名单的通知，我校新增列马克思主义理论、物理学、仪器科\r\n学与技术、动力工程及工程热物理、电气工程、计算机科学与技术、土木工程、食品科学与工程、工商管理共九个硕士学位授权一级学科点。到目前为止，我校共有\r\n硕士学位授权一级学科点11个。\r\n</p>\r\n<p>\r\n	4月30日至5月2日，由四川省社会科学界联合会、四川省教育厅、四川省关心下一代工作委员会、团省委主办的第二届四川大学生桥牌锦标赛在我校体育馆隆重\r\n举行。来自四川大学、电子科技大学、四川农业大学、四川师范大学、四川司法警官职业学院、阿坝师专等23所院校的48个队、280余名运动员在公开团体\r\n赛、女子团体赛、公开双人赛、女子双人赛等四个竞赛项目上展开了激烈角逐。我校朱伟伟、王炜获得了双人决赛南北方向的第六名。\r\n</p>\r\n<p>\r\n	今年4月我校率先启动教育部“卓越工程师教育培养计划”，在机械工程与自动化学院的大一、大二、大三共设立3个“卓越机械工程师特色班”，每个班30人。\r\n《四川日报》6月8日第16版以“西华大学首开‘特色班’培养机械师”为题对此作了报道，《搜狐网》、《网易》、《重庆晨报》、《中工网》等网络媒体作了\r\n转载。\r\n</p>\r\n<p style="text-align:center;">\r\n	5月\r\n</p>\r\n<p>\r\n	日前，根据上级有关部门通知，王政书同志任西华大学党委常委，西华大学副校长。\r\n</p>\r\n<p>\r\n	5月4日，我校团委书记蒋志勇被评为“全国优秀共青团干部”，并作为四川高校唯一受表彰的团干部，参加了团中央在人民大会堂举行的纪念“五四”运动92周年表彰座谈会。\r\n</p>\r\n<p>\r\n	5月6日，国家教育部原副部长、全国政协委员、现任中国高等教育学会会长周远清教授莅临我校指导工作。\r\n</p>\r\n<p>\r\n	5月10日，学校全体党委委员及相关部门负责人在行政楼212会议室召开学习会，深入学习贯彻胡锦涛总书记在纪念清华大学建校100周年大会上的讲话精神。与会人员根据校党委书记张小南和校长孙卫国带队考察调研情况，结合学校改革发展进行了专题讨论。\r\n</p>\r\n<p>\r\n	5月11日，由金牛区主办的“红歌唱起来”庆祝建党九十周年群众歌咏电视大赛在府河星城隆重举行。我校参赛队合唱《感恩》、《南湖的船党的摇篮》，男女二重唱《把一切献给党》、《江山如此多情》分别荣获一等奖。\r\n</p>\r\n<p>\r\n	5月12日，学校2010年度科研工作总结表彰大会在四教报告厅隆重召开，表彰在过去一年中为我校科研工作做出突出贡献的单位和个人。校领导出席大会。会议由副校长李劲松主持。西华大学2010年度科研先进集体和先进个人名单\r\n</p>\r\n<p>\r\n	一．先进集体1.年终考评自然科学类前2名：机械工程与自动化学院、材料科学与工程学院；2.年终考评人文社科类前2名：人文学院、经济与贸易学院　二．\r\n先进个人1.自然科学类个人到校经费当量数前8名：王进戈、余愚、杨利容、魏晓伟、车振明 、刘晓彬、 \r\n邓成中、陈健；2.人文社科类个人到校经费当量数前2名：吴薇莉、何东；3.自然科学类论文当量数第1名：杜亚军；4.人文社科类论文当量数第1名：沙国\r\n泉\r\n</p>\r\n<p>\r\n	&nbsp;&nbsp;&nbsp;&nbsp; 5月13日，共青团西华大学第一次代表大会、西华大学第一次学生代表大会圆满完成了大会的各项议程，胜利闭幕。选举产生了新一届共青团西华大学委员会和西华大学学生委员会。\r\n</p>\r\n<p>\r\n	日前，我校公布了2011年计划招生数和招生相关政策。今年，我校将面向全国27个省（市、自治区）招收各类本专科学生8600名，其中本科6800名，\r\n专科1800名。本科在川招生计划5757人，专科计划全部面向四川省招生。今年我校本科招生计划较去年增加95人，并新增审计学、表演（体育表演）、表\r\n演（舞蹈表演）招生专业，动画、影视动画专业从2011年开始纳入校本部培养。\r\n</p>\r\n<p>\r\n	日前，“2011新财富500富人榜”发布，我校校友刘永行、蒋卫平、宋睿榜上有名，分别以330亿、39.8 亿、38.5亿的财富排在榜单的第8名、第363名、第374名。　　\r\n</p>\r\n<p>\r\n	刘永行是我校1977级数学专业校友、客座教授，现任东方希望集团董事长。蒋卫平是我校1977级农机专业校友，现任四川天齐锂业股份有限公司董事长。宋睿是我校1994级工民建专业校友，现任新都化工副董事长、总经理。&nbsp;&nbsp;\r\n</p>\r\n<p>\r\n	5月17日，为弘扬伟大的抗震救灾精神，见证灾后重建的巨大成就，学校党委中心组成员赴汶川县水磨镇学习考察。学校党委常委、党委委员、纪委委员、各分党委（党总支）书记、相关单位负责人参加了此次中心组（扩大）学习活动。&nbsp;\r\n</p>\r\n<p>\r\n	5月18日， 我校“2011年科技活动周”主题宣传活动在明德广场举行。本次科技活动周以科技成果展览为主要形式。\r\n</p>\r\n<p>\r\n	5月19日，为进一步统一思想，统筹部署近期学生工作，学校在行政楼212会议室召开了学生工作会。\r\n</p>\r\n<p>\r\n	5月20日，四川省科技厅和省教育厅联合组织专家对我校独立完成的“食源性常见致病菌检测技术及其快检试剂盒的研发”项目进行了成果鉴定并一致通过。\r\n</p>\r\n<p>\r\n	5月20日，我校第二期基层党务人员培训班开班典礼在四教报告厅举行。全校13个分党委（直属党总支）共计128名学生党支部书记参加了本期培训。\r\n</p>\r\n<p>\r\n	5月21日，在美国纽约州立大学James Pasquil和于洋老师的带领下，Kaycee&nbsp;Darby等11名美国留学生通过“西华大学短期留学项目”来到我校，开始为期三周的“游学中国”的学习和实践活动。\r\n</p>\r\n<p>\r\n	5月24日，学校创先争优活动领导小组组长、校党委书记张小南率校创先争优活动领导小组副组长、校党委副书记王小林，校创先争优活动领导小组办公室成员对部分机关和学院开展创先争优活动各项工作进行了检查。\r\n</p>\r\n<p>\r\n	5月24日，在哈萨克斯坦举行的第二届亚洲大学生跆拳道锦标赛落下帷幕，我校跆拳道高水平运动员为中国代表团夺得两枚金牌和一枚银牌。在本届锦标赛上，中\r\n国代表团共夺得两枚金牌、3枚银牌和团体铜牌。其中，高昌民夺得男子54kg冠军，刘晓夺得女子+73kg级冠军，史艳辉夺得男子58kg亚军。史艳辉、\r\n张中山，教练员刘利丽已被抽调参加第26届世界大学生夏季运动会跆拳道国家队集训。\r\n</p>\r\n<p>\r\n	5月26日，韩国又松大学SOLBRIDGE国际商学院全球事务中心中国区主任阮晓文率代表团一行4人专程来我校开展交换生项目。韩国又松大学将与我校开展“2+2”、双学位、夏令营等项目的合作。\r\n</p>\r\n<p>\r\n	5月27日，我校高水平运动员、2010级管理学院市场营销专业学生洪世贤成功入选为第26届世界大学生夏季运动会火炬手，并作为四川大学生的唯一代表，将在8月的深圳大运会上展示四川大学生的魅力和风采。\r\n</p>\r\n<p>\r\n	5月27日，成都普瑞斯数控机床有限公司董事长、我校校友陈春带领公司技术部、资源部、财务部相关负责人来到我校洽淡合作事宜，受到副校长蔡汉军热情接\r\n待。通过座谈、实地考察，校企双方就联合培养研究生、毕业生就业、联合申报纵向科研项目、企业技术攻关等方面达成了合作意向。\r\n</p>\r\n<p>\r\n	5月30日，我校召开党风廉政建设暨“小金库”治理工作会议，部署相关工作。\r\n</p>\r\n<p>\r\n	5月31日，四川省军工保密资格认证委委员、认证办副主任、省国家保密局督察处处长刘勇，省军工保密资格认证办副主任、省国防科工办秘书处处长李俊，省国\r\n家保密局技术检测中心主任邓小晶等审查组一行5人，来校对我校申请二级军工保密资格进行现场审查。审查组对我校保密工作进行了全面检查，最终，我校以优异\r\n成绩通过了二级军工保密资格认证现场审查。\r\n</p>\r\n<p>\r\n	近日，我校2011年研究生创新基金评审工作顺利结束。经学校研究生创新基金管理委员会评审同意，共有74项研究生创新基金项目立项。其中，研究生创新基金经费支持的立项项目65项，自筹经费立项项目9项。&nbsp;&nbsp;&nbsp;\r\n</p>\r\n<p>\r\n	日前，我校2011届优秀毕业生、2010-2011学年第一学期学生先进个人评定工作结束。此次我校评选出各类优秀毕业生876人，其中“省级优秀毕业\r\n生”85人，“校级优秀毕业生”418人，“院级优秀毕业生”373人。全校共有8215人获得优秀学生奖学金，其中“校级优秀三好学生”936人，“校\r\n级三好学生”2640人，“院级三好学生”4639人；另有1人被评为校级“精神文明先进个人”。\r\n</p>\r\n<p style="text-align:center;">\r\n	6月\r\n</p>\r\n<p>\r\n	6月2日，共青团四川省委书记张彤一行来校调研共青团工作。团成都市委副书记张征、团省委办公室主任赵京东、学校部部长丁云等陪同调研。\r\n</p>\r\n<p>\r\n	6月9日，四川省环境保护厅厅长、党组书记兼核安全管理局局长、我校客座教授姜晓亭应邀为师生作了一场生动的环境保护形势报告。\r\n</p>\r\n<p>\r\n	6月12日，第七届全国大学生沙盘模拟经营大赛川渝赛区比赛落幕。我校荣获“商战”沙盘组冠军和“供应链”沙盘组一等奖。最终，我校与四川大学、重庆科技\r\n学院共同进入全国总决赛。来自川渝两地包括四川大学、西南财经大学、重庆大学、西南大学等30余所高校的代表队参加了本次比赛。\r\n</p>\r\n<p>\r\n	6月13日，为进一步贯彻实施《中华人民共和国食品安全法》，学校正式启动了主题为“人人关心食品安全、家家享受健康生活”的食品安全宣传周活动。\r\n</p>\r\n<p>\r\n	6月13日，参加“西华大学短期留学项目”的11名美国纽约州立大学学生，通过在我校进行的为期三周的“游学西华”学习和实践活动，全部顺利结业，踏上了回家之路。\r\n</p>\r\n<p>\r\n	6月11日至17日，是由国家发展改革委等14部门联合举办的2011年全国节能宣传周活动。我校向全校师生发出节能减排倡议。\r\n</p>\r\n<p>\r\n	6月16日，“研究生社会实践挂职锻炼座谈会暨工业港、德源、安靖研究生工作站启动仪式”在郫县梦桐泉乡村酒店举行。 我校10名研究生将赴郫县7个单位进行为期半年的挂职锻炼。\r\n</p>\r\n<p>\r\n	6月18日，我校贵州校友会成立大会在贵阳市花溪宾馆举行。\r\n</p>\r\n<p>\r\n	6月21日，空军大学生飞行学员录取通知书颁发仪式在我校四教报告厅举行。我校后备军官学院胡世雄、数学与计算机学院孙洪洋、电气信息学院甘月潇3名同学成为空军航空大学学生。\r\n</p>\r\n<p>\r\n	6月23日，我校第二届学位评定委员会第五次全体会议通报了我校学位与研究生教育总体情况及2011年夏季硕士学位论文“双盲”评审结果，审议并通过了338名申请硕士学位名单，审议并通过了5953名申请学士学位名单，审议并通过了2011硕士生导师考核结果。&nbsp;&nbsp;\r\n</p>\r\n<p>\r\n	6月25日，安利杯2011大学生计算机作品赛在海南大学拉开帷幕。来自全国13个省市区和香港、澳门特区以及台湾地区的52所高校的代表队在这里展开了\r\n为期3天的激烈角逐。我校数学与计算机学院学生刘彬彬的作品《手机罗盘应用系统》一路过关斩将，以四川赛区四个代表作品之一的身份进入总决赛，并获得铜\r\n奖。\r\n</p>\r\n<p>\r\n	6月27日，在体育馆隆重举行的庆祝中国共产党成立九十周年大会上，学校党委表彰了2个省级先进基层党组织、5名省级优秀共产党员、5个校“四好”班子创建活动先进单位、37个先进基层党组织、165名优秀共产党员和36名优秀党务工作者。\r\n</p>\r\n<p>\r\n	6月27日，学校举行毕业授位典礼，今年，我校毕业生近9000人。\r\n</p>\r\n<p>\r\n	6月28日至29日，毕业生统一离校。我校积极采取各种措施，认真做好2011届毕业生教育、管理和服务工作，努力营造既生动活泼又健康有序的校园氛围，确保毕业生安全、文明、顺利、愉快离校。\r\n</p>\r\n<p>\r\n	6月28日，由校工会和后勤服务总公司主办的第一届教职工厨艺技能比赛在三食堂二楼举行。后勤服务总公司员工曾荣辉获得一等奖。\r\n</p>\r\n<p>\r\n	6月29日，我校举行2011年招生信息和张宇涵概念车设计相关信息新闻发布会。四川日报、华西都市报、成都商报、四川电视台、成都电视台等11家媒体近20名记者来校作了采访报道。\r\n</p>\r\n<p>\r\n	近日，我校机械工程与自动化学院工业设计专业07级学生张宇涵受到国内外媒体高度关注，她在德国大众汽车公司举办的“中国式越野车”设计比赛中设计的一款\r\n名叫“大众Aqua”的概念车博得多家媒体好评。“大众Aqua”流线性极强，外观像一条扁平的比目鱼，可以轻松地在公路、冰面上以及水路行驶。英国《每\r\n日邮报》、《北京青年报》、中国日报网、凤凰网、腾讯网、网易、千华网、新民网等媒体先后作了报道。\r\n</p>\r\n<p>\r\n	近日，重庆长安汽车集团与高校第三届“3+1”人才培养年会及结业汇报典礼在重庆长安总部举行。校党委副书记王小林、招生与就业处处长阮永生以及电气信息学院、交通与汽车工程学院等负责人参加了此次“3+1”人才培养年会，并看望了在长安汽车集团工作的校友。\r\n</p>\r\n<p>\r\n	近日，从科技部863计划节能与新能源汽车重大项目办公室组织的验收会议上获悉，我校教师黄海波等人承担的863计划课题“四川省天然气汽车运行试验与技术考核”顺利通过专家组的技术验收。\r\n</p>\r\n<p>\r\n	近日，巴蜀文化研究学术交流暨四川省巴蜀文化研究会会员代表大会在四川大学历史文化学院举行。我校人文学院副院长、四川省哲学社会科学重点研究基地“地方文化资源保护与开发研究中心”主任潘殊闲教授当选为副会长。&nbsp;&nbsp;&nbsp;\r\n</p>\r\n<p>\r\n	近日，全国哲学社会科学规划办公室公布了《2011年度国家社科基金西部项目立项名单》。我校青年教师、人文学院法学副教授张邦铺申报的《彝族民间调解制\r\n度研究》和人文学院吕蒙博士申报的《战国至隋出土文献引经辑证》获得本年度国家社科基金青年项目立项。近三年，我校共获批四项国家社科基金项目。\r\n</p>\r\n<p>\r\n	今年6月底，我校以“服务新农村，建设新家园 \r\n，共创新生活”为主题的2011年暑期“三下乡”社会实践活动正式启动后，全校青年大学生踊跃报名组队，团队数量、参与人数均创下历年新高，服务内容、服\r\n务水平明显提高。全校共组织167支大学生志愿服务队，志愿者总人数超过1500余名，服务地点涵盖了彭州、都江堰、郫县、汶川、广元、大邑、资阳等地，\r\n服务内容紧贴中国共产党建党90周年和农村“三新”志愿服务，开展了食品安全宣传、灾后精神家园建设、新农村建设、关爱孤寡老人、关注留守儿童、义务支\r\n教、节能减排、文娱活动、普法宣传等活动。\r\n</p>\r\n<p style="text-align:center;">\r\n	7月\r\n</p>\r\n<p>\r\n	7月9日，由教育部高等学校工业设计专业教学指导分委员会、三一集团有限公司联合举办的三一（中国）工程机械工业设计大赛全国各个赛区的区域总决赛拉开帷\r\n幕。由交通与汽车工程学院肖方同学和艺术学院赖萱、陈虹羽、何晶晶同学组成的参赛团队研究和完成的自动平地机“易控ECO”的设计方案荣获西南赛区总决赛\r\n第一名。\r\n</p>\r\n<p>\r\n	7月18日至19日，我校召开2011年党建工作研讨会。\r\n</p>\r\n<p>\r\n	7月30日，我校西藏校友会成立大会在拉萨市举行。\r\n</p>\r\n<p style="text-align:center;">\r\n	8月\r\n</p>\r\n<p>\r\n	8月12日至23日，第26届世界大学生夏季运动会在深圳举行，副校长何建平担任本次大运会跆拳道竞技项目国家队领队，体育学院高水平竞技队教练刘利丽老\r\n师担任大运会跆拳道项目比赛的技术官员，两名高水平队员张中山、史艳辉入选国家跆拳道参赛队代表我国参赛，啦啦操队在大运会开幕式上精彩表演，同时，管理\r\n学院学生洪世贤作为四川唯一一名大运火炬手于8月11日完成了火炬传递，能源与环境学院学生赵皓盈作为大学生记者参加了大运会相关的采访报道，材料科学与\r\n工程学院学生王奥成为服务在排球赛场的一位“U哥”。\r\n</p>\r\n<p>\r\n	8月18日至20日，由教育部主办的第六届全国大学生“飞思卡尔”杯智能汽车竞赛全国总决赛在西北工业大学举行。经过激烈的比赛，我校的两支参赛队伍取得\r\n了优异成绩，拾梦者队（指导教师：彭忆强、陈飞）夺得全国总决赛一等奖，5D3051队（指导教师：赵玲、廖文俊）夺得全国总决赛二等奖。\r\n</p>\r\n<p>\r\n	8月25日至28日，我校组织举办了2011年新教师岗前培训，64名新教师参加了本次培训。据悉，在新进教师中，有博士36人。\r\n</p>\r\n<p>\r\n	8月25日至26日，我校召开2011年暑期学生工作研讨会。\r\n</p>\r\n<p>\r\n	8月26日至27日，学校召开统一战线研讨暨情况通报会。校长孙卫国从学科建设、人才培养、教学科研、师资队伍建设等方面对学校本学期的工作进行了通报，\r\n校党委副书记王民朴通报了学校住房建设情况，校党委副书记王小林通报了学校2011年招生与就业情况，人事处处长杨伟对学校下一步人事分配制度改革的有关\r\n情况作了说明。\r\n</p>\r\n<p>\r\n	8月30日至31日，我校召开全校干部大会，全体校领导和全校副处级以上领导干部参加大会。会议主要集中学习中共中央新修订的《中国共产党普通高等学校基层组织工作条例》，通报上半年工作，开展学院工作交流和对秋季学期工作作出重要部署。\r\n</p>\r\n<p style="text-align:center;">\r\n	9月\r\n</p>\r\n<p>\r\n	我校今年面向全国27个省（市、自治区）招收2011级各类本专科学生8549名（未含校内外“专升本”录取的学生），其中本科6692名，专科1827\r\n名，边防军人子女预科30名。本科在川招生5619人，专科全部面向四川省招生。今年我校在川艺术类工业设计投档线为646分、艺术设计投档线为657\r\n分、美术学投档线为565分、艺术设计（凤凰卫视合作培养专业）投档线为626分、动画专业投档分数为644分。文科和理科均为第一志愿录取满额，省内二\r\n本批次理科的调档线为488分；文科调档线为506分。专科批次理科的调档线为409分；文科的调档线为450分。\r\n</p>\r\n<p>\r\n	9月1日，汽车工程四川省高校重点实验室第二届学术委员会第一次会议在我校召开。校长孙卫国为第二届学术委员会委员颁发了聘书。汽车工程四川省高校重点实\r\n验室第二届学术委员会由9位委员组成，中国工程院院士、国务院学科评议组成员、中国科学技术协会常委、中国汽车工程学会副理事长、教育部学科发展与专业设\r\n置专家委员会副主任委员、博士生导师郭孔辉教授担任主任委员。\r\n</p>\r\n<p>\r\n	9月5日，我校具有现代化特色的新图书馆正式开馆。新图书馆占地29470平方米，拥有座位3000余个，纸质文献210万册、电子资源200多万册，馆\r\n藏中外期刊1600种、中外报纸百余种。新图书馆采用先进的智能化电脑管理，利用RFID（射频识别）和自动冲销磁现代化系统等多种方式，为师生提供快\r\n速、便捷服务。\r\n</p>\r\n<p>\r\n	9月7日，我校以多种形式隆重庆祝第27个教师节，我校分别召开了2011年统一战线“迎中秋、庆国庆”茶话会和附属实验学校、幼儿园教师代表座谈会，喜\r\n迎教师、中秋佳节，共叙友情，共谋学校发展。9月8日，我校在新图书馆二楼阅览大厅隆重举行“同庆教师中秋佳节，共话学校改革发展”2011年教师节座谈\r\n会暨中秋节茶话会。与会教师在会上热情为学校改革发展建言献策，畅谈心得体会。9月9日，我校的校园网主页上，由校党委书记张小南，校党委副书记、校长孙\r\n卫国联名发出了公开慰问信。\r\n</p>\r\n<p>\r\n	9月8日，我校举行了首届（2011级）边防军人子女预科班开学典礼。全国共有5所高等院校开办了边防军人子女预科班。\r\n</p>\r\n<p>\r\n	9月9日，我校2011级新生开学典礼分别在校本部、彭州校区、人南校区隆重举行。\r\n</p>\r\n<p>\r\n	9月16日，我校副校长李劲松带领科技处、机械工程与自动化学院、电气信息学院、交通与汽车工程学院相关负责人及专家参加了由省科技厅、德阳市政府主办的\r\n2011年四川德阳科技成果转化促进会。交通与汽车工程学院彭忆强教授代表学校与四川德源电气有限公司签订了《电动汽车关键技术及产品研制》协议，曾东建\r\n教授代表学校与四川绵竹鑫坤机械制造有限公司签订了《发动机连杆可靠性研究》协议。\r\n</p>\r\n<p>\r\n	9月17日，我校与万源市签订战略合作框架协议。万源市市委副书记、市长吴晓勇，校党委书记张小南出席签字仪式。\r\n</p>\r\n<p>\r\n	&nbsp;9月26日，第四届“西华秋韵”文艺晚会暨表彰大会在临江苑田径场隆重举行。晚会以欢迎2011级新同学、欢迎2011年新进教师、表彰优秀教师和庆祝\r\n建国62周年为主题。来自省委教育工委、省教育厅、省文化厅、凤凰卫视、凤凰教育公司、郫县县委县政府的领导，兄弟高校的领导及教师代表，我校全体校领导\r\n出席并观看晚会。学校各部门、各学院的教职工代表，彭州校区、人南校区师生代表，优秀校友代表，离退休教师代表，以及8000余名2011级新同学观看了\r\n晚会。\r\n</p>\r\n<p>\r\n	9月27日，校党委书记张小南、副校长蔡汉军带领党办、组织部、宣传部、地方合作处等部门有关负责人以及9名挂职干部一行，前往我校选派挂职干部所在地——龙泉驿区经济开发区参加挂职干部报到见面座谈会。\r\n</p>\r\n<p>\r\n	9月27日，学校举行了2011年暑期“三下乡”社会实践总结暨表彰大会，对生物工程学院等11个学院、电气信息学院赴宜宾市兴文县大坝苗族乡暑期社会实践团等37个社会实践服务团、何天一等286名社会实践先进个人、刘波等39名优秀指导教师进行了表彰。\r\n</p>\r\n<p>\r\n	近日，在科技部863计划节能与新能源汽车重大项目办公室组织的验收会议上，专家组根据《国家高技术发展计划（863计划）管理实施细则》的有关规定，对\r\n课题完成情况进行了评审，我校施崇槐、彭忆强、孙仁云、王永忠四位教师参与承担的863计划课题“天然气专用发动机开发”顺利通过专家组的技术验收。\r\n</p>\r\n<p>\r\n	近日，接上级文件，我校数学与计算机学院何明星教授入选第九批四川省学术和技术带头人；数学与计算机学院杜亚军教授获选为第十批四川省有突出贡献的优秀专家。\r\n</p>\r\n<p>\r\n	近日，第七届全国大学生“用友杯”沙盘模拟经营大赛全国总决赛落幕。由管理学院的林庆海、闫家蜜、周为民、田鹏、宋冰洁与西华学院的豹女狼六位同学组成的代表队，从全国91所高校的代表队中脱颖而出，一举摘取全国总决赛的桂冠。\r\n</p>\r\n<p>\r\n	近日，在由四川省教育厅主办的四川省第六届大学生艺术节决赛中，我校选送的26件音乐、舞蹈、美术、摄影、艺术教育科学论文等作品全部获得参赛资格并荣获\r\n大奖。其中，音乐舞蹈类一等奖1个、二等奖5个，艺术作品类一等奖2个、二等奖3个、三等奖4个，艺术论文类一等奖1个、二等奖6个、三等奖4个。\r\n</p>\r\n<p>\r\n	近日，经四川省教育厅评审通过，我校体育教育训练学取得副教授（副研究员）职务任职资格评议权。至此，我校机械工程等10个学科获得教授（研究员）职务任职资格评议权；计算机科学与技术等17个学科获得副教授（副研究员）职务任职资格评议权。\r\n</p>\r\n<p>\r\n	近日，由教育部高等学校力学教学指导委员会力学基础课程教学指导分委员会、中国力学学会和周培源基金会主办的第八届全国周培源大学生力学竞赛结果揭晓。我\r\n校选手从来自全国的280余所高校、17026名参赛选手中脱颖而出，钟梦星、王艳、刘怀斌、于文慧、王灿军5位同学荣获全国三等奖\r\n</p>\r\n<p style="text-align:center;">\r\n	10月\r\n</p>\r\n<p>\r\n	10月9日至14日，我校举办了一系列以“纪念辛亥革命100周年”为主题的教育宣传活动。10月9日，由我校党委宣传部和学生工作部联合主办的“纪念辛\r\n亥革命100周年专题讲座” \r\n在四教报告厅举行。西南交通大学博士生导师鲜于浩教授应邀为我校师生作了一场题为《四川保路运动——辛亥革命的导火索》的专题报告，300余名师生到场聆\r\n听。10月13日，四川大学历史文化学院博导、四川大学首届教学名师陈廷湘教授应邀为我校师生作了一场题为“辛亥革命的必然性与偶然性”的学术报告。10\r\n月10日，在人文学院会议室举行了纪念辛亥革命100周年座谈会。10月9日，由省政协主办的“百年之路四川省纪念辛亥革命暨保路运动100周年文艺晚\r\n会”在成都锦城艺术宫隆重上演。受四川省委、省政协、省文化厅邀请，我校艺术学院舞蹈系共有50名学生参加了本台晚会所有舞蹈类节目的表演。10月8日，\r\n四川省、成都市纪念辛亥革命暨四川保路运动100周年大会在成都市金牛宾馆隆重举行。我校党委副书记王小林带领部分师生参加了纪念大会。学校还举办了“纪\r\n念辛亥革命100周年” 主题图片展、形势与政策专题讲座、组织观看电影《辛亥革命》等一系列活动。\r\n</p>\r\n<p>\r\n	10月10日，“西华大学·双流县西南航空港经济开发区人才培训联盟签字仪式暨西华大学·双流县人才供需座谈会”召开。双流县副县长易恩弟出席会议，30余家西航港经开区重点企业代表参会。\r\n</p>\r\n<p>\r\n	10月11日，原四川工业学院院长、全国第六届政协委员、国际著名水力机械专家杜同教授在四教报告厅为师生带来了一场关于我国水力机械的专题报告。\r\n</p>\r\n<p>\r\n	10月12日，学校组织有关部门人员对交通与汽车工程学院、能源与环境学院申报的2010年中央财政支持地方高校发展专项资金建设规划和2010年项目实施情况进行现场验收检查。\r\n</p>\r\n<p>\r\n	10月13日，教育部高等学校社会科学发展研究中心主任、《高校理论战线》杂志总编辑冯刚应邀为我校师生作了题为《交叉学科视野下的高校德育工作创新与发展》的学术报告。\r\n</p>\r\n<p>\r\n	10月12日至13日，我校校友、波士顿学院纳米实验室首席科学家、美国终身教授任志锋回到母校，就加强项目合作与学校领导和教师进行了座谈交流。\r\n</p>\r\n<p>\r\n	10月14日，我校老教授协会召开成立大会，35名会员参加了会议。原校党委书记秦昌明教授任会长，曾德祥、黎亚元、陈国先、杨秀岭任副会长，杨献群任办公室主任。\r\n</p>\r\n<p>\r\n	10月15日，由国家体育总局体操运动管理中心主办的2011年全国啦啦操联赛（成都站）在我校体育馆隆重举行，共有32支来自全省各学校的参赛队伍参加\r\n了比赛。经过激烈角逐，我校两支代表队分获大学组爵士舞蹈啦啦操（五级）、技巧啦啦操（五级）冠军。各组各级别单项决赛前3名的队伍获得了参加“全国啦啦\r\n操冠军赛暨年度总决赛”的资格。\r\n</p>\r\n<p>\r\n	10月18日，中国西部国际博览会在成都世纪城新国际会展中心正式开馆。我校机器人足球、大学生方程式赛车、铁路道岔（辙叉）心轨新一代高性能耐磨材料等\r\n30余个项目参展第十二届中国西部国际博览会，向海内外客商与观众集中展示了学校近年来在机械、汽车、能源与环境、生物工程、电气信息、材料科学与工程等\r\n方面取得的一系列科研成果。四川日报、华西都市报、四川电视台等媒体作了采访报道。\r\n</p>\r\n<p>\r\n	10月19日至21日，四川省高校第三届辅导员工作创新论坛在绵阳隆重举行，我校作为四川省高校学生思想政治教育研究会常务理事单位承办了此次活动。\r\n</p>\r\n<p>\r\n	10月21日至10月24日“第十二届世界漫画大会暨2011北京国际动漫周”在京举行，我校教师冯戈的作品《龙影》夺得最佳单幅画奖。\r\n</p>\r\n<p>\r\n	10月25日，学校党委中心组召开专题学习会，学习贯彻党的十七届六中全会精神。 　\r\n</p>\r\n<p>\r\n	10月27日，学校召开繁荣发展人文社科座谈会，传达学习六中全会精神和中共中央办公厅、国务院办公厅转发的《教育部关于深入推进高等学校哲学社会科学繁荣发展的意见》，就繁荣发展我校人文社会学科广泛听取意见和建议。\r\n</p>\r\n<p>\r\n	近日，接上级通知，我校张小南教授《地方工科院校管理类专业服务社会功能的发挥与人才培养的关系及实践》等7个项目获准立项。\r\n</p>\r\n<p>\r\n	近日，第四届中国汽车造型设计大赛总决赛在北京落下帷幕，我校交通与汽车工程学院车辆工程专业的肖方同学凭借其作品“羲和”荣获“圆点奖”优秀设计作品奖，指导教师吴涛获得“优秀辅导老师奖”。\r\n</p>\r\n<p>\r\n	近日，2011年全国大学生电子设计竞赛落下帷幕，由我校电气信息学院组织的参赛团队取得了优异成绩。奉红名、张凯、罗德军组成的参赛队获得了全国总决赛\r\n一等奖，赵敏华、李涛、吴志敏组成的参赛队获得了全国总决赛二等奖的好成绩。同时，在四川赛区的比赛中，我校参赛学生获得了两个省级一等奖、一个二等奖、\r\n五个三等奖。\r\n</p>\r\n<p>\r\n	近日，2011年全国亿万青少年啦啦操规定套路明星展示大赛在重庆落幕。我校啦啦操代表队一举夺得大学组三级技巧啦啦操冠军、金星组三级爵士啦啦操冠军以\r\n及金星组团体总分第一名；由我校体育学院女教师组成的“西华大学超级辣妈啦啦队”也参加了本次大赛俱乐部组别的赛事，获得俱乐部组冠军。\r\n</p>\r\n<p>\r\n	日前，我校数学与计算机学院学生姚长红在共青团中央、全国学联联合主办的2010年度“中国大学生自强之星”、“中国大学生新东方自强奖学金”评选活动中荣获2010年度“中国大学生新东方自强奖学金”。\r\n</p>\r\n<p style="text-align:center;">\r\n	11月\r\n</p>\r\n<p>\r\n	11月1日，四川省科技厅副厅长罗玉彬一行莅临我校，对我校“1400m水头段切击式水轮机水力模型的研发及应用”等四个项目成果进行鉴定。四个项目全部\r\n通过成果鉴定，其中，“1400m水头段切击式水轮机水力模型的研发及应用”和“微细磨料水射流技术的研究及应用”达到国内领先水平；“双喷嘴高效斜击式\r\n水轮机的研发”和“石油井下工具耐压性能自动检测试验系统”达到国际先进水平。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n</p>\r\n<p>\r\n	11月2日，由中国大学生体育协会跆拳道分会主办的第七届全国大学生跆拳道锦标赛在吉林农业大学落幕。来自全国各高校的80多支代表队参加了21个竞技项\r\n目、15个品势项目的激烈角逐。我校跆拳道健儿史艳辉夺得男子62KG级冠军，高昌民夺得58KG级冠军，崔冠军夺得62KG级亚军，梁燕葵夺得女子\r\n51KG级季军，魏箐河夺得女子59KG级季军。\r\n</p>\r\n<p>\r\n	11月3日，由校党委组织部和党校联合举办的科级干部暨学生党务工作培训班开班仪式举行。全校各学生党总支书记、学生工作办公室主任、分团委书记，组织部、学工部、校团委等部门的科级干部参加培训。\r\n</p>\r\n<p>\r\n	11月4日至6日，中国高等教育学会理科教育专业委员会2011年全体理事会议在重庆大学召开。西华大学作为理事单位受邀参加，校长孙卫国、物理与化学学\r\n院院长冯灏出席了此次大会，并分别参加了“大学生的科学素质教育”和“工科生的理科教育”两个专题讨论会，作了主题发言。\r\n</p>\r\n<p>\r\n	11月7日，校党委书记张小南在成都参加省委九届九次全会，并就如何用社会主义核心价值体系引领学生成长等问题接受了《四川卫视》记者的采访。\r\n</p>\r\n<p>\r\n	11月8日，《四川卫视》记者来校就我校校园文化建设情况作了采访报道，11月11日晚，《四川卫视》新闻频道播出了此次采访情况。\r\n</p>\r\n<p>\r\n	11月10日，张小南书记就学习贯彻党的十七届六中全会精神、四川省委第九届九次全会精神，接受了《四川新闻网》记者的采访。\r\n</p>\r\n<p>\r\n	11月10日，四川省科技厅副厅长陈放、基础处处长郑超英等一行4人莅临我校，并组织专家对我校申请建设的“流体机械及工程四川省重点实验室”进行评审。最后一致同意推荐该实验室为四川省重点实验室。\r\n</p>\r\n<p>\r\n	11月11日，2011年成都军区与四川省电磁频谱管控技术联合比武在我校举行。来自成都军区与四川省无线电监测站的22名队员组成了11个小分队参加角逐。\r\n</p>\r\n<p>\r\n	11月12日，由四川省社科联与西华大学联合主办的“2011地方文化与经济社会发展论坛”在我校人南校区举行。此次论坛云集了来自四川大学、四川省社会\r\n科学院、四川省文史研究馆、四川文物考古研究院、四川省地方志办公室等十余家科研院所的70余位专家学者。校党委书记、校社科联主席张小南，副校长胡丹、\r\n王政书和四川省社科联规划评奖办主任黄兵等校内外领导出席论坛。\r\n</p>\r\n<p>\r\n	11月13日，在广东国际赛车场结束的"2011第五届Honda中国节能竞技大赛"上，我校交通与汽车工程学院派出的汽车发动机和车辆工程两个专业的\r\n10位同学，在教师吴涛、陈飞、彭忆强、王永忠、徐延海、杨仁华和李磊的精心指导下，分别参加了燃油节能车级别和EV车级别两个组别的比赛，与来自清华大\r\n学、吉林大学、同济大学和北京理工大学等高校的65支代表队同台竞技，最终取得了1L汽油行驶712.418公里的好成绩，荣获全国第四名，西南地区第一\r\n名。\r\n</p>\r\n<p>\r\n	11月15日，在成都参加2011年空军人才工作及依托培养工作会议的代表到我校观摩空军国防生培养工作。\r\n</p>\r\n<p>\r\n	11月16日，四川省政协委员、省社科联相关负责人、兄弟院校社科联代表在四川省政协常委、省社科联党组书记、副主席王均带领下来到我校，视察了我校社科联工作，并与我校领导及相关部门负责人进行了座谈交流。\r\n</p>\r\n<p>\r\n	11月19日，我校2012届毕业生双选会在卓越广场举行。来自中国重汽集团、中航工业贵州云马飞机制造厂、中国测控技术研究院、浙江今飞机械集团等500余家用人单位、1000余名参会代表来校招贤纳才，为我校毕业生提供了12000余个就业岗位。\r\n</p>\r\n<p>\r\n	11月24日，四川省高校后勤协会管理工作委员会二届二次年会暨表彰大会在雅安召开，我校荣获“2010-2011年度四川省高校后勤管理工作先进集体”称号\r\n</p>\r\n<p>\r\n	&nbsp; 11月26日， 100多名来自全国各地的32个校友会的会长、副会长、秘书长、副秘书长和校友代表，欢聚在我校新图书馆，参加西华大学校友总会第一届理事会第二次会议。\r\n</p>\r\n<p>\r\n	11月25日，我校组织了2011年五校教务处工作交流会。四川大学、电子科技大学、西南交通大学、西南财经大学及我校教务处科级以上干部参加了会议。\r\n</p>\r\n<p>\r\n	11月26日举行的第三届全国大学生电子商务“三创”挑战赛总决赛上，由我校经济与贸易学院高庆成老师指导，电子商务系2008级学生平美生，2009级\r\n学生李江军、杨峰、胡亚威和2010级学生郑琳组成的zero-nine团队，经过激烈的角逐，最终夺得“三创”挑战赛一等奖，并获得本次大赛优秀创意\r\n奖。\r\n</p>\r\n<p>\r\n	日前，中国高校校报协会“2010年度中国高校校报好新闻”评选结果揭晓，我校校报《西华大学报》选送的作品荣获通讯类一等奖1个、二等奖1个，版面类三\r\n等奖1个。我校人文学院马林枝采写的《“别怕！哥带你回家”》获得通讯类一等奖；“西华社”学生记者姜倩、张子宁采写的《穿着熊猫服&nbsp;亮相世博会》获得通\r\n讯类二等奖；“西华社”学生记者何鹏拍摄的《大兵小将&nbsp;威武西华》获得图片类三等奖。\r\n</p>\r\n<p>\r\n	近日，我校艺术学院获得中国用户体验设计大赛入围奖的两支学生团队在指导教师周睿的带领下，参加了第八届中国用户体验行业大会UserFriendly2011设计拥抱变革。\r\n</p>\r\n<p>\r\n	近日，我校高等教育研究中心荣获“四川省高教学会首届优秀高等教育研究机构”称号。\r\n</p>\r\n<p align="center">\r\n	12月\r\n</p>\r\n<p>\r\n	12月1日，为了让广大师生能够更加深入地了解消防逃生及安全知识，提高应对突发事件的能力，我校首次协同郫县公安消防大队联合举办的消防疏散技能大演练在学生公寓德馨苑进行。\r\n</p>\r\n<p>\r\n	12月2日，省委宣讲团成员、四川大学文学与新闻学院蒋晓丽教授应邀走进西华，结合文化产业发展对教育提出的要求，对党的十七届六中全会和省委九届九次全会精神进行了解读。\r\n</p>\r\n<p>\r\n	12月6日，国家住房和城乡建设部、教育部、四川省住房与城乡建设厅领导以及验收专家团一行来校，通过听取汇报、查看资料、现场考察等方式，对我校节约型\r\n校园建筑节能监管平台进行了检查验收。住房和城乡建设部建筑节能与科技司巡视员武涌、四川省住房与城乡建设厅科技处处长胡明福一行一致同意我校校园建筑节\r\n能监管平台建设项目通过验收，同意吸收我校为中国绿色校园联盟成员单位。\r\n</p>\r\n<p>\r\n	12月7日学校召开了2011年共青团工作汇报暨团建促学风研讨会。\r\n</p>\r\n<p>\r\n	12月8日，我校与成都榕珍菌业有限公司共同完成的“杏鲍菇菌糠废弃物的生态链式利用关键技术研究”、与四川澳达食品有限公司共同完成的“休闲豆腐干现代\r\n化改造共性关键技术研究与产业化示范”、与广元市荣生源食品有限公司共同完成的“川北地区优质橄榄油生产关键技术研究与示范”三个产学研合作项目通过了四\r\n川省科技厅组织的科技成果鉴定。\r\n</p>\r\n<p>\r\n	12月9日，中国高等教育学会后勤管理分会十届三次理事会暨全国高校后勤十年社会化改革表彰大会在广东召开。我校副校长乔哲青、后勤管理处处长郑晓康、后勤服务总公司总经理周良辉参加了会议。在大会上，我校被授予“全国高校后勤十年社会化改革先进院校”称号。\r\n</p>\r\n<p>\r\n	12月13日，我校在行政办公楼212会议室召开了党建工作总结研讨会暨点评创先争优工作会。\r\n</p>\r\n<p>\r\n	12月19日，我校Web of Science \r\n开通暨四川省图书馆再造善本赠送仪式在新图书馆隆重举行，标志着我校成为首家正式面向全校广大师生开通Web of \r\nScience的省属高校。四川省图书馆和四川大学、电子科技大学、西南交通大学、西南财经大学等兄弟高校图书馆的相关负责人，我校副校长李劲松，图书\r\n馆、教务处、研究生部、科技处、物资设备与实验室管理处等有关部门负责人，各学院的书记、院长和分管科研工作的副院长，以及部分骨干教师与研究生参加了仪\r\n式。四川教育电视台、四川新闻网等省市媒体对仪式专门作了宣传报道。\r\n</p>\r\n<p>\r\n	12月20日在北京科技大学“正保教育杯”第六届全国ITAT教育工程就业技能大赛全国总决赛落下帷幕。我校机械工程与自动化学院学生刘小何、丁伟、何相飞的作品“智能家居防盗系统”获得电子信息技术模块组全国三等奖，指导教师孙华获“优秀指导教师奖”。\r\n</p>\r\n<p>\r\n	12月21日，按照省委组织部、省委教育工委的要求，学校在行政办公楼212会议室召开了2011年度校级领导班子民主生活会。全体校领导、全体党委委员参加了会议。\r\n</p>\r\n<p>\r\n	12月22日，我校2011年度述职测评大会在四教报告厅举行。会上，校领导和各单位负责人分别结合各自工作职责对2011年度的工作开展情况作了总结汇报。\r\n</p>\r\n<p>\r\n	12月23日，学校在四教报告厅举行西华大学第二届唐鸿军奖教金、奖学金颁奖大会，隆重表彰2010—2011学年度获得西华大学“唐鸿军奖教金”的24\r\n名优秀教师和“唐鸿军奖学金”的60名优秀学生，以及获得建筑与土木工程学院“唐鸿军奖教金”的4个优秀团队和9名优秀教师。\r\n</p>\r\n<p>\r\n	12月28日，校党委在212会议室召开全委扩大会议，审议2011年度常委会工作报告、干部选拔任用工作情况和学校2012年党政工作要点。校党委书记张小南代表校党委常委会向全委会报告工作。\r\n</p>\r\n<p>\r\n	12月31日，学校召开统一战线情况通报会。校长孙卫国、校党委副书记王民朴、副校长蔡汉军、副校长乔哲青、计财处处长谢合明分别就学校2011年度的主要工作、教职工住房建设、公交221起始站点调整、后勤、银行引进等工作作了通报。\r\n</p>\r\n<p>\r\n	近日，我校申报的“流体机械及工程四川省重点实验室”成功获得四川省科技厅批准（川科基[2011]13号文件）。这是我校继“流体及动力机械”、“汽车测控与安全”后的第三个省部级重点实验室。\r\n</p>\r\n<p>\r\n	近日，2011年全国三维数字化创新设计大赛总决赛落幕。由我校材料科学与工程学院学生孙鹏飞、周超、羊凡、简刚四名同学组成的华颖战队，在彭必友老师的\r\n精心指导下，最终凭借参赛作品“母婴休闲自行车”，勇夺工业与工程方向的全国一等奖；由机械工程与自动化学院喻俊馨老师指导，机械工程与自动化学院刘润、\r\n黄少杰、王志扬、杨勇四位同学组成绿旋风队的参赛作品“绿旋风健身洗衣机”荣获全国二等奖。\r\n</p>\r\n<p>\r\n	近日，由教育部科技发展中心主办的“2011高等教育信息化发展论坛暨教育信息化先进单位及个人评选表彰大会”在北京召开，11名先进主管（CIO）、\r\n49名先进个人、30个先进单位和34个信息化创新项目受到大会表彰。我校信息与网络管理中心荣获“2011年高等教育信息化先进单位”称号。\r\n</p>\r\n<p>\r\n	近日，中国大学生跆拳道协会常务委员会研究决定，将西南区大学生跆拳道项目培训基地设置在西华大学，直接负责重庆、四川、西藏、云南和贵州等省、自治区和直辖市的大学生跆拳道项目的培训、考级、考段和比赛组织等工作。\r\n</p>\r\n<p>\r\n	近日，由我校主持编制的《四川省“十二五”生物产业发展规划》通过了省发展和改革委员会组织的专家评审。\r\n</p>\r\n<p>\r\n	近日，2011年“高教社杯”全国大学生数学建模竞赛四川赛区成绩揭晓，我校学子获得四川省一等奖2项，二等奖2项，三等奖5项的好成绩。\r\n</p>\r\n<p>\r\n	近日，从国际检索系统咨询部传来消息，经过俄罗斯《文摘杂志》（AJ or РЖ）专家组评估，《西华大学学报·自然科学版》被纳入VINITI数据库日常收录中，正式成为其收录源期刊。\r\n</p>\r\n<p>\r\n	日前，《西华大学学报·自然科学版》已经先后为美国《化学文摘》（CA）、美国《剑桥科学文摘》（CSA）、波兰《哥白尼索引》（IC）、俄罗斯《文摘杂志》（AJ）等四家世界著名检索系统收录源期刊。\r\n</p>', 'news/content', 'news_content', 0, 0, 35, 1, '原创', 1372126987, 0);
+INSERT INTO `yx_news` (`id`, `sort`, `account`, `title`, `places`, `color`, `picture`, `keywords`, `description`, `content`, `method`, `tpcontent`, `norder`, `recmd`, `hits`, `ispass`, `origin`, `addtime`, `extfield`) VALUES
+(25, ',000000,100032', 'admin', '动态信息1', '', '', 'NoPic.gif', '动态信息1', '动态信息1', '动态信息1动态信息1动态信息1动态信息1动态信息1动态信息1动态信息1动态信息1动态信息1动态信息1动态信息1动态信息1动态信息1动态信息1动态信息1', 'news/content', 'news_content', 0, 0, 30, 1, '原创', 1372143007, 0);
+INSERT INTO `yx_news` (`id`, `sort`, `account`, `title`, `places`, `color`, `picture`, `keywords`, `description`, `content`, `method`, `tpcontent`, `norder`, `recmd`, `hits`, `ispass`, `origin`, `addtime`, `extfield`) VALUES
+(17, ',000000,100018', 'admin', '二〇一〇年学校大事记', '', '', 'NoPic.gif', '学院,校长,信息,电气,自动化,相关,专家,来到,一行,教授,负责,科技,大事记,研究生,地方,服务,合作,学校', '1月\r1月19日，校长孙卫国，副校长李劲松，科技处、研究生部、地方合作与服务处、材料科学与工程学院、机械工程与自动化学院、电气信息学院等院部的相关负责\r人与专家教授一行来到成', '<p align="center">\r\n	1月\r\n</p>\r\n<p>\r\n	1月19日，校长孙卫国，副校长李劲松，科技处、研究生部、地方合作与服务处、材料科学与工程学院、机械工程与自动化学院、电气信息学院等院部的相关负责\r\n人与专家教授一行来到成都成量工具集团有限公司，参加双方合作的国家科技重大专项《高效可转位刀具及超硬工具系列的研究及产业化》项目启动仪式，商讨相关\r\n合作事宜。成量集团董事长夏义宝，副总经理李荣钢，技术中心主任、硬质合金厂、数控刀具厂厂长等参加了会议。启动仪式的举行，标志着我校与成量集团合作的\r\n国家科技重大专项全面启动。\r\n</p>\r\n<p style="text-align:center;">\r\n	2月\r\n</p>\r\n<p>\r\n	&nbsp;2月2日，我校上海校友会成立大会在东方希望集团举行，副校长蔡汉军，正校级调研员曾德祥，校友总会办公室负责人和20余名上海校友参加了成立大会。\r\n</p>\r\n<p>\r\n	2月25日，学校在四教报告厅召开全校干部大会，安排部署2010年工作。学校党委要求：在新的一年里，各级干部要紧紧围绕学校要办好的三件大事，继续坚\r\n持以科学发展观为指导，进一步高举改革发展大旗，解放思想，转变观念，振奋精神，进一步树立改革意识、大局意识、责任意识，发挥主人翁精神，真抓实干，努\r\n力开创西华大学改革发展的新局面。\r\n</p>\r\n<p style="text-align:center;">\r\n	3月\r\n</p>\r\n<p>\r\n	3月6日，我校FSAE车队参加2010年中国大学生方程式汽车大赛的启动仪式在卓越广场举行。学工部、校团委负责人，杰天赛车俱乐部技术总监，交通与汽\r\n车学院领导、指导教师以及学生300余人参加了启动仪式。中国大学生方程式汽车大赛（以下简称“FSAE”）是中国汽车工程学会及其合作会员单位在学习和\r\n总结美、日、德等国家相关经验的基础上，结合中国国情精心打造的一项全新赛事。2010年中国大学生方程式汽车比赛是“FSAE”首届赛事，我校与昆明理\r\n工大学作为西南片区唯一的两支队伍参加比赛。&nbsp;该车队共有78成员，分别来自汽车、机械、经贸、管理、艺术等学\r\n院。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n</p>\r\n<p>\r\n	3月8日，学校党委召开了分党委（党总支）书记会，安排布置各分党委（党总支）的换届选举工作和党代会党员代表的推选工作，为将于5月召开的党代会的召开做好准备。校党委书记张小南，校党委副书记王小林，副校长胡丹及各分党委（党总支）书记参加了会议。\r\n</p>\r\n<p>\r\n	日前，经专家评议，省委组织部、省人事厅、省科技厅、省教育厅、省财政厅、省发改委、省科协、省社科联研究决定，我省451名同志入选第八批四川省学术和\r\n技术带头人后备人选，我校生物工程学院陈祥贵教授、数学与计算机学院裴峥教授入选。截至目前，我校已有20位四川省学术和技术带头人后备人选。\r\n</p>\r\n<p>\r\n	近日，我校出台学生工作后备人才选拔新办法，即学校将在一、二年级全日制硕士研究生中选拔品学兼优的学生作为学校学生工作后备人才，这将有利于提升我校辅\r\n导员队伍的数量和质量，优化辅导员队伍的学历、学缘、性别结构。新的学生工作后备人才选拔办法将有利于加强辅导员在专业学习与职业规划方面对学生进行指\r\n导，从而更好地实现辅导员的工作目标，促进学生全面发展。\r\n</p>\r\n<p>\r\n	3月12日，澳大利亚著名作家Alice Pung、Alexis Wright及澳大利亚驻华使馆公使、副馆长Grame Meehan、文化官员Hanah Skrzynski一行四人应邀来校进行学术交流。\r\n</p>\r\n<p>\r\n	3月13日，“2009年度蒙牛酸酸乳MusicRadio中国TOP排行榜音乐梦想系列活动”之首场校园拉票会在我校举行。“实力派唱将”张杰、“2009超女冠军”江映蓉来到我校，与我校广播台成员进行现场互动。\r\n</p>\r\n<p>\r\n	3月26日，我校第二届教职工代表大会暨工会会员代表大会在四教报告厅隆重开幕。校党委书记张小南，校长孙卫国，校党委副书记、纪委书记王民朴，副校长李\r\n劲松，校党委副书记王小林，副校长蔡汉军、何建平、乔哲青、钱进、胡丹，130名正式代表、65名列席代表参加了开幕式。省委教育工委副书记王晓都，四川\r\n大学、西南交通大学、成都信息工程学院等兄弟院校工会主席应邀参加了大会。正厅级调研员、校工会主席曾德祥主持开幕式。\r\n</p>\r\n<p>\r\n	&nbsp;&nbsp;&nbsp;&nbsp; 3月30日、31日，由四川省教育考试院主办、我校承办的四川省2010年研究生录取工作会在眉山市举行。\r\n</p>\r\n<p>\r\n	日前，由省教育厅、省旅游局、省知识产权局、共青团省委、省创意产业协会、省旅游协会联合主办的“2009（第五届）四川大学生旅游艺术设计大赛”结束，我校艺术学院师生在本次大赛中取得2金、4银、7铜的优异成绩。\r\n</p>\r\n<p style="text-align:center;">\r\n	4月\r\n</p>\r\n<p>\r\n	4月1日，省监察厅副厅长赵振铣，省教育厅纪工委书记狄志军一行来我校调研基础设施建设情况，与我校相关人员举行了座谈会。校党委书记张小南，校长孙卫国，校党委副书记、纪委书记王民朴，监审处、基建规划处、后勤管理处主要负责人参加了座谈会。\r\n</p>\r\n<p>\r\n	4月10日，凉山校友会成立大会在月亮城召开。副校长、校友总会副会长乔哲青，校友总会办公室主任王志刚等应邀与来自凉山州各地的校友代表70余人参加了会议。\r\n</p>\r\n<p>\r\n	4月13日，我校与四川大学“国家985文化遗产与文化互动创新基地”联合创办《文化遗产研究》合作签字仪式在学校举行。科技处处长栾道成与四川大学“国家985文化遗产与文化互动创新基地”负责人曹顺庆分别代表我校与四川大学在《文化遗产研究》合作协议上签字。\r\n</p>\r\n<p>\r\n	4月14日，我校第六届田径运动会开幕式在临江苑足球场举行。体育、艺术、汽车工程、土木工程、后备军官等学院获得体育道德风尚奖，应用技术、土木工程、电气、管理、材料、艺术等学院获得团体总分甲组前6名，09级1班、08级2班、09级2班获得团体总分乙组前三名。\r\n</p>\r\n<p>\r\n	4月14日，<strong>党委中心组学习会讨论校党委工作报告和学校“十二五”规划。</strong>　\r\n</p>\r\n<p>\r\n	4月14日凌晨，青海省玉树藏族自治州玉树县发生7.1级地震，造成了重大的伤亡。目前，部分伤员已转移到成都进行救治，近期成都市临床用血尤其是A型和O型血液严重紧缺。&nbsp;&nbsp;&nbsp;\r\n</p>\r\n<p>\r\n	4月15日，学校无偿献血服务队在接到成都血液中心紧急通知后，迅速启动我校应急无偿献血预案。全校团员青年积极行动起来，尽己所能帮助玉树人民渡过难关。截止16日16时，经贸学院已有240多名团员青年踊跃报名，准备加入无偿献血志愿活动。\r\n</p>\r\n<p>\r\n	&nbsp;&nbsp;&nbsp; \r\n4月24日，学校50周年校庆新闻发布会在行政楼多功能报告厅举行。学校邀请了中央电视台、中国教育电视台、四川卫视sctv-1、四川电视台经济频道\r\nsctv-3、四川电视台sctv-4、四川电视台科教频道、成都电视台cdtv-1、成都电视台33频道cdtv-2、成都全接触、四川日报、成都商\r\n报、成都晚报、天府早报、成都日报、华西都市报、教育导报、香港大公报、四川科技报、四川新闻网、成都广播电台等22家媒体66名记者来校宣传报道。各媒\r\n体陆续登载我校校庆相关新闻，据统计，校庆期间，《中国教育报》、《四川日报》、《成都商报》等平面媒体登载我校校庆相关消息13条，《人民网》、《凤凰\r\n网》、《腾讯网》等网络媒体登载消息35条，《中国教育电视台》、《四川卫视》、《成都电视台》等电视媒体播出我校校庆相关新闻12次，成都广播电台新闻\r\n频率99.8、交通频率91.4、第一资讯105.6等频率播出了6次。\r\n</p>\r\n<p>\r\n	&nbsp;&nbsp;&nbsp; \r\n4月24日，二十余名与母校同岁校友齐聚新校区图书馆西侧，为捐建的“与母校同岁校友林”揭幕，为母校50年华诞献上一份厚礼。学校党政领导张小南、孙卫\r\n国、王民朴、李劲松、王小林、蔡汉军、乔哲青、钱进、胡丹，1960年出生的校友代表，也是此次活动发起人陈渝、徐和平、杨永东、黄涛出席了揭幕仪式。校\r\n友林建在新图书馆和学生四食堂之间，占地约10亩，种植树木以银杏、桂花、桃树、李树为主，既饱含深意，又集观赏性、实用性为一体，将成为西华园又一道靓\r\n丽景观。\r\n</p>\r\n<p>\r\n	4月25日，我校建校50周年庆祝大会在临江苑体育场隆重举行。各级领导、国内外高校代表、社会各界嘉宾、海内外校友，以及学校全体领导、师生代表齐聚一\r\n堂，共贺西华五十华诞。出席庆祝大会的领导和嘉宾有：四川省政协主席陶武先，中共四川省委副书记李崇禧，四川省人民政府副省长黄彦蓉，四川省政协副主席、\r\n我校74级校友陈次昌，成都军区空军副政委白广忠少将，四川省军区政治部主任李立中少将，成都军区政治部干部部部长黄集骧大校，中共成都市委常委、宣传部\r\n部长何华章，四川省人大原副主任卢铁城，四川省科协党组书记、副主席吴凯，中国科学院、中国工程院院士沈志云，中国科学院院士陈国良，中国工程院院士涂铭\r\n旌，中国科学院院士陆汝钤，四川省编办主任、省委组织部副部长王川，中共四川省委教育工委书记、省教育厅厅长涂文涛，四川省科技厅厅长彭宇行，四川省社科\r\n联党组书记王钧，成都市副市长傅勇林，奥地利驻华大使馆参赞奥斯卡·安思来博士，东方希望集团董事长、我校77级校友刘永行，凤凰卫视资讯台总编辑兼首席\r\n评论员、西华大学凤凰学院名誉院长阮次山，凤凰卫视副总裁梁云波，成都市有关部门的领导，金牛区、郫县、彭州市等成都市各区县的领导，各兄弟院校的领导，\r\n部分友好合作单位的领导，海外嘉宾，各地校友会会长、秘书长。\r\n</p>\r\n<p>\r\n	4月25日，在我校50华诞之际，凤凰学院成立仪式在六教东北侧广场隆重举行。四川省教育厅厅长涂文涛，学校党委书记张小南，校长孙卫国，校党委副书记王\r\n小林，副校长、凤凰学院管委会联席主席钱进，凤凰学院执行院长赵琪及学校相关部门负责人，凤凰卫视有限公司副总裁、凤凰教育执行董事梁云波，凤凰卫视资讯\r\n台总编辑兼首席评论员阮次山，凤凰教育相关人员以及数百名西华师生参加了庆典仪式。\r\n</p>\r\n<p>\r\n	4月26日，我校凤凰学院名誉院长、首席教授，凤凰卫视资讯台总编辑兼首席时事评论员阮次山先生来到这里，为在场三千多名师生带来了一场精彩的报告会。在\r\n近3小时的时间里，阮次山先生以“中美关系走势与中国国运”为题，侃侃而谈，以风趣的语言和非凡的洞察力赢得了满场喝彩。\r\n</p>\r\n<p>\r\n	近日，由校友唐鸿军先生捐赠设立的 “唐鸿军奖教金”、“唐鸿军奖学金” \r\n首批款项50万元已交付学校。“唐鸿军奖教金”和“唐鸿军奖学金”用于表彰学校优秀教师和品学兼优的学生，设立期限为20年（从2009年9月1日起至\r\n2029年8月31日止），按学年划拨，奖励金额为每学年50万元。\r\n</p>\r\n<p style="text-align:center;">\r\n	5月\r\n</p>\r\n<p>\r\n	5月1日，被誉为世界经济、科技、文化的“奥林匹克”盛会的世博会在上海开幕。学校艺术学院孙虎、武月琴老师为布鲁塞尔市中心的著名雕像“小尿童”于连设\r\n计的“大熊猫服”，雷文斌、张玉萍老师为四川设计的世博花车、冯戈老师设计的“数字漫画”等多件作品将在世博会上参展，在世界面前展示西华人的风采。\r\n</p>\r\n<p>\r\n	5月4日，校团委在明德广场举行了“高举团旗跟党走 我与西华同成长”——我校举行纪念“五四”运动91周年红歌会,向中国共产党西华大学第一次代表大会献礼。校本部的18个分团委悉数上阵，共同演绎了一场火热的青春激情。\r\n</p>\r\n<p>\r\n	5月6日，校党委印发了《中共西华大学委员会关于贯彻落实全面推进党员旁听基层党委会议制度的实施意见》的通知[西华委发〔2010〕41号]，全面推行\r\n党员旁听基层党委会议制度，落实党员的知情权、参与权和监督权，拓宽党员意见表达渠道，保障党员主体地位和民主权利，扩大党内基层民主。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n</p>\r\n<p>\r\n	5月18日，“健力宝”亚运啦啦队全国选拔赛2010年舞蹈啦啦队全国总决赛落幕，我校啦啦队喜获广州亚运啦啦队选拔赛舞蹈啦啦队全国总决赛冠军。\r\n</p>\r\n<p>\r\n	　　5月19日，西华大学四川省司法鉴定人教育培训基地举行了揭牌仪式和培训班开学典礼，四川省司法厅副厅长刘朝宽、西华大学副校长李劲松、副校长钱进共\r\n同为培训基地揭牌。参加揭牌和开学典礼还有四川省司法鉴定管理处处长刘沛奎，教育培训基地主任黄海波，副主任孙仁云、周廷萱等。\r\n</p>\r\n<p>\r\n	5月20日，中国共产党西华大学第一次代表大会在四教报告厅隆重开幕。中共四川省委组织部干部三处处长熊伟，中共四川省委教育工委副书记、四川省教育厅党\r\n组成员王晓都，中共四川省委组织部干部三处副调研员陈军华，中共四川省委教育工委、四川省教育厅组织干部处处长杨成林以及主席团全体成员出席大会；大会应\r\n到会代表177名，因病、因事请假2名，实到会代表175名；参加大会的还有离任的党员校级领导代表，副处级以上党员干部，2009年干部换届中平移的党\r\n员调研员，部分学院党员学生代表等列席代表95名；学校各民主党派负责人，党外中层干部等特邀嘉宾16名。张小南代表中国共产党西华大学委员会作了题为\r\n《深入学习实践科学发展观&nbsp; 稳步实施“三步走”发展战略 \r\n为建设省内一流、国内知名的教学研究型大学而努力奋斗》的工作报告。张小南在报告中总结了我校合并组建以来的工作成就和基本经验；指出了学校的奋斗目标；\r\n确定了我校今后五年的主要任务。\r\n</p>\r\n<p>\r\n	5月21日，中国共产党西华大学第一届委员会第一次全体会议和中国共产党西华大学纪律检查委员会第一次全体会议分别召开。会议选举产生了中国共产党西华大学第一届委员会常务委员会委员、书记、副书记及中国共产党西华大学纪律检查委员会书记、副书记。<strong>党委常委（</strong>11名）<br />\r\n张小南&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 孙卫国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 王民朴&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 李劲松<br />\r\n王小林&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 蔡汉军&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 何建平&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 乔哲青<br />\r\n钱　进&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 胡　丹&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 费　凌<br />\r\n<strong>党委书记</strong><br />\r\n张小南<br />\r\n<strong>党委副书记</strong><br />\r\n孙卫国　王民朴　王小林\r\n</p>\r\n<p>\r\n	<strong>纪委书记</strong><br />\r\n王民朴<br />\r\n<strong>纪委副书记</strong><br />\r\n高川明\r\n</p>\r\n<p>\r\n	近日，我校2010年高水平运动员招生测试各项工作圆满结束。来自全国19个省市的51名高水平运动员参加了本次乒乓球、健美操和跆拳道项目测试，报名参加测试的运动员总计82人，是我校高水平运动队成立以来报考和测试人数最多的一次。\r\n</p>\r\n<p style="text-align:center;">\r\n	6月\r\n</p>\r\n<p>\r\n	6月2日，工民建89级本科校友向建筑与土木工程学院捐赠人民币30万元，用于实验室建设。副校长蔡汉军，校友总会办公室、建筑与土木工程学院相关领导出席捐赠仪式。\r\n</p>\r\n<p>\r\n	6月4日，四川省考试院副院长魏成松，学历处处长张莉、副处长曾毅，省考试院评审专家组组长、西南科技大学成教院党总支书记张克武等来我校就设立四川省高等教育自学考试学习服务中心进行资格审查。\r\n</p>\r\n<p>\r\n	6月4日，中国移动——西华大学校企合作建设与经营校园无线网络合作协议签约仪式在我校举行。按照合作协议，移动公司将投资3000万元对校本部有线宽带进行改造，加强无线网络建设、通信管道建设和数据中心升级建设。\r\n</p>\r\n<p>\r\n	6月4日，“西华大学青年志愿者服务基地”和“西华大学外国语学院大学生社会实践基地”揭牌仪式在彭州鹿鸣荷畔社区举行。学校将以此为契机，积极开展形式多样、内容丰富的社会实践和青年志愿服务活动，为彭州市灾后重建、社会主义新农村建设做出积极的贡献。\r\n</p>\r\n<p>\r\n	6月8日，新津县科技局副局长曹永一行来到我校，洽谈校地合作事宜。副校长蔡汉军，地方合作与服务处、科技处、管理学院等相关负责人参加了座谈会。\r\n</p>\r\n<p>\r\n	6月9日，教育部高校学生司副司长张浩明、四川省教育厅高校学生处处长李孝武、四川省征兵办副主任王昌敏一行到我校检查大学毕业生应征入伍工作。校长孙卫国，西华大学毕业生入伍预征工作领导小组组长、校党委副书记王小林及毕业生入伍预征工作领导小组成员参加了座谈会。\r\n</p>\r\n<p>\r\n	6月11日，成都现代工业港“二次创业”产业发展战略合作启动仪式暨信息化助推产业升级专题培训在郫县成都现代工业港管委会举行。启动仪式上，我校与成都\r\n现代工业港签订了合作协议。协议约定成都现代工业港将我校作为科技、教育依托单位和顾问单位。我校围绕园区重点领域，以项目为载体，将工业港作为教学、科\r\n研和成果转化基地。双方首次合作期为3年。\r\n</p>\r\n<p>\r\n	6月11日，我校数学与计算机学院裴峥教授主研的项目“C波段智能无线电监测系统”通过省级科技成果鉴定会。\r\n</p>\r\n<p>\r\n	6月12日，以“创新创业，实现自我”为主题的第六届“用友杯”全国大学生创业设计暨沙盘模拟经营大赛四川赛区总决赛在我校举行，四川大学、西南财大等26所高校的17支本科队伍、9支高职高专队伍参加了本次总决赛。我校代表队获得了本次比赛季军的好成绩。\r\n</p>\r\n<p>\r\n	6月12日，四川和平重型汽车有限公司在资阳举行了捐赠仪式，79级校友、四川和平重型汽车有限公司董事长兼总经理、成都校友会会长徐和平先生以公司的名义，向我校捐赠10万元校友基金用于2010年全国大众跆拳道锦标赛的跆拳道运动推广和比赛。\r\n</p>\r\n<p>\r\n	6月13日，“爱心圆梦”——2010四川省工青妇服务大学生创业暨家庭困难大学生就业援助行动座谈会、专场双选会在我校举行。长虹集团公司、东方电气、\r\n川煤集团、中铁二十三局集团公司等国有企事业单位，百度网络有限公司、四川新希望农业股份有限公司、成都伊利乳业公司等民营企业，安联保险、马士基信息公\r\n司等外企共360家单位纷纷来校招聘人才，并提供了18862个工作岗位。\r\n</p>\r\n<p>\r\n	6月21日，学校举行2008-2009学年国家奖学金、国家励志奖学金暨2010届优秀毕业生表彰大会，对管理学院王家卓等73名国家奖学金获得者，交\r\n通与汽车工程学院周利娟等1075名国家励志奖学金获得者，材料科学与工程学院吴艳丽等86名省级优秀毕业生获得者及405名校级优秀毕业生、318名院\r\n级优秀毕业生获得者进行了表彰和颁奖。\r\n</p>\r\n<p>\r\n	6月23日，我校2010届毕业生就业率超额完成省控目标10个百分点。\r\n</p>\r\n<p>\r\n	6月24日，2010届毕业典礼暨学位授予仪式在体育馆隆重举行，校领导向416名硕士学位获得者、5209名学士学位获得者授予学位、颁发学位证书。\r\n</p>\r\n<p>\r\n	6月25日，第二届“昆山杯”全国大学生优秀创业团队大赛四川赛区比赛在四川大学拉开了帷幕。我校管理学院学生王映玥、叶姝、邓代君、徐亮、晁然组成的代表队在梁玉国老师的带领下，经过两天的激烈角逐，从25支队伍中脱颖而出，夺得四川赛区第一名，顺利晋级全国半决赛。\r\n</p>\r\n<p>\r\n	6月29日，学校在四教报告厅举行纪念建党89周年暨深入开展创先争优活动动员大会，隆重庆祝党的生日、举行新党员入党宣誓活动，并对学校开展创先争优活动作出全面动员和部署。\r\n</p>\r\n<p>\r\n	6月29日，校党委中心组开展专题学习，全体校党委委员集中学习了《国家中长期教育改革和发展规划纲要（2010—2020年）》和《国家中长期人才发展规划纲要（2010—2020年）》\r\n</p>\r\n<p>\r\n	日前，校党委书记张小南就《发挥党委领导核心作用促进学校又好又快发展》接受新华社记者采访。\r\n</p>\r\n<p>\r\n	近日，我校第二届青年教师讲课比赛决赛成绩揭晓，来自数学与计算机学院的冷礼辉老师和政治学院的唐山清老师获一等奖。数学与计算机学院、外国语学院、人文学院获组织优秀奖。\r\n</p>\r\n<p>\r\n	近日，学校近期制定了《西华大学教师招聘暂行办法》（西华行字[2010]69号）。《西华大学教师招聘暂行办法》对引进的教授、博士给予一定的安家补贴\r\n费和住房补贴费。同时，具有教授专业技术职务或博士学位的人员可按《西华大学重点科研基金项目管理办法》（西华科字[2007]11号）申请学校重点科研\r\n项目资助。\r\n</p>\r\n<p>\r\n	日前，我校2010年“双学位”招生工作于日前正式启动，今年我校招收“双学位”专业有会计学、法学、工程造价、机械设计制造及其自动化、电气工程与自动\r\n化、体育教育、英语、物流管理、国际经济与贸易、热能与动力工程、食品科学与工程、材料成型及控制工程、应用物理学、软件工程、工程管理、工商管理、工业\r\n工程、工业设计、车辆工程、计算机科学与技术等20个专业。\r\n</p>\r\n<p>\r\n	日前，经四川省教育厅批准(川教函[2010]365号)，我校2010年新建4个成人高等教育校外教学点，分别是：四川省质量技术监督学校教学点、广元\r\n利州中等专业学校教学点、阿坝州中等职业技术学校教学点和四川警安职业学院教学点。截止2010年，我校允许招生的成人高等教育校外教学点共计16个。\r\n</p>\r\n<p>\r\n	近日，经四川省教育厅评审通过，我校中国语言文学、应用经济学学科取得教授（研究员）职务任职资格评议权，英语语言文学取得副教授（副研究员）职务任职资\r\n格评议权。至此，我校共有机械工程、电气工程等10个学科的教授（研究员）职务任职资格评议权；机械工程、电气工程、材料科学与工程等16个学科副教授\r\n（副研究员）职务任职资格评议权。\r\n</p>\r\n<p>\r\n	近日，四川省教育厅公布了立项建设的2010年省级教学团队名单，我校今年新增电气工程与自动化、食品科学两个省级教学团队。至此，我校共有6个省级教学团队。\r\n</p>\r\n<p>\r\n	日前，为期10天的四川省机动车司法鉴定人岗前培训第一期培训班在西华大学四川省司法鉴定人教育培训基地顺利结业。首期参加培训的学员来自全省8个地市，共40人，均为多年从事汽车教学、汽车检测、汽车维修的专业技术人员。<br />\r\n&nbsp; &nbsp;&nbsp;日前，四川青江机器股份有限公司董事长、我校农机76级校友杜建康受聘为我校客座教授。\r\n</p>\r\n<p>\r\n	日前，“挑战杯”西华大学第六届创业计划竞赛专家评审委员会正式公布了23支获奖团队。道格特生物科技股份有限责任公司、成都鼎世清健康产品开发有限公\r\n司、石磨坊方便豆花等3个项目荣获一等奖，艾斯燃气灶有限责任公司等5个项目荣获二等奖，《Memory.大学》电子杂志传媒等15个项目荣获三等奖。专\r\n家评审委员会根据今年我校“挑战杯”创业计划竞赛获奖作品情况，挑选出20件作品参加第六届“挑战杯”四川省大学生创业计划竞赛。\r\n</p>\r\n<p>\r\n	近日，学校党校第24期入党积极分子培训班已圆满完成培训任务。党对管理学院等10个先进集体，第24期党校入党积极分子培训班吴倩等39名优秀班长，刘畅等83名优秀干部，郭阳等369名优秀学员予以表彰。\r\n</p>\r\n<p>\r\n	近日，2010年大学生应征入伍报名工作启动。\r\n</p>\r\n<p>\r\n	日前，我校经济与贸易学院姚寿福博士申报的2010年度国家社会科学基金项目《中国农业区域专业化发展研究》获准立项。\r\n</p>\r\n<p>\r\n	近日，我校电气信息学院电工电子实验实习中心老师杨帆发明的《可显示已用电量的智能型蓄电池》获批实用新型专利。\r\n</p>\r\n<p style="text-align:center;">\r\n	7月\r\n</p>\r\n<p>\r\n	7月6日～7月12日我校暑期“三下乡”社会实践总队，分成四个分队来到彭州市磁峰镇鹿鸣河畔社区、龙门山镇太阳雨社区灾后安置点、新兴镇阳平村与都江堰\r\n幸福家园进行了为期一周的社会实践服务活动。此次活动以“服务两个加快，建设新家园”为主题，是我校开展“三下乡”活动以来规模最大、人数最多的一次。我\r\n校1500名学生组成108支团队，奔赴彭州、都江堰、遂宁、西昌等40余个服务点，开展关爱留守儿童、支教、专题调研等服务，为灾区人民送去知识、送去\r\n文化、送去快乐。\r\n</p>\r\n<p>\r\n	7月25日，由中国大学生体育协会乒乓球分会主办，西华大学承办的“和嘉天健杯”第十六届全国大学生乒乓球锦标赛顺利落幕。来自全国近50所高校的400\r\n余名运动员在我校同场竞技，赛出了很好的水平。经过六天的激烈角逐，我校在比赛中获得甲组女队团体冠军和大赛组委会优秀组织奖。\r\n</p>\r\n<p>\r\n	7月20—27日第七届中国舞蹈“荷花奖”校园舞蹈大赛在山东省青岛市隆重举行。我校选送的作品《奔月》凭借良好的创意和精湛的表演脱颖而出，一举夺得本\r\n届大赛铜奖，学校获得“优秀组织奖”，路耀武、李朝薇、乔瑞洁三位老师获“优秀园丁”奖，取得了我校舞蹈作品在全国顶级专业舞蹈赛事上的突破。\r\n</p>\r\n<p>\r\n	7月29日《人民日报》海外版《校园之荷绽放浪漫海滨——记第七届中国“荷花奖”校园舞蹈大赛》报道：来自四川西华大学艺术学院的作品《奔月》以其唯美的舞姿，为观众描绘出各族人民对早日登月的强烈渴望。\r\n</p>\r\n<p>\r\n	7月29日至8月1日，2010年“斗斗杯”全国大众跆拳道锦标赛暨第五届世界跆拳道品势锦标赛选拔赛在我校体育馆举行。全国各地150余家跆拳道馆、俱\r\n乐部、业余培训学校的1300余名跆拳道爱好者云集西华，切磋交流。武汉百川1队、武汉跆英1队、宁宇博力队分获团体总分前三名。我校获得“道馆风尚奖”\r\n和“突出贡献奖”。\r\n</p>\r\n<p>\r\n	日前，我校公布了2010年计划招生数和招生相关政策。今年，我校将面向全国27个省（市、自治区）招收各类本专科学生9065名，其中本科6705名，\r\n专科2360名。我校是四川省的招生大户，今年计划在川招生7915人[本科招收5705人，专科招收2210人（含民族预科直升等）]。我校今年新增保\r\n险、食品质量与安全两个本科专业，在川分别招收84人、60人。\r\n</p>\r\n<p>\r\n	日前，我校“汽车测控与安全”四川省重点实验室获省政府授牌。\r\n</p>\r\n<p>\r\n	日前，我国奥运史上第一个乒乓球男双冠军陈龙灿教练正式调入我校体育学院任教，\r\n</p>\r\n<p>\r\n	在7月底结束的“北京信息科技大学杯”第十届全国机器人大赛暨2010年FIRA世界杯机器人大赛中国队选拔赛中，我校机器人足球队荣获半自主型机器人三\r\n人组队形和类人形机器人单人舞蹈两个冠军，半自主型4VS1追捕目标亚军，嵌入式3VS3机器人足球赛季军等多个奖项。\r\n</p>\r\n<p style="text-align:center;">\r\n	8月\r\n</p>\r\n<p>\r\n	8月2日，《中国青年报》以“青春身影 灾区跃动——记大学生‘三下乡’灾区实践服务”为题对我校学生“三下乡”实践活动作了报道。\r\n</p>\r\n<p>\r\n	8月5日，应四川省美宁实业集团董事长唐和林先生之邀，副校长乔哲青率生物工程学院相关教师赴遂宁参观考察美宁实业集团。双方进行了友好座谈和交流，并在发展长期稳定的合作方面达成了共识，签署了共建技术中心的协议。\r\n</p>\r\n<p>\r\n	8月7日，甘南藏族自治州舟曲县发生了特大泥石流灾害，造成了重大人员伤亡和经济损失。我校师生纷纷为灾区慷慨解囊。截至2010年9月20日，全校师生捐款总额已达209753.9元。目前全部捐款已汇至四川省教育基金会。\r\n</p>\r\n<p>\r\n	8月12日，我校79级校友、北京航空航天大学教授、长江学者特聘教授王华明回母校作了题为“快速成型技术的发展与挑战”的学术报告。\r\n</p>\r\n<p>\r\n	8月16日，英国杜伦大学（Durham University）冉立教授来我校进行学术访问，并作了题为“可再生能源技术研究进展与挑战”的学术报告。\r\n</p>\r\n<p>\r\n	8月18日，《光明日报》、《光明网》、《中国教育新闻网》以“西华大学关注灾后精神重建”、“西华大学暑期‘三下乡’实践队关注灾后精神重建”为题作了报道。\r\n</p>\r\n<p>\r\n	8月23、24日，响应共青团四川省委的号召，学校党委迅速组织青年志愿者，由校团委带领直接奔赴映秀，展开了为期两天的抗洪救灾志愿服务工作。\r\n</p>\r\n<p>\r\n	8月25日，中央电视台《朝闻天下》栏目以《志愿者在行动 拉手更温暖》为题，专题报道了我校志愿者参加映秀抗洪救灾的事迹。\r\n</p>\r\n<p>\r\n	&nbsp;8月28日，英国格拉摩根大学博士生导师、澳大利亚维多利亚大学(Victoria \r\nUniversity)博士生导师石碰教授来校作了题为“Robust Filtering on Hybrid Uncertain \r\nSystems”的学术报告，电气信息学院师生聆听了报告。\r\n</p>\r\n<p>\r\n	8月29日，中国人工智能学会副秘书长、北京大学深圳分院科技处处长刘宏教授来校作了题为“面向新一代消费电子产品的智能人机交互技术”的学术报告，机械工程与自动化学院、数学与计算机学院师生聆听了报告。\r\n</p>\r\n<p>\r\n	8月25日至31日，学校组织09级学生在校内举行了为期７天的军训。09级6800名学生参加了军训。空军95607部队作为承训部队，模仿部队建制，组建了8个营、28个连、137个排，构建了一个真实的军营环境。\r\n</p>\r\n<p>\r\n	我校今年面向全国27个省（市、自治区）录取11391名新生，研究生453名，普通本专科新生9868名，其中本科6915名、专科2953名，专升本\r\n1070名，生源质量与往年相比继续提高。文理科调档线分别为513分，480分； \r\n工业设计和美术学川内调档线为628分；艺术设计川内调档线598分；动画专业川内调档线554分。舞蹈学川内调档线为293分，舞蹈表演川内调档线为\r\n277分，音乐学川内调档线为303分，体育川内调档线为78分。\r\n</p>\r\n<p>\r\n	8月29日至30日召开2010年学生工作研讨会，布置新学期的学生工作。\r\n</p>\r\n<p>\r\n	8月31日至9月1日，我校在都江堰召开了2010年全校干部大会，全体校领导和全校副处级以上领导干部参加了大会。<br />\r\n　　学校领导通报了暑假以来的重要工作及成效，并对新学期的重要工作做了安排和布置：一是要进一步明确学校发展战略和工作方针。二是要抓紧中心工作，切实\r\n推进本科、研究生的教学改革。三是要采取有效举措，切实提升我校科研和学科实力。四是要协调推进学校各项主要工作。强调本学期一要认真抓好党建工作，为学\r\n校的发展提供强有力的思想保障、作风保障和组织保障。二要全力以赴，认真落实党代会提出的学校中长期发展战略和近期行动计划中的各项任务，认真抓好今年的\r\n工作，保证顺利完成各项指标。\r\n</p>\r\n<p style="text-align:center;">\r\n	9月\r\n</p>\r\n<p>\r\n	日前，昆明云内动力股份有限公司负责人陈勇航、李映昆一行莅临我校，与校长孙卫国、副校长蔡汉军，科技处、地方合作与服务处、机械工程与自动化学院、交通\r\n与汽车工程学院等院部主要负责人、教授代表等进行了座谈交流。校企双方就加强产学研合作进行了深度交流磋商，并达成了合作意向。\r\n</p>\r\n<p>\r\n	9月4日，国务院节能减排工作督查组成员，住房和城乡建设部建筑节能与科技司司长陈宜明、标准定额研究所所长曾少华、建筑节能与科技司科研处处长张福麟、\r\n建筑节能与科技司苏醒博士到我校检查指导工作。通过汇报和检查，陈宜明司长和张福麟处长高度肯定了我校在成都市建筑能源数据中心、西华大学建筑节能监管平\r\n台建设的成绩。\r\n</p>\r\n<p>\r\n	9月7日，历时4天的“2010年全国大学生电子设计竞赛——TI杯模拟电子系统专题邀请赛”在江苏东南大学闭幕。决赛共评出一等奖7队，二等奖12队，\r\n三等奖19队，其中有六所高校获一等奖。我校电气信息学院07级学生李易、张云瑞、胡明明组成的参赛队完成了B题“电子式温度调节器”，达到了该题所有指\r\n标，并在测试过程中得到了专家组的赞许，获得了一等奖。\r\n</p>\r\n<p>\r\n	9月7、8、9日，来自全国27个省（市、自治区）的11000余名新生将陆续来我校报到。\r\n</p>\r\n<p>\r\n	近日，学校各单位的党员示范窗口和示范岗都在各自的岗位上亮出身份，接受师生们的监督，学校第一批党员示范窗口共计75个；党员示范岗有6个类别，分别是党政管理、辅导员、公共服务、教学科研、实验室、学生，共计348个岗位。\r\n</p>\r\n<p>\r\n	近日，教育部、财政部下发了《关于批准第六批高等学校特色专业建设点的通知》（教高函[2010]15号），我校食品科学与工程专业成为第六批高等学校国\r\n家级特色专业建设点。目前，我校共有机械设计制造及其自动化、热能与动力工程、车辆工程、食品科学与工程四个国家级特色专业。\r\n</p>\r\n<p>\r\n	9月9日，四川共青团创先争优系列活动抗洪救灾先进事迹首场报告会在成都国防教育军训基地圆满举行。我校艺术学院大三学生罗飞作为抗洪救灾先进志愿者代表\r\n在会上作了事迹报告，3000名正在军训的成都职业技术学院的新生聆听了报告。报告会受到了包括人民网、中新网，中国日报、四川电视台等各级媒体的广泛报\r\n道和关注。\r\n</p>\r\n<p>\r\n	9月12日，我校近九千名2010级新生迎来了大学的第一课——为期十天的军训。\r\n</p>\r\n<p>\r\n	9月13日，欧亚太平洋大学联盟主席温克琳娜教授（Prof. Brigitte \r\nWinklehner）访问我校，就我校申请加入欧亚太平洋大学联盟一事进行考察。校长孙卫国会见了Winklehner教授。经过深入商讨，双方达成共\r\n识，孙校长与Winklehner教授签署了我校加入欧亚太平洋大学联盟的意向性协议。\r\n</p>\r\n<p>\r\n	9月13日，应学校邀请，美国密西西比州立大学机械工程系教授、先进车辆系统中心计算固体力学首席教授、美国机械工程师协会会员Mark F. \r\nHorstemeyer来校，为机械工程与自动化学院师生作了题为《Predictive Science and Engineering for \r\nSimulation Based Design and Manufacturing : Using Multi-scale \r\nModeling》的学术报告。\r\n</p>\r\n<p>\r\n	9月13日，日本大和语言教育学院副理事长吉村岳也先生、校长唐泽清司先生及中国事务主任刘彦君女士再次来我校工作访问。校党委书记张小南亲切会见了来\r\n宾，对与大和学院的交流项目给予肯定，积极支持项目的发展。来访期间，双方对扩大合作交流范围，开展新的交流项目进行了商讨，并取得了一些共识。\r\n</p>\r\n<p>\r\n	9月16日，由扬州市市委、市政府主办的“2010中国扬州科技创新——产业合作（成都）推介会”在蓉举行。 \r\n副校长李劲松，科技处、交通与汽车工程学院相关负责人和部分专家参加了推介会，并与扬州市维扬区政府签订了合作协议，协议约定今后双方将在科技信息共享、\r\n科技成果转化、人才培训、平台建设等方面开展广泛合作。\r\n</p>\r\n<p>\r\n	9月16日，学校2010职称评审工作全面启动。根据安排，9月上旬学院组织人员申报、填写相关表格，9月下旬进行同行专家鉴定、学科组成员听课及党委政审等工作。10月上旬将完成学科组评审工作，10月下旬将完成学校评委会评审及材料上报教育厅工作。\r\n</p>\r\n<p>\r\n	9月19日，我校FSAE车队携自行设计制作的方程式赛车亮相第十三届成都国际车展会场，吸引了无数观众眼球。10月14日，西华大学FSAE车队将参加在上海举行的首届中国大学生方程式汽车大赛。\r\n</p>\r\n<p>\r\n	9月20日，由四川省体育局和西华大学联合组建的七人制橄榄球女队教练组和全体运动员正式进驻我校。至此，除我校传统的啦啦队、乒乓球和跆拳道三大优势项目之外，七人制橄榄球将成为西华大学校园中又一道靓丽的风景。西华大学橄榄球男队也正在积极筹建当中。\r\n</p>\r\n<p>\r\n	9月21日，学校召开统一战线“迎中秋、庆国庆”茶话会。校党委书记张小南，校长孙卫国，校党委副书记王民朴、王小林与参会的各民主党派、侨台联组织、无党派人士欢聚一堂，喜迎中秋，共谋学校发展。\r\n</p>\r\n<p>\r\n	9月25日，“2010全国三维数字化创新设计大赛” 四川赛区比赛落幕，由我校机械工程与自动化学院廖敏、王霜、董霖、汪鑫老师指导的两个团队设计作品分别获得四川赛区特等奖和一等奖，并双双获得参加全国现场总决赛资格。\r\n</p>\r\n<p>\r\n	9月26日，学校召开了党建工作研讨会，会议分析了当前学校党建工作中存在的主要问题，进一步明确了党建工作的总体思路。\r\n</p>\r\n<p>\r\n	9月27日，学校召开招生就业研讨会。会议总结了2010年招生就业工作，分析了当前招生就业形势，明确了学校2011年招生就业工作目标、重点和工作\r\n要。学校强调：要继续把就业工作摆在突出重要位置，努力扩大毕业生就业渠道，建立网络就业平台，全面提升就业指导服务水平，加强就业信息服务，拓宽信息搜\r\n集渠道，积极引导学生转变观念、调整就业预期。\r\n</p>\r\n<p>\r\n	9月28日，学校召开2010暑期“三下乡”社会实践总结暨表彰大会，对经济与贸易学院等19个学院，管理学院赴简阳暑期社会实践团等50个社会实践服务团，王远林等310名社会实践先进个人，何彦波等464名社会实践积极分子，陈国先等34名优秀指导教师进行了表彰。\r\n</p>\r\n<p>\r\n	9月28日～29日，第三届“西华秋韵”庆祝建国61周年暨欢迎新同学文艺晚会在学校体育馆隆重举行。\r\n</p>\r\n<p>\r\n	9月29日，四川省司法鉴定专家委员会第一次会议暨颁证仪式在成都金牛宾馆隆重召开。我校交通与汽车工程学院院长、四川西华机动车司法鉴定所所长黄海波和司法鉴定所副所长周廷萱受聘担任四川省司法鉴定专家委员会痕迹鉴定专家组委员。\r\n</p>\r\n<p>\r\n	9月29日-30日，副校长蔡汉军一行来到泸州市、内江市，分别与泸州市委常委、常务副市长杨松柏，内江市副市长肖和联等进行座谈，洽谈合作事宜，并就市校全面合作达成了意向。\r\n</p>\r\n<p>\r\n	日前，从团省委获悉，第六届“挑战杯”四川省大学生创业计划竞赛活动已经圆满结束。我校喜获1个一等奖，2个二等奖，5个三等奖，3个优秀奖和高校优秀组织奖。\r\n</p>\r\n<p style="text-align:center;">\r\n	10月\r\n</p>\r\n<p>\r\n	10月6日，我校“网络智能信息处理”实验室、“绿色建筑与节能”实验室四川省高等学校重点实验室建设专家评审会议举行。专家组分别听取了实验室建设情况的汇报，通过现场考察、质疑，经充分讨论后一致同意推荐两个实验室为四川省高校重点实验室。\r\n</p>\r\n<p>\r\n	10月8日，我校成立了第六次全国人口普查领导小组，副校长蔡汉军任组长。\r\n</p>\r\n<p>\r\n	10月10日，我校国庆护卫队在明德广场成功举办了十五周年庆典活动。\r\n</p>\r\n<p>\r\n	10月13日，空军政治部干部部副部长邱火林上校，干部部人才办副主任郭廷波上校，成空干部处副处长胡维军上校一行在驻校选培办主任叶飞上校的陪同下来到西华大学，了解我校国防生培养教育工作，实地参观检查我校国防生办学基本条件。\r\n</p>\r\n<p>\r\n	10月13日，乐山市政协副主席、科技局副局长林自强一行到校考察洽谈合作事宜。蔡汉军副校长表达了和乐山市加强合作的意愿，双方就乐山市的招商项目与我校专业对接作了深入讨论，并决定在本月底签订战略合作协议，举行校企对接会。\r\n</p>\r\n<p>\r\n	10月13日，学校召开心理健康工作会，会议总结了西华大学组建以来心理健康教育工作取得的成绩、存在的问题和下一步的举措，探讨了我校心理健康教育工作\r\n的长效机制、规范各项心理健康教育工作制度和考评制度，并对如何进一步加强和改进我校大学生心理健康教育工作进行了安排部署。\r\n</p>\r\n<p>\r\n	10月14日，副校长何建平、大陆希望集团人力资源部部长吴卫东分别代表双方签署了《西华大学—大陆希望集团人才培养校企合作框架协议》。根据协议，双方\r\n将在电气工程与自动化、测控技术与仪器、控制理论与控制工程、暖通制冷、工商管理等专业开展大四学生“3+1”培养模式。\r\n</p>\r\n<p>\r\n	10月14日，西华大学民建支部委员会召开成立大会。校党委副书记王小林、民建成都市委驻会副主席史红平，成都市委统战部党派处处长蒋镇东，民建成都市委\r\n组织处处长杨洁，校民建支委成员，学校其它民主党派代表等出席大会。土木学院副教授胡文绩当选为支部主任，人南校区教务处高级经济师李晓萍、土木学院教师\r\n黄冉当选为支部委员。<br />\r\n10月15日，计财处召开2010年财务工作培训会，各单位财务联系人参会。\r\n</p>\r\n<p>\r\n	10月15日，招生与就业处召开了2011届毕业生班主任辅导员就业工作培训会。会议传达了学校招生就业工作研讨会的会议精神，安排了本学期各学院的就业工作。\r\n</p>\r\n<p>\r\n	10月16日，全国第二届“创意、创新、创业”电子商务挑战赛四川赛区总决赛在西南财经大学举行。由我校团委和经贸学院选送的“企业推广服务中介平台”作品（成员：夏军、胡莲、周金谷）获得了四川赛区总决赛一等奖，该团队将于11月代表四川省赴西安参加全国总决赛。\r\n</p>\r\n<p>\r\n	10月20日，由共青团四川省委、四川省教育厅、学生联合会主办，我校学生会承办的四川省第五届大学生校园歌手大赛首场复赛在我校学生活动中心隆重举行。\r\n西南交通大学、四川理工学院等14所川内大学共28位选手展开了激烈的比拼。比赛融入了流行、通俗、民族等多种风格唱法，最终选出12位选手晋级下轮决\r\n赛，我校魏路遥、贺芳思同学分获第一名和第三名，成功晋级。\r\n</p>\r\n<p>\r\n	10月21日，《1+2+1中美人才培养计划》项目美方代表、美国州立大学与学院协会国际部主任Arlene Jackson女士一行4人来我校进行工作访问。\r\n</p>\r\n<p>\r\n	10月21日，省教育厅高教处副处长赵锦棻一行来到学校，就校园消防安全工作进行检查。\r\n</p>\r\n<p align="left">\r\n	10月22日，校党委宣传部学生传媒中心素质培训开班仪式在6B-108举行，拉开了校党委宣传部下属五大社团素质培训的序幕。西华社、广播台、西华新闻网、电视台、映像广角社的两百余名新成员参加了培训开班仪式。\r\n</p>\r\n<p align="left">\r\n	10月23日，中国西部自动化与仪器仪表科技和产业发展论坛暨2010年成都市科学技术年会“信息化与产业化”分会场在我校举行。成都市科技局副局长马良\r\n乾、成都市科协副主席卢晓东，副校长李劲松出席开幕式并致辞。成都科技服务中心主任杨靖和我校电气信息学院院长王军主持会议。\r\n</p>\r\n<p>\r\n	10月23日，我校2010级新生文化节系列活动之第七届“金话筒”校园主持人大赛在校学生会活动中心举行。交通与汽车工程学院的何金星同学荣获本届“金话筒”校园主持人大赛的冠军。\r\n</p>\r\n<p>\r\n	10月24日晚，2010高雅艺术进校园中央歌剧院西华大学专场在校体育馆隆重上演。本次专场演出活动由国家教育部、文化部、财政部主办，中央歌剧院演出\r\n处处长梁寒，校长孙卫国、校党委副书记王民朴、副校长李劲松、校党委副书记王小林、副校长胡丹以及各学院各职能部门负责人悉数出席。\r\n</p>\r\n<p>\r\n	10月26日，我校第二届教职工代表大会第二次会议在办公楼多功能会议厅举行。会议审议通过了《西华大学章程》和《西华大学工会、教代会工作文件制度汇\r\n编》。《西华大学章程》及有关制度的审议通过，保证了学校的各项工作有章可循，学校的依法自主管理更加科学化、民主化和法制化。\r\n</p>\r\n<p>\r\n	10月26日，我校召开“全国大学生数学建模监控与评价体系方法研究”项目结题验收会。在听取汇报后，项目验收专家组一致同意，我校“全国大学生数学建模监控与评价体系方法研究”项目通过结题验收。\r\n</p>\r\n<p align="left">\r\n	10月26日，由校团委主办、校学生会承办的2010年大学生辩论联赛在学生活动中心拉开帷幕。\r\n</p>\r\n<p align="left">\r\n	10月27日，为充分发挥学生工作系统和共青团系统、各级党组织的战斗堡垒作用和广大党员的先锋模范作用，学校在四教报告厅召开了学生工作系统、共青团系\r\n统创先争优活动推进会，对学生工作系统、共青团系统如何更好地开展和推进创先争优活动进行了安排和部署。学校党委副书记王小林出席了会议。会议由校党委组\r\n织部部长唐润华主持。\r\n</p>\r\n<p>\r\n	10月27日，我校召开军工保密资格审查认证工作领导小组第二次会议，对军工保密资格申报的相关准备工作进行了部署。　　\r\n</p>\r\n<p>\r\n	10月27日，四川省教育厅下文批准我校“高性能科学计算”、“绿色建筑与节能”、“网络智能信息处理”三个高等学校重点实验室立项建设。至此，我校省部级（含高校）重点实验室增加至11个。\r\n</p>\r\n<p>\r\n	10月28日，我校2010届新生运动会在临江苑体育场拉开帷幕，全校六千余名2010级新生参与了运动会。本次运动会分为田赛和径赛两部分，包含了\r\n100m、400m、男子1500m、女子800m、跳高、跳远、铅球等多个项目。经过为期一天的比赛，应用技术学院以276分的高分蝉联冠军，建筑与土\r\n木工程学院和交通与汽车工程学院分列第二、三名。\r\n</p>\r\n<p>\r\n	2010年教学质量工程取得了较好成绩。电气信息学院教师董秀成被评为四川省教学名师；新增1个国家级特色专业：食品科学与工程；3个省级特色专业：生物\r\n工程、工程管理、工业设计；新增1个省级人才培养实验区：适应地方经济建设的多样化应用型人才培养的创新实验区；新增2门省级精品课程：建筑工程造价计量\r\n与计价、语言学基础；新增2个省级教学团队：电气工程与自动化专业教学团队、食品科学与工程专业教学团队。\r\n</p>\r\n<p>\r\n	近日，西华学院2010级新生遴选工作顺利结束，今年共录取2010级新生68名，其中文科22名，理科46名。10月14日，西华学院2010级新生开\r\n学典礼在行政楼报告厅隆重举行。校长、西华学院院长孙卫国，校党委副书记王小林、副校长何建平，学工部、科技处、国际处、西华学院等院部负责人以及西华学\r\n院2010级全体新生参加了开学典礼。西华学院是学校在高等教育大众化新阶段，根据“因材施教”的人才培养原则，为进一步加强本科人才培养工作，于\r\n2009年4月成立的一个以专门培养高素质拔尖本科人才为目标的学院。西华学院生源由考入我校的优秀本科新生中和在校一、二年级的优秀本科生中经报名、初\r\n选、综合笔试(外语、语文、数学)、心理测试、面试等层层选拔而来。学校汇集优秀师资和优质教学资源，采用多种培养模式、个性化培养方案对学生按大类培\r\n养。在管理方式上，西华学院的学生具有双重身份，既是西华学院的学生，同时是各专业学院的学生。在培养模式上，实行第1-2学年主要修读“通识教育课\r\n程”、“学科大类基础课程”、“素质教育平台”，第3-4学年在指导教师的指导下，自主选择专业，制定个人修业计划，进行个性化培养；开展科研训练、\r\nseminar研讨会、学术专题讲座、创新教育学分（按照学校相关规定认定）、学生活动等素质教育活动辅助培养；同时积极为学生创造出国学习、交流的机\r\n会。\r\n</p>\r\n<p>\r\n	日前，“2010年第九届全国大学生建筑设计作业观摩与评选”结果揭晓，我校建筑与土木工程学院选送的建筑设计作业“溪边小别墅设计”（学生：徐迪，指导\r\n教师：曹伦、江毅）荣获“优秀学生作业奖”，这是我校学生首次获得建筑设计作业评优大奖。四川省内只有西南交通大学和我校学生获奖。\r\n</p>\r\n<p>\r\n	近日，在充分听取各学院和各相关部门对学分制管理意见的基础上，结合学校实际，根据新的《本科人才培养方案》对学分制政策进行了一定的调整和修改，出台了新的《实施学分制规定》，从2010级新生开始执行。\r\n</p>\r\n<p>\r\n	近日，在四川省青年志愿服务表彰大会上，我校“灾后重建志愿者服务团”被授予“灾后恢复重建优秀青年志愿服务集体”荣誉称号。四川省十大杰出青年志愿者、四川省十大杰出青年志愿服务集体是共青团四川省委、四川青年志愿者协会共同授予四川青年志愿者的最高荣誉。\r\n</p>\r\n<p>\r\n	近日，经济与贸易学院于代松教授因参政议政成绩突出，被九三学社中央参政议政部评为“2010年全国参政议政先进个人”。\r\n</p>\r\n<p style="text-align:center;">\r\n	11月\r\n</p>\r\n<p>\r\n	11月1日，成都市委常委刘超及成都市科技局、市经信局、市商务局、龙泉驿区人民政府、龙泉驿区科技局等领导一行到我校考察调研，校党委书记张小南、副校\r\n长蔡汉军及科技处、交通与汽车工程学院相关负责人和专家陪同参加了此次调研。刘超常委一行参观考察了交通与汽车工程学院汽车综合实验场，还饶有兴趣地与交\r\n通与汽车工程学院专家、教授进行了交谈。他代表成都市委市政府感谢学校为成都市的经济社会发展做出的贡献，并希望学校能把握住成都市大力发展汽车产业的契\r\n机，广泛地和市科技局、市经信局、龙泉驿区委区政府在汽车产业技术研发、人才培养等方面加强合作，发挥学校优势，发展学校特色，实现成都市汽车产业和学校\r\n学科发展的双赢。\r\n</p>\r\n<p>\r\n	11月1日，德国特里尔应用科技大学（University of Applied Sciences Trier）物质流管理研究所(Ifas)中国项目与教育项目负责人米凯琳(Katrin Muller-Hansen)女士、卢红雁博士来我校工作访问。\r\n</p>\r\n<p>\r\n	11月2日，诺基亚通信有限公司东莞分公司高级运营经理欧先仙一行来校洽谈校企合作事宜。副校长蔡汉军，招就处、教务处、电气学院、机械学院、应用技术学院等单位主要负责人参加了洽谈会。　　\r\n</p>\r\n<p>\r\n	11月3日，学校党委在四教报告厅召开中心组学习扩大会，四川大学吴易凌教授应邀到校作了题为“沟通创造价值——关系管理艺术”的专题讲座，全体校领导，副处以上领导干部，学生工作部、心理健康服务与研究中心全体人员以及专兼职辅导员（班主任）聆听了本次讲座。\r\n</p>\r\n<p>\r\n	11月3日，凤凰学院2010级新生开学典礼在四教报告厅隆重举行。凤凰卫视欧洲台台长邵文光，凤凰教育集团CEO吴炜强，中国互联网新闻中心视觉总监殷\r\n子健，四川省新闻学会副会长、博士生导师邱沛篁，四川日报副刊主编伍松乔，副校长钱进，校办、凤凰学院、学工部、教务处、校团委、继续教育学院相关负责\r\n人，以及凤凰学院2010级全体新生参加了开学典礼。西华大学凤凰学院成立于2010年4月25日，是西华大学与凤凰卫视集团合作成立的内设公办学院，凤\r\n凰卫视资讯台编辑兼首席评论员阮次山先生出任学院名誉院长兼首席教授。日前，西华大学凤凰学院2010级新生遴选工作顺利结束，新闻传播和数字媒体艺术两\r\n个方向班共录取2010级新生41名，其中新闻传播16名，数字媒体艺术25名。&nbsp;\r\n</p>\r\n<p>\r\n	11月4日教育部2010年“春晖计划”专家刘震教授受聘为我校客座教授，副校长李劲松为刘震教授颁发了“西华大学客座教授”聘书。受聘仪式结束后，刘震教授为我校师生作了一场题为“PC机群并行处理环境的构筑及其性能评价”的学术报告。　　\r\n</p>\r\n<p>\r\n	11月4日，“汽车测控与安全”四川省重点实验室学术委员会成立暨授聘仪式在行政楼313会议室举行。校长孙卫国、副校长李劲松，“汽车测控与安全”四川\r\n省重点实验室学术委员会主任管欣（吉林大学汽车动态模拟国家重点实验室主任、汽车学院院长、教授），副主任张卫华（西南交通大学牵引动力国家重点实验室主\r\n任、教授），“汽车测控与安全”四川省重点实验室学术委员会委员：李克强（清华大学汽车工程系主任、教授）、李理光（同济大学机械学院副院长、教授）、刘\r\n福水（北京理工大学机械与汽车学院教授）、许洪国（吉林大学交通学院教授），我校研究生部副部长李玲，交通与汽车工程学院院长兼党委书记黄海波，副院长陈\r\n翀、孙仁云、彭忆强参加了会议。黄海波主持授聘仪式。“汽车测控与安全”四川省重点实验室主要从事汽车测控技术、低碳排放发动机燃烧与噪声控制、汽车与道\r\n路交通安全等方向的研究。\r\n</p>\r\n<p>\r\n	11月5日，“春晖计划”专家博士团成员张骏研究员在5A-224作了一场题为“大功率LED应用研究”的学术报告。\r\n</p>\r\n<p>\r\n	11月6日，我校青年马克思主义者培养学校开学典礼隆重举行。\r\n</p>\r\n<p>\r\n	11月8日，学生传媒中心迎来了自己的节日——中国第十一个记者节。他们在明德广场举行了系列活动——“我为西华做件好事，人人争做公益先锋”主题活动、新闻图片展、西华电视新闻展播、西华十大新闻评选等，活动的开展受到了全校广大师生的关注和好评。\r\n</p>\r\n<p>\r\n	11月9日，学校举行2010年度“乐山——菲尼克斯奖学金”颁奖典礼，表彰了30名获奖同学.\r\n</p>\r\n<p>\r\n	11月11日，学校在四教报告厅隆重举行首届“唐鸿军奖教金”、“唐鸿军奖学金”颁奖大会，表彰2009—2010学年度获得“唐鸿军奖教金”的优秀教师\r\n和“唐鸿军奖学金”的优秀学生。“唐鸿军奖教金”、“唐鸿军奖学金”是我校84级工民建校友、四川德居置业集团有限公司董事长、德阳校友会副会长唐鸿军先\r\n生于2009年7月15日设立的，旨在表彰学校优秀教师和品学兼优的学生。奖教金、奖学金设立期限为20年（从2009年9月1日起至2029年8月31\r\n日止），按学年划拨，奖励金额为每学年50万元。其中奖教金20万元，奖学金30万元。栾道成等8名优秀教师，陈强等60名优秀学生；建筑与土木工程学院\r\n“地方高校工科基础力学考试的改革与实践”等4个项目团队、汪兆旗等5名教师获得了首届“唐鸿军奖教金”、“唐鸿军奖学金”。\r\n</p>\r\n<p>\r\n	11月12日晚，第十六届亚运会在广州盛大开幕。西华大学啦啦队担任了重要表演任务，在本届亚运会篮球、排球、棒球和现代五项四个项目的半决赛和决赛的间\r\n歇进行现场表演。在亚运赛场上，我校啦啦操队员除了演绎经典的《对弈》、《牛仔》外，还将表演为本次亚运会量身定做的8套舞蹈动作以及4套技巧动作。队员\r\n们在各大场馆一展西华学子飞扬的激情和青春风采，以啦啦操的方式为中华体育健儿们加油助威。\r\n</p>\r\n<p>\r\n	11月16日，2010年成都地区高校关工委工作第十三次协作会在我校人南校区召开。会议传达了教育部关工委全国教育系统基层关工委建设现场交流会、全国\r\n教育系统关工委“青蓝工程”现场会、全省关心下一代工作会议等有关精神和要求，与会高校就贯彻落实教育部党组20号文件和省教育厅党组51号文件精神、加\r\n强自身建设情况作了交流。\r\n</p>\r\n<p>\r\n	11月16日至19日，中国汽车工程学会在上海国际赛车场举办了首届中国大学生方程式汽车大赛。经过为期四天的激烈比拼，西华大学FSAE车队作为四川省唯一一支参赛车队，表现突出，最终以总成绩820.69分排名全国第三并摘取了11项大奖。\r\n</p>\r\n<p>\r\n	11月18日，为鼓励全校教师积极申报国家级科研项目，进一步提高我校国家级科研项目的申报数量和申报质量，学校召开了国家级科研项目申报动员会。各学院分管科研院领导，各学院2010年、2011年申报国家项目的教师及科研骨干参会。\r\n</p>\r\n<p>\r\n	11月18日，西南石油大学党委书记朱世宏带领党办校办、组织部、宣传统战部、学工部负责人来校考察交流党代会筹备工作，受到了学校党委书记张小南、校党委副书记王小林的热烈欢迎。\r\n</p>\r\n<p>\r\n	11月18－22日，副校长蔡汉军一行奔赴珠三角，先到广州看望校友，随后分别到惠州、深圳和珠海参加三地校友会成立大会。惠州、深圳、珠海校友会成立\r\n</p>\r\n<p>\r\n	11月19日，学校组织各单位的中层干部、党支部书记、教师党员及学生党员代表近300人，在四教报告厅观看了以全国优秀共产党员、模范基层干部，安徽省凤阳县小岗村原党委第一书记沈浩同志先进事迹为原型的影片《第一书记》。\r\n</p>\r\n<p>\r\n	11月20日，西华大学2011届毕业生双选会在卓越广场隆重举行。来自浙江的全国著名企业公牛集团、四川东方电气集团、重庆建设摩托车股份有限公司、中\r\n国重汽集团重庆燃油喷射系统有限公司、中铁二十二局集团第五工程有限公司、湖南云箭集团、成都云内动力有限公司等310余家用人单位来校招揽人才，为我校\r\n毕业生提供了6000余个就业岗位。四川省教育厅学生处处长李孝武一行来到我校，就本次双选会的相关情况进行调研，并与部分来校招聘人才的企业负责人、学\r\n校相关部门人员和部分毕业生代表进行了交流。\r\n</p>\r\n<p>\r\n	11月20日，亚利桑那州立大学罗纳德R·奥多内尔博士（Ronald R.O’Donnell，PH.D），陈维樑博士、北京约翰斯管理咨询有限公司负责人陈保军先生莅临我校交流访问。\r\n</p>\r\n<p>\r\n	11月24日，我校召开2010年国家助学金及李嘉诚助学金评审会。校党委副书记、校家庭经济困难学生资助领导小组组长王小林要求评审小组成员严格遵循\r\n“公开、公平、公正”的原则，确保国家助学金用于资助表现优秀、自立自强的家庭经济困难学生。最后，评出郑萍等9569名同学享受2010学年度国家助学\r\n金，李皎燕等272名同学享受2010学年度李嘉诚助学金。\r\n</p>\r\n<p>\r\n	11月24日，我校召开新生心理健康普测反馈报告会，标志着我校2010级新生心理普测工作圆满结束。<br />\r\n　　2010年新生心理普测自9月20日启动，历时两个月，分为7个阶段，采用了3个权威测量工具，共收回问卷8415套，有效问卷共计24626份，统\r\n计分析数据618套，随机抽取并访谈学生477人，共计访谈19000余小时，撰写心理普测报告20份。据悉，心理健康服务与研究中心还将为每位学生建立\r\n心理档案。\r\n</p>\r\n<p>\r\n	11月24日，由四川省鲁迅研究会主办、我校人文学院承办的四川省鲁迅研究会会长扩大会议暨“中学语文教材与鲁迅”学术研讨会在我校召开，四川大学、西南\r\n大学、西南交通大学、四川省社科院、四川省文联等十余所高校及科研院所的30多位鲁迅研究专家和成都、重庆部分重点中学的语文教师参加了会议。\r\n</p>\r\n<p>\r\n	11月25日，成都工投电子科技有限公司总经理金龙安一行来我校洽谈合作事宜，双方签署了校企合作协议。协议约定，我校与成都工投电子科技有限公司将在产\r\n品技术开发、申报国家课题、科学研究、管理培训咨询等方面展开合作。成都工投电子科技有限公司将作为我校就业实习基地，优先为我校毕业生提供实习、就业机\r\n会。\r\n</p>\r\n<p>\r\n	11月26日，李嘉诚基金会捐助四川地震灾区“学生感恩行动”座谈会在我校召开，四川师范大学等六所高校教师及学生代表参会并分别介绍了各校赴灾区开展参与社会服务和公益活动情况，对怎样更好的开展社会公益实践活动进行了探讨。\r\n</p>\r\n<p>\r\n	11月26日，成都市“新家园 新生活 \r\n新风尚”志愿服务活动总结暨表彰大会在四教报告厅召开。成都市文明办创建处处长饶劲、团市委志愿者工作部副部长宁可与我校校团委相关负责人、服务地志愿服\r\n务站代表，服务地居民代表、“三新”志愿服务队成员', 'news/content', 'news_content', 0, 0, 35, 1, '原创', 1372127084, 0);
+INSERT INTO `yx_news` (`id`, `sort`, `account`, `title`, `places`, `color`, `picture`, `keywords`, `description`, `content`, `method`, `tpcontent`, `norder`, `recmd`, `hits`, `ispass`, `origin`, `addtime`, `extfield`) VALUES
+(18, ',000000,100030', 'admin', '电话故障受理及处理流程', '', '', 'NoPic.gif', '电话故障受理及处理流程', '电话故障受理及处理流程', '<a href="http://xb.xhu.edu.cn/archiver/guide/procedureimg.jsp?title=liucheng.bmp" target="_blank"><img src="/xbxhu/upload/news/image/20130625/20130625113916_71578.bmp" alt="" /><br />\r\n</a> \r\n<p>\r\n	<span style="font-size:14px;">1、用户通过拨打故障申报电话描述故障现象。<br />\r\n2、接障人员通过故障维护平台记录用户的基本信息。<br />\r\n3、接障人员通过初步判断划分故障类型。<br />\r\n4、安排相关部门和维护人员处理故障。<br />\r\n5、维护人员在接到用户报障后,一个工作日内进行修复。(特殊情况除外)。<br />\r\n6、.维护人员完成故障处理后向接障员消障，接障员与用户联系，确认故障处理完毕。</span> \r\n</p>', 'news/content', 'news_content', 0, 0, 38, 1, '原创', 1372130760, 0),
+(19, ',000000,100032', 'admin', '湖南科技大学胡石其副校长一行来校考察交流', '', '', '20130625/thumb_20130625125028_17168.jpg', '湖南科技大学胡石其副校长一行来校考察交流', '湖南科技大学胡石其副校长一行来校考察交流', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4月11日下午，湖南科技大学胡石其副校长一行来到我校，在办公楼412会议室召开了座谈交流会。副校长李劲松、校长办公室主任费凌、校党委组织部部长唐润华、人事处副处长赵飞参加了座谈会。副校长李劲松主持座谈会。<br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \r\n座谈之前，胡石其副校长一行观看了西华大学宣传片，对我校的基本情况有了一定的的了解。李劲松副校长重点就近年来我校重视教学学改革、狠抓教学质量、推进\r\n学科建设、提升科研水平等情况作了详细介绍，并表达了希望与湖南科技大学合作交流、建立友谊、共同发展的愿望。<br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 会上，校党委组织部部长唐润华对我校干部选拔任用工作作了详细介绍。西华大学第一次党代会之后学校出台了一系列议事规则，规定提拔副处级干部需要党委常委会票决通过，提拔正处级干部需要党委全委会票决通过。<br />\r\n人事处副处长赵飞就学校岗位设置、聘任与人才引进的基本情况作了介绍，详细阐述了绩效工资改革的有关情况。我校是第三批实行绩效工资的单位，在分配上学校加大了对学科、科研的奖励与支持力度，每年选派10名左右青年骨干教师到国外访问研修，每年引进博士60名左右。<br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \r\n胡石其副校长就湖南科技大学的基本情况作了介绍。他说，西华大学和湖南科技大学无论在合并组建时间，还是在组建方式等方面均有相似之处。在随后的交流中，\r\n胡石其副校长表示，希望通过此次考察交流，双方在教学、科研、行政等各方面相互学习，取长补短，着力促进两校科学发展。<br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 与会人员就绩效工资和工勤人员的管理等工作进行了深入、细致的交流。座谈交流结束后，胡石其副校长一行还分头到党委组织部、人事处、校办（档案馆）等实地参观考察，了解相关情况。<br />\r\n<p>\r\n	据悉，湖南科技大学始建于解放前夕成立的湘北建设学院，2003年经教育部和湖南省人民政府批准，由湘潭工学院和湘潭师范学院合并组建而成，是湖南省省属\r\n重点大学，是教育部第一批“卓越工程师教育培养计划”高校。学校设有19个教学院、1个继续教育学院和1个独立学院，83个本科专业，涵盖了哲学、经济\r\n学、教育学、法学、文学、历史学、理学、工学、农学、管理学、艺术学等11大学科门类。现有在职教职工2300余人，全日制在校本科生、硕士生3.4万余\r\n人。\r\n</p>\r\n<p>\r\n	<img src="/xbxhu/upload/news/image/20130625/20130625125028_17168.jpg" alt="" />\r\n</p>', 'news/content', 'news_content', 0, 0, 37, 1, '原创', 1372135753, 0),
+(20, ',000000,100032', 'admin', '昆明学院刘海发副校长一行来校考察交流', '', '', 'NoPic.gif', '昆明学院刘海发副校长一行来校考察交流', '昆明学院刘海发副校长一行来校考察交流', '4月8日，昆明学院刘海发副校长一行来校，就数字化校园建设、校园（信息）门户建设、办公自动化、课程中心建设和西华大学易班建设情况进行了座谈交流。我校正厅级调研员钱进主持座谈会。<br />\r\n　　正厅级调研员钱进在谈到数字化校园建设时，感触颇深。他说，数字化校园建设工作，个人认为是“三分技术，七分管理”，领导层的决心决定了建设工作的进\r\n程与效果。学校党委高度重视，把此项工作当作一项民生工程来抓，并强调，要把网络建设视作服务，坚持服务优先；数据应当为学校科学决策提供技术支撑。<br />\r\n　　会上，信息与网络管理中心主任马法尧、学生工作部副部长王强、教务处副处长蒋珍菊分别就学校数字化校园建设、西华大学易班建设、学校课程中心建设向刘海发副校长一行作了具体介绍。<br />\r\n经过近10年的建设，我校基本实现了全校基础数据的清洗、整合和流转，部分解决了部门之间数据无法共享的问题，实现了分级授权和数据按角色权限的网上查询\r\n与运用，各应用系统的建设实现了管理的信息化、网络化、办公无纸化，提高了办事效率。按照学校数字化校园建设规划，学校将建立和完善权威数据源，升级和改\r\n造共享该数据中心，建设统一支付平台和校园一卡通系统，消除信息孤岛，真正建立起高效、稳定、可靠、安全的开放性一卡通系统平台。<br />\r\n王强副部长在介绍了上海易班建设的概况后，重点从易班的功能、易班的引入、宣传推广、课题研究、取得的成效等几个方面对西华大学易班建设情况作了全面介绍。<br />\r\n蒋珍菊副处长就学校课程中心建设情况作了介绍。目前，学校有全程录播教室两个，学校课程中心拥有600多门课程资源，师生们在线交流活跃，仅一年多时间访问量达130余万人次。<br />\r\n　　与会人员就数字化校园建设、办公自动化、课程中心和易班建设等进行了深入交流。座谈交流结束后，刘海发副校长一行还实地参观考察了学校信息与网络管理中心，详细了解数字化校园建设的相关情况。<br />\r\n　　昆明学院党委办公室主任吉庆华，现代教育技术中心主任李海雁，资产管理与设备处处长解永刚，校长办公室副主任刘娟娟，中国移动云南有限公司昆明分公司\r\n副总经理韩骥以及相关部门工作人员；我校党委办公室主任黄进，物资设备与实验室管理处处长刘星彪，信息与网络管理中心主任马法尧，学生工作部副部长王强，\r\n校长办公室副主任杨志松，教务处副处长蒋珍菊，后勤管理处副处长曾建国参加了座谈交流。<br />\r\n据悉，昆明学院是国家教育部2004年5月批准建立的全日制普通高等学校，在原昆明师范高等专科学校和原昆明大学合并的基础上整合昆明市优质教育资源组建\r\n而成，是目前云南省学科门类最齐全的本科院校。学校现有40个本科专业，21个特色专科专业，覆盖了经济学、法学、教育学、文学、历史学、理学、工学、农\r\n学、医学、管理学、艺术学11个学科门类。现有在职教职工1726人，全日制本专科学生17000多人。', 'news/content', 'news_content', 0, 0, 36, 1, '原创', 1372135898, 0),
+(21, ',000000,100033', 'admin', '关于2013年清明节 劳动节 端午节', '', '', 'NoPic.gif', '关于2013年清明节 劳动节 端午节', '关于2013年清明节 劳动节 端午节', '<p>\r\n	校内各单位：<br />\r\n　　根据《国务院办公厅关于2013年部分节假日安排的通知》（国办发明电〔2012〕33号）精神，结合我校具体情况，现将清明节、劳动节、端午节放假时间安排及有关事项通知如下：<br />\r\n　　一、放假时间<br />\r\n　　1.清明节：4月4日－6日放假，共3天。其中：4月4日（星期四）为清明节法定节假日，4月7日（星期日）公休日调至4月5日（星期五）。4月7日（星期日）上班、行课。<br />\r\n　　2.劳动节：4月29日—5月1日放假，共3天。其中：5月1日（星期三）为劳动节法定节假日，4月27日（星期六）、4月28日（星期日）公休日调至4月29日（星期一）、4月30日（星期二）。4月27日（星期六）、4月28日（星期日）上班、行课。<br />\r\n　　3.端午节：6月10日－12日放假，共3天。其中：6月12日（星期三）为端午节法定节假日，6月8日（星期六）、6月9日（星期日）公休日调至6月10日（星期一）、6月11日（星期二）。6月8日（星期六）、6月9日（星期日）上班、行课。<br />\r\n　　二、学生课程作相应调整，课程表上4月5日的课程调至4月7日；4月29日的课程调至4月27日，4月30日的课程调至4月28日；6月10日的课程调至6月8日，6月11日的课程调至6月9日。<br />\r\n　　三、各单位要切实做好节日期间的安全保卫、保密、防火、防盗工作，妥善安排值班人员，对重点部位要进行重点防范。各学院和学生管理部门要加强对学生的安全教育，并配合有关部门组织好节日期间学生的活动，安排好学生生活。<br />\r\n　　四、请各单位于4月3日前将清明节、劳动节、端午节期间的值班安排通过 OA 系统分别报送党委办公室张雯欣和校长办公室李涛。\r\n</p>\r\n<p>\r\n	&nbsp;\r\n</p>\r\n<p style="text-align:right;">\r\n	西华大学校长办公室&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n</p>\r\n二O一三年三月二十五日&nbsp;&nbsp; <br />', 'news/content', 'news_content', 0, 0, 30, 1, '原创', 1372137903, 0),
+(22, ',000000,100033', 'admin', '关于彭州校区交通车校内停靠点调整的通知', '', '', 'NoPic.gif', '关于彭州校区交通车校内停靠点调整的通知', '关于彭州校区交通车校内停靠点调整的通知', '<p>\r\n	校内各单位：\r\n</p>\r\n<p>\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 经学校研究，彭州校区至校本部交通车校内停靠点作如下调整：\r\n</p>\r\n<p>\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 东大门——艺术中心大楼—第五教学楼与图书馆之间——第五教学楼西——第六教学楼（桥头堡）——第六教学楼南——第二、三教学楼之间——行政楼——劳服司\r\n</p>\r\n<p>\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 新线路从2012年12月17日（星期一）起试运行，交通车运行时间不变。\r\n</p>\r\n<p>\r\n	&nbsp;\r\n</p>\r\n<p>\r\n	&nbsp;\r\n</p>\r\n<p>\r\n	&nbsp;\r\n</p>\r\n<p>\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 二0一二年十二月十四日\r\n</p>', 'news/content', 'news_content', 0, 0, 34, 1, '原创', 1372137947, 0),
+(23, ',000000,100034', 'admin', '学习中心1', '', '', 'NoPic.gif', '学习中心1', '学习中心1', '学习中心实例', 'news/content', 'news_content', 0, 0, 34, 1, '原创', 1372141666, 0),
+(51, ',000000,100030', 'admin', '联系我们', '102', '', '20130629/thumb_1372477497.png', '我们,联系', '联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们', '联系我们联系我们联系我们联系我们联系我们联系我们联系我们联系我们', 'news/content', 'news_content', 0, 1, 33, 1, '原创', 1372477454, 0),
+(52, ',000000,100032', 'admin', '一教花园很美', '102', '', '20130629/thumb_1372521519.jpg', '好看,大学,花园', '西华大学一教花苑很好看哦。西华大学一教花苑很好看哦。', '<strong><span style="font-size:32px;color:#E53333;">西华大学一教花苑很好看哦。<strong><span style="font-size:32px;color:#E53333;">西华大学一教花苑很好看哦。</span></strong></span></strong>', 'news/content', 'news_content', 0, 1, 32, 1, '原创', 1372521425, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yx_orders`
+--
+
+CREATE TABLE IF NOT EXISTS `yx_orders` (
+  `id` int(15) NOT NULL AUTO_INCREMENT,
   `ordernum` varchar(20) NOT NULL COMMENT ' 订单号',
   `account` varchar(30) NOT NULL COMMENT '账户',
   `total` float NOT NULL COMMENT '总价',
@@ -428,54 +473,57 @@ CREATE TABLE `yx_orders` (
   `ordertime` int(11) NOT NULL COMMENT '订单时间',
   `state` tinyint(1) NOT NULL COMMENT '订单状态',
   `mess` text NOT NULL COMMENT '订单信息',
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- ----------------------------
--- Records of yx_orders
--- ----------------------------
+-- --------------------------------------------------------
 
--- ----------------------------
--- Table structure for `yx_order_detail`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_order_detail`;
-CREATE TABLE `yx_order_detail` (
-  `id` int(20) NOT NULL auto_increment,
+--
+-- 表的结构 `yx_order_detail`
+--
+
+CREATE TABLE IF NOT EXISTS `yx_order_detail` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
   `code` varchar(10) NOT NULL COMMENT '商品编号',
   `ordernum` varchar(20) NOT NULL,
   `name` varchar(100) NOT NULL,
   `price` float NOT NULL,
   `num` int(5) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- ----------------------------
--- Records of yx_order_detail
--- ----------------------------
+-- --------------------------------------------------------
 
--- ----------------------------
--- Table structure for `yx_page`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_page`;
-CREATE TABLE `yx_page` (
-  `id` int(10) NOT NULL auto_increment,
+--
+-- 表的结构 `yx_page`
+--
+
+CREATE TABLE IF NOT EXISTS `yx_page` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `sort` varchar(350) NOT NULL,
   `content` text NOT NULL,
   `edittime` varchar(20) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
--- ----------------------------
--- Records of yx_page
--- ----------------------------
-INSERT INTO `yx_page` VALUES ('1', ',000000,100003', '采用三级缓存：数据库缓存、模板缓存、静态缓存，可使网站数据达到百万级负载！\r\n<hr style=\"page-break-after:always;\" class=\"ke-pagebreak\" />\r\n采用功能与显示分离设计，灵活的标签库和任意拓展的插件机制，让您随心所欲，将DIY进行到底！\r\n<hr style=\"page-break-after:always;\" class=\"ke-pagebreak\" />\r\n拥有建站各种实用功能，摒弃各种复杂繁琐的功能操作。卓越的用户体验，让您使用起来方便明了！\r\n<hr style=\"page-break-after:always;\" class=\"ke-pagebreak\" />\r\n遵循BSD开源协议，不对用户做任何功能限制，保证用户二次商业开发使用！\r\n', '2012-07-12 14:52:41');
+--
+-- 转存表中的数据 `yx_page`
+--
 
--- ----------------------------
--- Table structure for `yx_photo`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_photo`;
-CREATE TABLE `yx_photo` (
-  `id` int(20) NOT NULL auto_increment,
+INSERT INTO `yx_page` (`id`, `sort`, `content`, `edittime`) VALUES
+(7, ',000000,100040', '<span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 校长办公室是校长行使行政领导和管理职权的行政综合管理部门，是服务于校领导和校内各单位的综合办事机构 \r\n。其基本职能是：参与政务，办理事务，综合协调，搞好服务。 \r\n在学校行政决策体系中，校办起着调查研究、分析信息、提供咨询的参谋作用；在学校行政管理体系中，校办起着承上启下、综合协调、检查督促、联系内外的助手\r\n作用；在学校整个行政工作指挥服务体系中，校办起着枢纽和桥梁作用。</span>', '2013-06-27 00:46:37'),
+(2, ',000000,100025', 'The President’s Office<br />\r\n<br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The President’s Office is an administrative division which assists the President in performing his executive and management capacities in the university. It also serves as a comprehensive department committed to provide a high level of service quality to both the presidents and other departments on campus.<br />\r\n　　 The basic function of the President’s Office includes fundamental policies participation、general affairs implementing、cooperation and coordination、services and supports.<br />\r\n<br />\r\nOffice Structure<br />\r\n<br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The President''s Office now consists of seven sections: the Secretarial Service Section、the General Section、the Information Section、Alumni Affairs Office、School Transport、Mail Room and Telephone Module Office.<br />\r\n<br />\r\nContact Address<br />\r\n<br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tel： 86 28 87720037<br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fax： 86 28 87720200<br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; E-mail: xiaoban@mail.xhu.edu.cn<br />', '2013-06-25 00:07:33'),
+(3, ',000000,100026,100027', '<br />\r\n<table class="ke-zeroborder" align="center" border="0" cellpadding="2" cellspacing="2" width="100%">\r\n	<tbody>\r\n		<tr valign="top">\r\n			<td align="center">\r\n				<img src="http://xb.xhu.edu.cn/common/images/response/feilin.jpg" height="180px" width="140px" /> \r\n			</td>\r\n			<td>\r\n				<table align="center" width="100%">\r\n					<tbody>\r\n						<tr>\r\n							<td>\r\n								<span style="font-size:x-small;"><b>校长办公室(档案馆)主任(馆长):费&nbsp;凌</b></span><br />\r\n电话：87720038\r\n							</td>\r\n						</tr>\r\n						<tr>\r\n							<td>\r\n								工作职责:<br />\r\n1、主持校长办公室、档案馆工作。<br />\r\n2、开展调查与政策研究。<br />\r\n3、协助校领导组织全校性大型会议和活动。<br />\r\n4、负责综合协调和督办。<br />\r\n5、组织重要文稿的起草、审核。<br />\r\n6、负责组织校长办公会议，审核校长办公会议纪要。<br />\r\n7、负责对校内请示、报告提出拟办意见和建议。<br />\r\n8、负责对外联络工作。<br />\r\n9、完成校领导布置的其他工作。\r\n							</td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n<br />\r\n<br />\r\n<table class="ke-zeroborder" align="center" border="0" cellpadding="2" cellspacing="2" width="100%">\r\n	<tbody>\r\n		<tr valign="top">\r\n			<td align="center">\r\n				<img src="http://xb.xhu.edu.cn/common/images/response/yangzhisong.jpg" height="180px" width="140px" /> \r\n			</td>\r\n			<td>\r\n				<table align="center" width="100%">\r\n					<tbody>\r\n						<tr>\r\n							<td>\r\n								<span style="font-size:x-small;"><b>校长办公室副主任:杨志松</b></span><br />\r\n电话：87723088\r\n							</td>\r\n						</tr>\r\n						<tr>\r\n							<td>\r\n								工作职责:<br />\r\n1、协助主任做好校长办公室的工作。<br />\r\n2、负责组织学校行政文件、文稿的起草、审核和拟办工作。<br />\r\n3、负责全校性大型活动会务组织与接待工作。<br />\r\n4、负责群众来访接待与处理工作。<br />\r\n5、负责学校行政信息和保密工作。<br />\r\n6、负责为校领导服务的有关工作。<br />\r\n7、组织编写“情况简报”、“学校年鉴（或大事记）”。<br />\r\n8、协调校园综合治理工作。<br />\r\n9、完成校领导和主任布置的其他工作。\r\n							</td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n<br />\r\n<br />\r\n<table class="ke-zeroborder" align="center" border="0" cellpadding="2" cellspacing="2" width="100%">\r\n	<tbody>\r\n		<tr valign="top">\r\n			<td align="center">\r\n				<img src="http://xb.xhu.edu.cn/common/images/response/huangyan.jpg" height="180px" width="140px" /> \r\n			</td>\r\n			<td>\r\n				<table align="center" width="100%">\r\n					<tbody>\r\n						<tr>\r\n							<td>\r\n								<span style="font-size:x-small;"><b>校长办公室副主任:黄 &nbsp;燕</b></span><br />\r\n电话：87728807\r\n							</td>\r\n						</tr>\r\n						<tr>\r\n							<td>\r\n								工作职责:<br />\r\n1、协助主任做好校长办公室的工作。<br />\r\n2、负责组织学校行政文件、文稿的起草、审核和拟办工作。<br />\r\n3、负责全校性大型活动会务组织与接待工作。<br />\r\n4、负责群众来访接待与处理工作。<br />\r\n5、负责学校行政信息和保密工作。<br />\r\n6、负责为校领导服务的有关工作。<br />\r\n7、组织编写“情况简报”、“学校年鉴（或大事记）”。<br />\r\n8、协调校园综合治理工作。<br />\r\n9、完成校领导和主任布置的其他工作。\r\n							</td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n<br />', '2013-06-25 10:29:56'),
+(5, ',000000,100026,100029', '<table width="100%">\r\n	<tbody>\r\n		<tr>\r\n			<td align="center">\r\n				<span style="font-size:x-small;"></span><br />\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				<br />\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				<p>\r\n					1、主要承担文秘工作、档案工作和印章制作管理工作。具体工作为：\r\n				</p>\r\n				<p>\r\n					（1）学校有关会议的记录、整理、归档；\r\n				</p>\r\n				<p>\r\n					（2）印章的管理、制作、使用和监督使用。\r\n				</p>\r\n				<p>\r\n					（3）学校文件的拟稿、编号、校对、打印、归档。做好保密工作。\r\n				</p>\r\n				<p>\r\n					2、负责学校文稿的有关工作。\r\n				</p>\r\n				<p>\r\n					3、负责编写“情况简报”、“学校年鉴（或大事记）”等。\r\n				</p>\r\n				<p>\r\n					4、负责政务信息工作。具体工作为：\r\n				</p>\r\n				<p>\r\n					（1）负责上级文件的领取、传阅、归档。\r\n				</p>\r\n				<p>\r\n					（2）向上、对外报送文件、材料。\r\n				</p>\r\n				<p>\r\n					（3）办公自动化系统的有关工作。\r\n				</p>\r\n				<p>\r\n					5、参与工作调研、督办和汇总工作。\r\n				</p>\r\n				<p>\r\n					6、负责接待来访和会务工作。\r\n				</p>\r\n				<p>\r\n					7、完成领导交办的其他工作。\r\n				</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>', '2013-06-25 10:31:44');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yx_photo`
+--
+
+CREATE TABLE IF NOT EXISTS `yx_photo` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
   `sort` varchar(350) NOT NULL COMMENT '类别',
   `account` char(15) NOT NULL COMMENT '发布者账户',
   `title` varchar(60) NOT NULL COMMENT '标题',
@@ -494,49 +542,51 @@ CREATE TABLE `yx_photo` (
   `hits` int(10) NOT NULL COMMENT '点击量',
   `ispass` tinyint(1) NOT NULL,
   `addtime` int(11) NOT NULL,
-  `extfield` int(10) NOT NULL default '0' COMMENT '拓展字段',
-  PRIMARY KEY  (`id`),
+  `extfield` int(10) NOT NULL DEFAULT '0' COMMENT '拓展字段',
+  PRIMARY KEY (`id`),
   FULLTEXT KEY `sort` (`sort`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
--- ----------------------------
--- Records of yx_photo
--- ----------------------------
-INSERT INTO `yx_photo` VALUES ('1', ',000000,100002,100007', 'admin', 'Kristen Jaymes Stewart', '', '', '1207130223541112317932.jpg', '依然,没有改变,文艺,爱好者,最爱,气质,迷人,演员,凭借', '克里斯汀·斯图尔特，美国演员，凭借《暮色》走红，但斯图尔特清丽迷人的气质没有改变，她依然是文艺片爱好者心头最爱。', '1207130223531353040021.jpg,1207130223541112317932.jpg,1207130223541632278949.jpg', 'Kristen Jaymes Stewart,Kristen Jaymes Stewart,Kristen Jaymes Stewart', '克里斯汀·斯图尔特，美国演员，凭借《暮色》走红，但斯图尔特清丽迷人的气质没有改变，她依然是文艺片爱好者心头最爱。', 'photo/content', 'photo_content', '0', '0', '47', '1', '1366353661', '0');
-INSERT INTO `yx_photo` VALUES ('2', ',000000,100002,100007', 'admin', '音乐才女邓福如', '', '', '12071302251562304480.jpg', '网络,翻唱,自己,学生,如果,人气,因为,跟随,像是,纷纷,知道,全球,青年,学子,一样,甚至,实在,觉得,有趣,没想到,喜欢,还有,外国,同样,效应,网站,夺冠,原来,专辑,如此,成绩,更是,发行,', '声名远播的新人气歌手邓福如，因为在YouTube网路上翻唱歌曲爆红，正式发行首张专辑【原来如此!!】成绩更是惊人！不但在KK BOX数位下载， 五大和光南唱片实体销售、YouTube网络人气上夺冠， 更因为勤跑超过20场校园和网络效应的扩延,让全球青年学子都知道台湾有个网络爆红的阿福，跟随阿福脚步的学生纷纷在YouTube翻唱阿福新歌『未填词』，甚至还有外国学生也同样在YouTube网络上翻唱阿福新歌『如果有如果』和『一点点喜欢』，让阿福自己都觉得很有趣，没想到有一天自己的歌竟也会被翻唱到网站上，实在像是作梦一样！', '1207130225141960794180.jpg,1207130225151558808654.jpg,12071302251562304480.jpg', '邓福如,邓福如,邓福如', '声名远播的新人气歌手邓福如，因为在YouTube网路上翻唱歌曲爆红，正式发行首张专辑【原来如此!!】成绩更是惊人！不但在KK BOX数位下载， 五大和光南唱片实体销售、YouTube网络人气上夺冠， 更因为勤跑超过20场校园和网络效应的扩延,让全球青年学子都知道台湾有个网络爆红的阿福，跟随阿福脚步的学生纷纷在YouTube翻唱阿福新歌『未填词』，甚至还有外国学生也同样在YouTube网络上翻唱阿福新歌『如果有如果』和『一点点喜欢』，让阿福自己都觉得很有趣，没想到有一天自己的歌竟也会被翻唱到网站上，实在像是作梦一样！', 'photo/content', 'photo_content', '0', '0', '81', '1', '1366353661', '0');
-INSERT INTO `yx_photo` VALUES ('3', ',000000,100002,100008', 'admin', '知性美女桂纶镁', '', '', '1207130226051497895902.jpg', '大学,出演,形象,高中,导演,合作,颠覆,其中,女人,周迅,不能,周杰伦,扮演,电影,秘密,一贯,戴立忍,男友,多年,年初,分手,登场,歌手,清新,个性,十足,摇滚,自己,心灵,前往,文学,里昂,第三', '桂纶镁，女，1983年12月25日出生，中国台湾新生代演员。高中就读薇阁高中，大学毕业于淡江大学法国语文学系，曾于2004年9月前往法国里昂第三大学交换学生。高二时出演《蓝色大门》当中的“孟克柔”，跨出了她人生第一步表演生涯。之后桂纶镁出演了《经过》《危险心灵》《波丽士大人》等影视剧。2007年，扮演周杰伦电影导演处女作《不能说的秘密》中的女主角。2008年，她与周迅、张雨绮合作出演了徐克导演的《女人不坏》，在其中颠覆自己一贯的清新形象，以个性十足的摇滚歌手形象登场。与男友戴立忍相恋多年，2010年初被传分手。', '1207130226041130855370.jpg,1207130226051164136083.jpg,1207130226051497895902.jpg', '桂纶镁,桂纶镁,桂纶镁', '桂纶镁，女，1983年12月25日出生，中国台湾新生代演员。高中就读薇阁高中，大学毕业于淡江大学法国语文学系，曾于2004年9月前往法国里昂第三大学交换学生。高二时出演《蓝色大门》当中的“孟克柔”，跨出了她人生第一步表演生涯。之后桂纶镁出演了《经过》《危险心灵》《波丽士大人》等影视剧。2007年，扮演周杰伦电影导演处女作《不能说的秘密》中的女主角。2008年，她与周迅、张雨绮合作出演了徐克导演的《女人不坏》，在其中颠覆自己一贯的清新形象，以个性十足的摇滚歌手形象登场。与男友戴立忍相恋多年，2010年初被传分手。', 'photo/content', 'photo_content', '0', '0', '50', '1', '1366353661', '0');
-INSERT INTO `yx_photo` VALUES ('4', ',000000,100002,100008', 'admin', '惠美的李英爱', '', '', '12071409164974461451.jpg', '电影,大长今,参与,出演,事业,演艺,连续剧,演出,电影节,地毯,更是,美女,戏剧,大学,出生,专业,博士,美的,形象,绯闻,学历', '韩国女演员李英爱于1971年出生，2009年获汉阳大学研究生院戏剧电影学专业博士——高学历、绯闻少、形象佳的她，被誉为“氧气美女”。于1993年入演艺事业，2003年，她因出演《大长今》而红遍亚洲。曾参与30多出连续剧及2部电影演出，2005年更是走在了威尼斯电影节的红地毯上。2011年2月20日，李英爱在首尔诞下一对龙凤胎。', '1207140916481346431949.jpg,1207140916492035362256.jpg,12071409164974461451.jpg', '李英爱,李英爱,李英爱', '韩国女演员李英爱于1971年出生，2009年获汉阳大学研究生院戏剧电影学专业博士——高学历、绯闻少、形象佳的她，被誉为“氧气美女”。于1993年入演艺事业，2003年，她因出演《大长今》而红遍亚洲。曾参与30多出连续剧及2部电影演出，2005年更是走在了威尼斯电影节的红地毯上。2011年2月20日，李英爱在首尔诞下一对龙凤胎。', 'photo/content', 'photo_content', '0', '0', '75', '1', '1366353661', '0');
-INSERT INTO `yx_photo` VALUES ('5', ',000000,100004,100009', 'admin', '2012款 华晨宝马X1 xDrive20i豪华型', '', '', '1207141009151467340643.jpg', '豪华型,宝马', '2012款 华晨宝马X1 xDrive20i豪华型', '120714100914380365650.jpg,1207141009151467340643.jpg,1207141009161460552430.jpg,1207141009161683601778.jpg,120714100917518719018.jpg', ',,,,', '2012款 华晨宝马X1 xDrive20i豪华型', 'photo/content', 'photo_pcontent', '0', '0', '112', '1', '1366353661', '1');
-INSERT INTO `yx_photo` VALUES ('6', ',000000,100004,100010', 'admin', '2012款 宾利欧陆(进口) GT 4.0L V8', '', '', '1207141017071099344068.jpg', '进口', '2012款 宾利欧陆(进口) GT 4.0L V8', '1207141017051955819764.jpg,1207141017051663967042.jpg,1207141017062055178821.jpg,1207141017071129248170.jpg,1207141017071099344068.jpg', ',,,,', '2012款 宾利欧陆(进口) GT 4.0L V8', 'photo/content', 'photo_pcontent', '0', '0', '94', '1', '1366353661', '2');
+--
+-- 转存表中的数据 `yx_photo`
+--
 
--- ----------------------------
--- Table structure for `yx_place`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_place`;
-CREATE TABLE `yx_place` (
-  `id` int(10) NOT NULL auto_increment,
+INSERT INTO `yx_photo` (`id`, `sort`, `account`, `title`, `places`, `color`, `picture`, `keywords`, `description`, `photolist`, `conlist`, `content`, `method`, `tpcontent`, `norder`, `recmd`, `hits`, `ispass`, `addtime`, `extfield`) VALUES
+(13, ',000000,100049', 'admin', '西华风光图集，不要删除。', '', '', '13062911483042485067.jpg ', '风光', '注意：\r西华风光图集，不要删除。\r加入此图集的图片将会动态显示在首页下方的“校园风光”图表里。', '130629114828955081074.jpg ,1306291148291593565912.jpg ,1306291148291969393883.jpg ,1306291148291268935958.jpg ,13062911483042485067.jpg ', ',,,,', '&lt;p&gt;\r\n	&lt;span style=&quot;font-size:18px;color:#E53333;&quot;&gt;&lt;strong&gt;注意：&lt;/strong&gt;&lt;/span&gt;\r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	西华风光图集，不要删除。\r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	加入此图集的图片将会动态显示在首页下方的“校园风光”图表里。\r\n&lt;/p&gt;', 'photo/content', 'photo_content', 0, 0, 30, 1, 1372520869, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yx_place`
+--
+
+CREATE TABLE IF NOT EXISTS `yx_place` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(60) NOT NULL,
   `norder` int(5) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=103 ;
 
--- ----------------------------
--- Records of yx_place
--- ----------------------------
-INSERT INTO `yx_place` VALUES ('100', '首页banner', '0');
-INSERT INTO `yx_place` VALUES ('101', '首页幻灯', '0');
+--
+-- 转存表中的数据 `yx_place`
+--
 
--- ----------------------------
--- Table structure for `yx_sort`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_sort`;
-CREATE TABLE `yx_sort` (
-  `id` int(6) unsigned NOT NULL auto_increment,
-  `type` tinyint(2) unsigned NOT NULL default '0' COMMENT '模型类别',
-  `path` varchar(255) default NULL,
-  `name` varchar(255) default NULL,
-  `deep` int(5) unsigned NOT NULL default '1' COMMENT '深度',
-  `norder` tinyint(10) unsigned NOT NULL default '0' COMMENT '排序',
+INSERT INTO `yx_place` (`id`, `name`, `norder`) VALUES
+(102, '首页幻灯', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yx_sort`
+--
+
+CREATE TABLE IF NOT EXISTS `yx_sort` (
+  `id` int(6) unsigned NOT NULL AUTO_INCREMENT,
+  `type` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '模型类别',
+  `path` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `deep` int(5) unsigned NOT NULL DEFAULT '1' COMMENT '深度',
+  `norder` tinyint(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
   `ifmenu` tinyint(1) NOT NULL COMMENT '是否前台显示',
   `method` varchar(100) NOT NULL COMMENT '模型方法',
   `tplist` varchar(100) NOT NULL COMMENT '列表模板',
@@ -544,66 +594,73 @@ CREATE TABLE `yx_sort` (
   `description` varchar(300) NOT NULL COMMENT '描述',
   `url` varchar(100) NOT NULL COMMENT '外部链接',
   `extendid` int(10) NOT NULL COMMENT '拓展表id',
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   FULLTEXT KEY `path` (`path`)
-) ENGINE=MyISAM AUTO_INCREMENT=100024 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=100050 ;
 
--- ----------------------------
--- Records of yx_sort
--- ----------------------------
-INSERT INTO `yx_sort` VALUES ('100001', '1', ',000000', '网站常识', '1', '1', '1', 'news/index', 'news_index,news_content', '网站常识', '网站常识', '10', '0');
-INSERT INTO `yx_sort` VALUES ('100002', '2', ',000000', '趣味图集', '1', '2', '1', 'photo/index', 'photo_index,photo_content', '趣味图集', '趣味图集', '10', '0');
-INSERT INTO `yx_sort` VALUES ('100003', '3', ',000000', '系统介绍', '1', '0', '1', 'page/index', 'page_index', '系统介绍', '系统介绍', '', '0');
-INSERT INTO `yx_sort` VALUES ('100004', '2', ',000000', '酷车在线', '1', '3', '1', 'photo/index', 'photo_indexp,photo_pcontent', '酷车在线', '酷车在线', '10', '1');
-INSERT INTO `yx_sort` VALUES ('100005', '1', ',000000,100001', '建站知识', '2', '0', '1', 'news/index', 'news_index,news_content', '建站知识', '建站知识', '10', '0');
-INSERT INTO `yx_sort` VALUES ('100006', '1', ',000000,100001', '推广常识', '2', '0', '1', 'news/index', 'news_index,news_content', '推广常识', '推广常识', '10', '0');
-INSERT INTO `yx_sort` VALUES ('100007', '2', ',000000,100002', '气质美女', '2', '0', '1', 'photo/index', 'photo_index,photo_content', '气质美女', '气质美女', '10', '0');
-INSERT INTO `yx_sort` VALUES ('100008', '2', ',000000,100002', '性感美女', '2', '0', '1', 'photo/index', 'photo_index,photo_content', '性感美女', '性感美女', '10', '0');
-INSERT INTO `yx_sort` VALUES ('100009', '2', ',000000,100004', '品牌汽车', '2', '0', '1', 'photo/index', 'photo_indexp,photo_pcontent', '品牌汽车', '品牌汽车', '10', '1');
-INSERT INTO `yx_sort` VALUES ('100010', '2', ',000000,100004', '酷车DIY', '2', '0', '1', 'photo/index', 'photo_indexp,photo_pcontent', '酷车DIY', '酷车DIY', '10', '1');
-INSERT INTO `yx_sort` VALUES ('100012', '5', ',000000', 'Yxcms', '1', '4', '1', '', '', '', '', 'http://www.yxcms.net', '1');
-INSERT INTO `yx_sort` VALUES ('100022', '6', ',000000', '内容评论', '1', '6', '0', 'extend/index', 'extend_index', '', '', '10', '7');
-INSERT INTO `yx_sort` VALUES ('100016', '1', ',000000,100001,100005', 'PHP学习', '3', '1', '1', 'news/index', 'news_index,news_content', 'PHP学习', 'PHP学习', '10', '0');
-INSERT INTO `yx_sort` VALUES ('100017', '1', ',000000,100001,100005', 'JavaScript', '3', '2', '1', 'news/index', 'news_index,news_content', 'JavaScript', 'JavaScript', '10', '0');
-INSERT INTO `yx_sort` VALUES ('100018', '1', ',000000', '常见问题', '1', '0', '1', 'news/index', 'news_index,news_content', 'HTML布局', 'HTML布局', '10', '0');
-INSERT INTO `yx_sort` VALUES ('100019', '1', ',000000,100001,100005,100017', 'Jquery框架', '4', '0', '1', 'news/index', 'news_index,news_content', 'Jquery框架', 'Jquery框架', '10', '0');
-INSERT INTO `yx_sort` VALUES ('100023', '6', ',000000', '留言本', '1', '5', '1', 'extend/index', 'extend_guestbook', '', '', '10', '12');
+--
+-- 转存表中的数据 `yx_sort`
+--
 
--- ----------------------------
--- Table structure for `yx_tags`
--- ----------------------------
-DROP TABLE IF EXISTS `yx_tags`;
-CREATE TABLE `yx_tags` (
-  `id` int(10) NOT NULL auto_increment,
+INSERT INTO `yx_sort` (`id`, `type`, `path`, `name`, `deep`, `norder`, `ifmenu`, `method`, `tplist`, `keywords`, `description`, `url`, `extendid`) VALUES
+(100046, 7, ',000000', '资料下载', 1, 7, 1, 'download/index', 'download_index', '', '', '', 0),
+(100030, 1, ',000000', '办事指南', 1, 4, 1, 'news/index', 'news_index,news_content', '办事指南', '办事指南', '10', 0),
+(100034, 1, ',000000', '学习中心', 1, 6, 1, 'news/index', 'news_index,news_content', '学习中心', '学习中心', '10', 0),
+(100036, 1, ',000000', '为您服务', 1, 5, 1, 'news/index', 'news_index,news_content', '为您服务', '为您服务', '10', 0),
+(100032, 1, ',000000', '动态信息', 1, 2, 1, 'news/index', 'news_index,news_content', '动态信息', '动态信息', '10', 0),
+(100033, 1, ',000000', '公告', 1, 100, 0, 'news/index', 'news_index,news_content', '公告', '公告', '10', 0),
+(100039, 5, ',000000', '西华首页', 1, 10, 1, '', '', '', '', 'http://www.xhu.edu.cn/', 1),
+(100040, 3, ',000000', '部门简介', 1, 0, 1, 'page/index', 'page_index', '部门简介', '部门简介', '', 0),
+(100018, 1, ',000000', '大事记', 1, 3, 1, 'news/index', 'news_index,news_content', '大事记', '西华大学大事记', '10', 0),
+(100026, 1, ',000000', '机构设置', 1, 1, 1, 'news/index', 'news_index,news_content', '机构设置', '机构设置', '10', 0),
+(100025, 3, ',000000', 'English', 1, 9, 1, 'page/index', 'page_index', 'English', 'English', '', 0),
+(100027, 3, ',000000,100026', '校办领导', 2, 0, 1, 'page/index', 'page_index', '校办领导', '校办领导', '', 0),
+(100029, 3, ',000000,100026', '秘书科', 2, 0, 1, 'page/index', 'page_index', '秘书科', '秘书科', '', 0),
+(100049, 2, ',000000', '西华风光', 1, 0, 0, 'photo/index', 'photo_index,photo_content', '西华风光', '西华风光', '10', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yx_tags`
+--
+
+CREATE TABLE IF NOT EXISTS `yx_tags` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(60) NOT NULL,
-  `hits` int(10) NOT NULL default '0',
-  `mesnum` int(10) NOT NULL default '0',
+  `hits` int(10) NOT NULL DEFAULT '0',
+  `mesnum` int(10) NOT NULL DEFAULT '0',
   `addtime` int(11) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
 
--- ----------------------------
--- Records of yx_tags
--- ----------------------------
-INSERT INTO `yx_tags` VALUES ('1', '网络', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('2', '翻唱', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('4', '学生', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('5', '如果', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('6', '人气', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('7', '因为', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('8', '跟随', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('9', '像是', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('10', '纷纷', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('11', '知道', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('12', '全球', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('13', '青年', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('14', '学子', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('19', '有趣', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('21', '喜欢', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('23', '外国', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('24', '同样', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('25', '效应', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('26', '网站', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('27', '夺冠', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('29', '专辑', '0', '0', '1369743083');
-INSERT INTO `yx_tags` VALUES ('31', '成绩', '0', '1', '1369743083');
+--
+-- 转存表中的数据 `yx_tags`
+--
+
+INSERT INTO `yx_tags` (`id`, `name`, `hits`, `mesnum`, `addtime`) VALUES
+(1, '网络', 0, 0, 1369743083),
+(2, '翻唱', 0, 0, 1369743083),
+(4, '学生', 0, 0, 1369743083),
+(5, '如果', 0, 0, 1369743083),
+(6, '人气', 0, 0, 1369743083),
+(7, '因为', 0, 0, 1369743083),
+(8, '跟随', 0, 0, 1369743083),
+(9, '像是', 0, 0, 1369743083),
+(10, '纷纷', 0, 0, 1369743083),
+(11, '知道', 0, 0, 1369743083),
+(12, '全球', 0, 0, 1369743083),
+(13, '青年', 0, 0, 1369743083),
+(14, '学子', 0, 0, 1369743083),
+(19, '有趣', 0, 0, 1369743083),
+(21, '喜欢', 0, 0, 1369743083),
+(23, '外国', 0, 0, 1369743083),
+(24, '同样', 0, 0, 1369743083),
+(25, '效应', 3, 1, 1369743083),
+(26, '网站', 7, 2, 1369743083),
+(27, '夺冠', 2, 1, 1369743083),
+(29, '专辑', 1, 1, 1369743083),
+(31, '成绩', 4, 1, 1369743083);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
